@@ -1,0 +1,2318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image Dimensions Checker – Size & Resolution | ToolifyHub</title>
+
+    <meta name="description"
+          content="Check image width, height, dimensions, aspect ratio, file size, format and resolution instantly with ToolifyHub.">
+
+    <meta name="keywords"
+          content="image dimensions checker, image size checker, image resolution checker, photo dimensions, image width height checker">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+          href="https://toolifyhub-online.netlify.app/tools/image-dimensions.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+          content="Image Dimensions Checker – Size & Resolution | ToolifyHub">
+    <meta property="og:description"
+          content="Check image width, height, dimensions, aspect ratio, file size, format and resolution instantly with ToolifyHub.">
+    <meta property="og:type" content="website">
+    <meta property="og:url"
+          content="https://toolifyhub-online.netlify.app/tools/image-dimensions.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title"
+          content="Image Dimensions Checker – Size & Resolution | ToolifyHub">
+    <meta name="twitter:description"
+          content="Check image dimensions, resolution, format and file size instantly with ToolifyHub.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="../favicon.svg"
+    >
+
+
+    <style>
+        /* =====================================================
+           IMAGE DIMENSIONS
+           Page-specific classes use imgd- prefix
+        ===================================================== */
+
+        .imgd-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 8%, rgba(99,102,241,.12), transparent 30%),
+                radial-gradient(circle at 90% 18%, rgba(139,92,246,.10), transparent 30%),
+                #f8fafc;
+        }
+
+        /* HERO */
+
+        .imgd-hero {
+            padding: 82px 20px 45px;
+            text-align: center;
+        }
+
+        .imgd-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(99,102,241,.08);
+            border: 1px solid rgba(99,102,241,.14);
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .imgd-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 5px rgba(34,197,94,.12);
+        }
+
+        .imgd-hero h1 {
+            margin: 0;
+            color: #0f172a;
+            font-size: clamp(38px, 6vw, 62px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+        }
+
+        .imgd-gradient {
+            background: linear-gradient(135deg,#4f46e5,#7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .imgd-hero p {
+            max-width: 650px;
+            margin: 20px auto 0;
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* MAIN */
+
+        .imgd-main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .imgd-card {
+            background: rgba(255,255,255,.94);
+            border: 1px solid #e2e8f0;
+            border-radius: 26px;
+            box-shadow: 0 20px 60px rgba(15,23,42,.08);
+            backdrop-filter: blur(15px);
+        }
+
+        /* UPLOAD */
+
+        .imgd-upload-card {
+            padding: 30px;
+        }
+
+        .imgd-upload {
+            position: relative;
+            min-height: 300px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 22px;
+            background:
+                linear-gradient(180deg,#fff,#f8fafc);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .imgd-upload:hover,
+        .imgd-upload.dragover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(99,102,241,.10);
+        }
+
+        .imgd-upload-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 22px;
+            display: grid;
+            place-items: center;
+            background: #eef2ff;
+            color: #4f46e5;
+            margin-bottom: 18px;
+        }
+
+        .imgd-upload-icon svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .imgd-upload h2 {
+            margin: 0 0 8px;
+            font-size: 22px;
+            color: #0f172a;
+        }
+
+        .imgd-upload p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .imgd-browse {
+            margin-top: 20px;
+            padding: 11px 18px;
+            border-radius: 11px;
+            background: #6366f1;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .imgd-upload input {
+            display: none;
+        }
+
+        .imgd-formats {
+            margin-top: 16px;
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        /* RESULT */
+
+        .imgd-result {
+            display: none;
+            margin-top: 22px;
+        }
+
+        .imgd-result.active {
+            display: block;
+            animation: imgdFade .35s ease;
+        }
+
+        @keyframes imgdFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .imgd-result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        /* PREVIEW */
+
+        .imgd-preview-card {
+            padding: 22px;
+        }
+
+        .imgd-preview-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .imgd-preview-head h3 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 17px;
+        }
+
+        .imgd-preview-head span {
+            padding: 6px 9px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .imgd-image-wrap {
+            height: 310px;
+            border-radius: 17px;
+            background:
+                repeating-conic-gradient(
+                    #f1f5f9 0% 25%,
+                    #fff 0% 50%
+                ) 50% / 20px 20px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .imgd-image-wrap img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* DETAILS */
+
+        .imgd-details-card {
+            padding: 22px;
+        }
+
+        .imgd-details-head {
+            margin-bottom: 17px;
+        }
+
+        .imgd-details-head h3 {
+            margin: 0 0 5px;
+            color: #0f172a;
+            font-size: 17px;
+        }
+
+        .imgd-details-head p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .imgd-big-dimension {
+            padding: 20px;
+            border-radius: 17px;
+            background: linear-gradient(135deg,#eef2ff,#f5f3ff);
+            border: 1px solid #e0e7ff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .imgd-big-dimension strong {
+            display: block;
+            color: #4338ca;
+            font-size: 30px;
+            letter-spacing: -.8px;
+        }
+
+        .imgd-big-dimension span {
+            display: block;
+            margin-top: 5px;
+            color: #6366f1;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .imgd-info-list {
+            display: grid;
+            gap: 8px;
+        }
+
+        .imgd-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 13px 14px;
+            border-radius: 11px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .imgd-info-row span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .imgd-info-row strong {
+            color: #1e293b;
+            font-size: 12px;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        .imgd-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-top: 15px;
+        }
+
+        .imgd-btn {
+            height: 47px;
+            border-radius: 11px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: #334155;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .imgd-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(15,23,42,.08);
+        }
+
+        .imgd-btn-primary {
+            background: linear-gradient(135deg,#4f46e5,#7c3aed);
+            border: 0;
+            color: white;
+        }
+
+        /* FILE BAR */
+
+        .imgd-file-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px;
+            margin-top: 15px;
+            border-radius: 13px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .imgd-file-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #6366f1;
+        }
+
+        .imgd-file-text {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .imgd-file-text strong {
+            display: block;
+            color: #334155;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .imgd-file-text span {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        /* EMPTY / PROCESS */
+
+        .imgd-loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .imgd-spinner {
+            width: 30px;
+            height: 30px;
+            margin: auto;
+            border: 3px solid #e2e8f0;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: imgdSpin .8s linear infinite;
+        }
+
+        @keyframes imgdSpin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* INFO */
+
+        .imgd-info {
+            margin-top: 22px;
+            padding: 30px;
+        }
+
+        .imgd-info h2 {
+            margin: 0 0 12px;
+            color: #0f172a;
+            font-size: 25px;
+        }
+
+        .imgd-info > p {
+            margin: 0;
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .imgd-benefits {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .imgd-benefit {
+            padding: 20px;
+            border-radius: 16px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .imgd-benefit-icon {
+            font-size: 23px;
+            margin-bottom: 9px;
+        }
+
+        .imgd-benefit h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+            color: #1e293b;
+        }
+
+        .imgd-benefit p {
+            margin: 0;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+
+        .imgd-faq {
+            max-width: 850px;
+            margin: 30px auto 70px;
+            padding: 20px;
+        }
+
+        .imgd-faq-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .imgd-faq-title h2 {
+            margin: 0 0 8px;
+            color: #0f172a;
+            font-size: 30px;
+        }
+
+        .imgd-faq-title p {
+            margin: 0;
+            color: #64748b;
+        }
+
+        .imgd-faq-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .imgd-question {
+            width: 100%;
+            padding: 18px 20px;
+            background: #fff;
+            border: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            color: #1e293b;
+            font-weight: 800;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .imgd-plus {
+            color: #6366f1;
+            font-size: 20px;
+            transition: .25s;
+        }
+
+        .imgd-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .3s ease;
+        }
+
+        .imgd-answer p {
+            margin: 0;
+            padding: 0 20px 18px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .imgd-faq-item.active .imgd-answer {
+            max-height: 180px;
+        }
+
+        .imgd-faq-item.active .imgd-plus {
+            transform: rotate(45deg);
+        }
+
+        /* TOAST */
+
+        .imgd-toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 9999;
+            padding: 14px 18px;
+            border-radius: 13px;
+            background: #0f172a;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 15px 40px rgba(0,0,0,.2);
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+        }
+
+        .imgd-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .imgd-result-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .imgd-benefits {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 550px) {
+
+            .imgd-hero {
+                padding-top: 55px;
+            }
+
+            .imgd-hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .imgd-upload-card,
+            .imgd-info {
+                padding: 20px;
+            }
+
+            .imgd-upload {
+                min-height: 270px;
+            }
+
+            .imgd-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .imgd-image-wrap {
+                height: 250px;
+            }
+        }
+    </style>
+
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Dimensions Checker – Size & Resolution | ToolifyHub",
+  "url": "https://toolifyhub-online.netlify.app/tools/image-dimensions.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Check image width, height, dimensions, aspect ratio, file size, format and resolution instantly with ToolifyHub.",
+  "isAccessibleForFree": true
+}
+</script>
+<!-- TOOLIFYHUB SEO SCHEMA END -->
+   
+</head>
+
+<body>
+
+<div class="imgd-page">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container nav">
+
+            <a href="../index.html" class="logo">
+
+                <div class="logo-icon">T</div>
+
+                <span>
+                    Toolify<span class="logo-highlight">Hub</span>
+                </span>
+
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="../index.html#tools">Tools</a>
+
+                <a href="../index.html#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="../index.html#faq">FAQ</a>
+
+                <a href="../about.html">About</a>
+
+            </nav>
+
+            <a href="../index.html#tools" class="nav-button">
+                All Tools
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="imgd-hero">
+
+        <div class="imgd-badge">
+
+            <span class="imgd-dot"></span>
+
+            Free Image Dimensions Checker
+
+        </div>
+
+
+        <h1>
+            Know Your Image's
+            <span class="imgd-gradient">Exact Size</span>
+        </h1>
+
+
+        <p>
+            Upload an image to instantly check its width, height,
+            aspect ratio, file size, format and resolution.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN -->
+    <main class="imgd-main">
+
+        <!-- UPLOAD CARD -->
+        <section class="imgd-card imgd-upload-card">
+
+            <label
+                class="imgd-upload"
+                id="dropZone"
+                for="imageInput"
+            >
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/jpeg,image/png,image/webp,image/gif,image/bmp,image/svg+xml"
+                >
+
+
+                <div class="imgd-upload-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <rect
+                            x="3"
+                            y="4"
+                            width="18"
+                            height="16"
+                            rx="2"
+                        />
+                        <circle cx="8.5" cy="9" r="1.5"/>
+                        <path d="m3 17 5-5 4 4 2-2 7 6"/>
+                    </svg>
+
+                </div>
+
+
+                <h2>Drop your image here</h2>
+
+                <p>
+                    or click to browse from your computer
+                </p>
+
+
+                <span class="imgd-browse">
+                    Choose Image
+                </span>
+
+
+                <div class="imgd-formats">
+                    JPG · PNG · WebP · GIF · BMP · SVG
+                </div>
+
+            </label>
+
+
+            <!-- LOADING -->
+            <div class="imgd-loading" id="loading">
+
+                <div class="imgd-spinner"></div>
+
+                <p>Analyzing image...</p>
+
+            </div>
+
+
+            <!-- RESULT -->
+            <div class="imgd-result" id="result">
+
+                <div class="imgd-result-grid">
+
+                    <!-- IMAGE -->
+                    <div class="imgd-card imgd-preview-card">
+
+                        <div class="imgd-preview-head">
+
+                            <h3>Image Preview</h3>
+
+                            <span id="previewFormat">
+                                IMAGE
+                            </span>
+
+                        </div>
+
+
+                        <div class="imgd-image-wrap">
+
+                            <img
+                                id="imagePreview"
+                                alt="Uploaded image preview"
+                            >
+
+                        </div>
+
+
+                        <div class="imgd-file-bar">
+
+                            <div class="imgd-file-icon">
+
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+                                    <rect
+                                        x="4"
+                                        y="3"
+                                        width="16"
+                                        height="18"
+                                        rx="2"
+                                    />
+                                    <path d="M8 7h8"/>
+                                    <path d="M8 11h8"/>
+                                    <path d="M8 15h5"/>
+                                </svg>
+
+                            </div>
+
+
+                            <div class="imgd-file-text">
+
+                                <strong id="fileName">
+                                    image.jpg
+                                </strong>
+
+                                <span id="fileSize">
+                                    0 KB
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- DETAILS -->
+                    <div class="imgd-card imgd-details-card">
+
+                        <div class="imgd-details-head">
+
+                            <h3>Image Information</h3>
+
+                            <p>
+                                Technical details detected locally
+                            </p>
+
+                        </div>
+
+
+                        <div class="imgd-big-dimension">
+
+                            <strong id="bigDimension">
+                                1920 × 1080
+                            </strong>
+
+                            <span>
+                                PIXELS
+                            </span>
+
+                        </div>
+
+
+                        <div class="imgd-info-list">
+
+                            <div class="imgd-info-row">
+
+                                <span>Width</span>
+
+                                <strong id="widthValue">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="imgd-info-row">
+
+                                <span>Height</span>
+
+                                <strong id="heightValue">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="imgd-info-row">
+
+                                <span>Aspect Ratio</span>
+
+                                <strong id="ratioValue">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="imgd-info-row">
+
+                                <span>File Size</span>
+
+                                <strong id="sizeValue">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="imgd-info-row">
+
+                                <span>Format</span>
+
+                                <strong id="formatValue">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="imgd-info-row">
+
+                                <span>Megapixels</span>
+
+                                <strong id="megaValue">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="imgd-info-row">
+
+                                <span>Orientation</span>
+
+                                <strong id="orientationValue">
+                                    —
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="imgd-actions">
+
+                            <button
+                                class="imgd-btn imgd-btn-primary"
+                                id="copyDetails"
+                            >
+                                Copy Details
+                            </button>
+
+                            <button
+                                class="imgd-btn"
+                                id="newImage"
+                            >
+                                Check Another
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFO -->
+        <section class="imgd-card imgd-info">
+
+            <h2>
+                Check Image Dimensions Online
+            </h2>
+
+            <p>
+                ToolifyHub's Image Dimensions Checker provides
+                quick technical information about your image.
+                You can see exact pixel dimensions, aspect ratio,
+                file size, image format, megapixels and orientation.
+                Your image is analyzed directly in your browser.
+            </p>
+
+
+            <div class="imgd-benefits">
+
+                <div class="imgd-benefit">
+
+                    <div class="imgd-benefit-icon">📐</div>
+
+                    <h3>Exact Dimensions</h3>
+
+                    <p>
+                        Get precise width and height in pixels.
+                    </p>
+
+                </div>
+
+
+                <div class="imgd-benefit">
+
+                    <div class="imgd-benefit-icon">⚡</div>
+
+                    <h3>Instant Results</h3>
+
+                    <p>
+                        Image information appears immediately
+                        after upload.
+                    </p>
+
+                </div>
+
+
+                <div class="imgd-benefit">
+
+                    <div class="imgd-benefit-icon">🔒</div>
+
+                    <h3>Browser Based</h3>
+
+                    <p>
+                        The image is processed locally in your
+                        browser rather than uploaded to a server.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FAQ -->
+    <section class="imgd-faq">
+
+        <div class="imgd-faq-title">
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+            <p>
+                Common questions about image dimensions.
+            </p>
+
+        </div>
+
+
+        <div class="imgd-faq-item">
+
+            <button class="imgd-question">
+
+                What are image dimensions?
+
+                <span class="imgd-plus">+</span>
+
+            </button>
+
+            <div class="imgd-answer">
+
+                <p>
+                    Image dimensions describe the width and height
+                    of an image, normally measured in pixels.
+                    For example, 1920 × 1080 means 1920 pixels wide
+                    and 1080 pixels high.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="imgd-faq-item">
+
+            <button class="imgd-question">
+
+                What is aspect ratio?
+
+                <span class="imgd-plus">+</span>
+
+            </button>
+
+            <div class="imgd-answer">
+
+                <p>
+                    Aspect ratio is the relationship between an
+                    image's width and height. Common ratios include
+                    16:9, 4:3 and 1:1.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="imgd-faq-item">
+
+            <button class="imgd-question">
+
+                Does this tool upload my image?
+
+                <span class="imgd-plus">+</span>
+
+            </button>
+
+            <div class="imgd-answer">
+
+                <p>
+                    The image information is read locally by
+                    JavaScript in your browser. This page does not
+                    need to upload the image to a ToolifyHub server.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="imgd-faq-item">
+
+            <button class="imgd-question">
+
+                What does megapixels mean?
+
+                <span class="imgd-plus">+</span>
+
+            </button>
+
+            <div class="imgd-answer">
+
+                <p>
+                    Megapixels represent the approximate number of
+                    pixels in an image. It is calculated from the
+                    image width multiplied by its height and divided
+                    by one million.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+            <div>
+
+                <a href="../index.html" class="logo">
+
+                    <div class="logo-icon">T</div>
+
+                    <span>
+                        Toolify<span class="logo-highlight">Hub</span>
+                    </span>
+
+                </a>
+
+                <p>
+                    Simple, fast and useful online tools
+                    for everyday tasks.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Tools</h4>
+
+                <a href="image-resizer.html">
+                    Image Resizer
+                </a>
+
+                <a href="image-compressor.html">
+                    Image Compressor
+                </a>
+
+                <a href="image-cropper.html">
+                    Image Cropper
+                </a>
+
+                <a href="image-converter.html">
+                    Image Converter
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>Company</h4>
+
+                <a href="../about.html">About</a>
+
+                <a href="../contact.html">Contact</a>
+
+                <a href="../privacy.html">Privacy</a>
+
+                <a href="../terms.html">Terms</a>
+
+            </div>
+
+
+            <div>
+
+                <h4>Popular</h4>
+
+                <a href="jpg-to-pdf.html">
+                    JPG to PDF
+                </a>
+
+                <a href="pdf-to-jpg.html">
+                    PDF to JPG
+                </a>
+
+                <a href="qr-generator.html">
+                    QR Generator
+                </a>
+
+                <a href="password-generator.html">
+                    Password Generator
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="footerYear"></span>
+                ToolifyHub. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="imgd-toast" id="toast">
+    Details copied!
+</div>
+
+
+<script>
+(() => {
+    "use strict";
+
+    /* =====================================================
+       TOOLIFYHUB - IMAGE DIMENSIONS CHECKER
+       Real client-side image analyzer
+       No server upload
+    ===================================================== */
+
+    const imageInput = document.getElementById("imageInput");
+    const dropZone = document.getElementById("dropZone");
+    const loading = document.getElementById("loading");
+    const result = document.getElementById("result");
+
+    const imagePreview = document.getElementById("imagePreview");
+    const previewFormat = document.getElementById("previewFormat");
+
+    const fileName = document.getElementById("fileName");
+    const fileSize = document.getElementById("fileSize");
+
+    const bigDimension = document.getElementById("bigDimension");
+    const widthValue = document.getElementById("widthValue");
+    const heightValue = document.getElementById("heightValue");
+    const ratioValue = document.getElementById("ratioValue");
+    const sizeValue = document.getElementById("sizeValue");
+    const formatValue = document.getElementById("formatValue");
+    const megaValue = document.getElementById("megaValue");
+    const orientationValue =
+        document.getElementById("orientationValue");
+
+    const copyDetails =
+        document.getElementById("copyDetails");
+
+    const newImage =
+        document.getElementById("newImage");
+
+    const toast =
+        document.getElementById("toast");
+
+
+    /* =====================================================
+       SETTINGS
+    ===================================================== */
+
+    const MAX_FILE_SIZE = 100 * 1024 * 1024; // 100 MB
+
+    const ALLOWED_TYPES = [
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+        "image/gif",
+        "image/bmp",
+        "image/svg+xml"
+    ];
+
+
+    /* =====================================================
+       STATE
+    ===================================================== */
+
+    let currentFile = null;
+    let currentObjectURL = null;
+    let toastTimer = null;
+
+
+    /* =====================================================
+       FILE INPUT
+       The <label> already opens the file picker.
+       Do NOT call imageInput.click() here.
+    ===================================================== */
+
+    imageInput.addEventListener("change", function () {
+
+        const file =
+            this.files && this.files.length
+                ? this.files[0]
+                : null;
+
+        if (file) {
+            analyzeImage(file);
+        }
+
+    });
+
+
+    /* =====================================================
+       DRAG ENTER / OVER
+    ===================================================== */
+
+    ["dragenter", "dragover"].forEach(eventName => {
+
+        dropZone.addEventListener(eventName, function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            dropZone.classList.add("dragover");
+
+        });
+
+    });
+
+
+    /* =====================================================
+       DRAG LEAVE / DROP
+    ===================================================== */
+
+    ["dragleave", "drop"].forEach(eventName => {
+
+        dropZone.addEventListener(eventName, function (event) {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            dropZone.classList.remove("dragover");
+
+        });
+
+    });
+
+
+    /* =====================================================
+       DROP FILE
+    ===================================================== */
+
+    dropZone.addEventListener("drop", function (event) {
+
+        const files = event.dataTransfer.files;
+
+        if (!files || !files.length) {
+            return;
+        }
+
+        analyzeImage(files[0]);
+
+    });
+
+
+    /* =====================================================
+       VALIDATE IMAGE
+    ===================================================== */
+
+    function validateFile(file) {
+
+        if (!file) {
+            showToast("Please select an image.");
+            return false;
+        }
+
+
+        /*
+         * Some operating systems/browsers may provide
+         * an empty MIME type.
+         * Therefore we also check the file extension.
+         */
+
+        const extension =
+            getFileExtension(file.name);
+
+
+        const allowedExtensions = [
+            "jpg",
+            "jpeg",
+            "png",
+            "webp",
+            "gif",
+            "bmp",
+            "svg"
+        ];
+
+
+        const typeValid =
+            ALLOWED_TYPES.includes(file.type);
+
+
+        const extensionValid =
+            allowedExtensions.includes(extension);
+
+
+        if (!typeValid && !extensionValid) {
+
+            showToast(
+                "Please select JPG, PNG, WebP, GIF, BMP or SVG."
+            );
+
+            return false;
+        }
+
+
+        if (file.size > MAX_FILE_SIZE) {
+
+            showToast(
+                "Maximum file size is 100 MB."
+            );
+
+            return false;
+        }
+
+
+        return true;
+    }
+
+
+    /* =====================================================
+       ANALYZE IMAGE
+    ===================================================== */
+
+    function analyzeImage(file) {
+
+        if (!validateFile(file)) {
+            return;
+        }
+
+
+        currentFile = file;
+
+
+        loading.style.display = "block";
+        result.classList.remove("active");
+
+
+        /*
+         * Release previous object URL
+         */
+
+        if (currentObjectURL) {
+
+            URL.revokeObjectURL(
+                currentObjectURL
+            );
+
+            currentObjectURL = null;
+        }
+
+
+        /*
+         * Create local browser URL.
+         * Nothing is uploaded to a server.
+         */
+
+        currentObjectURL =
+            URL.createObjectURL(file);
+
+
+        const img = new Image();
+
+
+        img.onload = function () {
+
+            /*
+             * Give browser a moment to render
+             * the loading state.
+             */
+
+            setTimeout(() => {
+
+                try {
+
+                    displayResults(
+                        img,
+                        file
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        "Image analysis error:",
+                        error
+                    );
+
+                    loading.style.display = "none";
+
+                    showToast(
+                        "Could not analyze this image."
+                    );
+                }
+
+            }, 150);
+
+        };
+
+
+        img.onerror = function () {
+
+            loading.style.display = "none";
+
+            currentFile = null;
+
+            showToast(
+                "Could not read this image. Please try another file."
+            );
+
+        };
+
+
+        img.src = currentObjectURL;
+
+    }
+
+
+    /* =====================================================
+       DISPLAY RESULTS
+    ===================================================== */
+
+    function displayResults(img, file) {
+
+        const width =
+            img.naturalWidth;
+
+        const height =
+            img.naturalHeight;
+
+
+        if (!width || !height) {
+
+            loading.style.display = "none";
+
+            showToast(
+                "Image dimensions could not be detected."
+            );
+
+            return;
+        }
+
+
+        /*
+         * Calculate information
+         */
+
+        const ratio =
+            calculateAspectRatio(
+                width,
+                height
+            );
+
+
+        const megapixels =
+            (width * height) / 1000000;
+
+
+        const format =
+            getFormat(file);
+
+
+        const size =
+            formatFileSize(file.size);
+
+
+        let orientation;
+
+
+        if (width > height) {
+
+            orientation = "Landscape";
+
+        } else if (height > width) {
+
+            orientation = "Portrait";
+
+        } else {
+
+            orientation = "Square";
+
+        }
+
+
+        /* =================================================
+           UPDATE PREVIEW
+        ================================================= */
+
+        imagePreview.src =
+            currentObjectURL;
+
+
+        previewFormat.textContent =
+            format;
+
+
+        /* =================================================
+           FILE INFORMATION
+        ================================================= */
+
+        fileName.textContent =
+            file.name;
+
+
+        fileSize.textContent =
+            size;
+
+
+        /* =================================================
+           DIMENSIONS
+        ================================================= */
+
+        bigDimension.textContent =
+            `${formatNumber(width)} × ${formatNumber(height)}`;
+
+
+        widthValue.textContent =
+            `${formatNumber(width)} px`;
+
+
+        heightValue.textContent =
+            `${formatNumber(height)} px`;
+
+
+        ratioValue.textContent =
+            ratio;
+
+
+        sizeValue.textContent =
+            size;
+
+
+        formatValue.textContent =
+            format;
+
+
+        megaValue.textContent =
+            `${megapixels.toFixed(2)} MP`;
+
+
+        orientationValue.textContent =
+            orientation;
+
+
+        /* =================================================
+           SHOW RESULT
+        ================================================= */
+
+        loading.style.display = "none";
+
+        result.classList.add("active");
+
+
+        showToast(
+            "Image information detected!"
+        );
+
+    }
+
+
+    /* =====================================================
+       GET FILE EXTENSION
+    ===================================================== */
+
+    function getFileExtension(filename) {
+
+        if (!filename) {
+            return "";
+        }
+
+
+        const parts =
+            filename.toLowerCase().split(".");
+
+
+        if (parts.length < 2) {
+            return "";
+        }
+
+
+        return parts.pop();
+
+    }
+
+
+    /* =====================================================
+       GET IMAGE FORMAT
+    ===================================================== */
+
+    function getFormat(file) {
+
+        const extension =
+            getFileExtension(file.name);
+
+
+        switch (file.type) {
+
+            case "image/jpeg":
+                return "JPG";
+
+            case "image/png":
+                return "PNG";
+
+            case "image/webp":
+                return "WebP";
+
+            case "image/gif":
+                return "GIF";
+
+            case "image/bmp":
+                return "BMP";
+
+            case "image/svg+xml":
+                return "SVG";
+
+        }
+
+
+        /*
+         * MIME type unavailable:
+         * detect using extension.
+         */
+
+        switch (extension) {
+
+            case "jpg":
+            case "jpeg":
+                return "JPG";
+
+            case "png":
+                return "PNG";
+
+            case "webp":
+                return "WebP";
+
+            case "gif":
+                return "GIF";
+
+            case "bmp":
+                return "BMP";
+
+            case "svg":
+                return "SVG";
+
+            default:
+                return "IMAGE";
+        }
+
+    }
+
+
+    /* =====================================================
+       FILE SIZE
+    ===================================================== */
+
+    function formatFileSize(bytes) {
+
+        if (!Number.isFinite(bytes) || bytes <= 0) {
+            return "0 Bytes";
+        }
+
+
+        const units = [
+            "Bytes",
+            "KB",
+            "MB",
+            "GB"
+        ];
+
+
+        const index =
+            Math.min(
+                Math.floor(
+                    Math.log(bytes) /
+                    Math.log(1024)
+                ),
+                units.length - 1
+            );
+
+
+        const value =
+            bytes /
+            Math.pow(1024, index);
+
+
+        if (index === 0) {
+
+            return `${value.toFixed(0)} ${units[index]}`;
+
+        }
+
+
+        return `${value.toFixed(2)} ${units[index]}`;
+
+    }
+
+
+    /* =====================================================
+       FORMAT NUMBERS
+    ===================================================== */
+
+    function formatNumber(number) {
+
+        return Number(number).toLocaleString(
+            "en-US"
+        );
+
+    }
+
+
+    /* =====================================================
+       ASPECT RATIO
+    ===================================================== */
+
+    function calculateAspectRatio(
+        width,
+        height
+    ) {
+
+        if (
+            !Number.isInteger(width) ||
+            !Number.isInteger(height) ||
+            width <= 0 ||
+            height <= 0
+        ) {
+            return "—";
+        }
+
+
+        const divisor =
+            gcd(width, height);
+
+
+        return `${width / divisor}:${height / divisor}`;
+
+    }
+
+
+    /* =====================================================
+       GREATEST COMMON DIVISOR
+    ===================================================== */
+
+    function gcd(a, b) {
+
+        a = Math.abs(a);
+        b = Math.abs(b);
+
+
+        while (b !== 0) {
+
+            const temp = b;
+
+            b = a % b;
+
+            a = temp;
+        }
+
+
+        return a || 1;
+
+    }
+
+
+    /* =====================================================
+       COPY DETAILS
+    ===================================================== */
+
+    copyDetails.addEventListener(
+        "click",
+        async function () {
+
+            if (!currentFile) {
+
+                showToast(
+                    "Please upload an image first."
+                );
+
+                return;
+            }
+
+
+            const details = [
+                "ToolifyHub - Image Details",
+                "",
+                `File: ${currentFile.name}`,
+                `Format: ${formatValue.textContent}`,
+                `Dimensions: ${bigDimension.textContent}`,
+                `Width: ${widthValue.textContent}`,
+                `Height: ${heightValue.textContent}`,
+                `Aspect Ratio: ${ratioValue.textContent}`,
+                `File Size: ${sizeValue.textContent}`,
+                `Megapixels: ${megaValue.textContent}`,
+                `Orientation: ${orientationValue.textContent}`
+            ].join("\n");
+
+
+            /*
+             * Modern clipboard API
+             */
+
+            try {
+
+                if (
+                    navigator.clipboard &&
+                    window.isSecureContext
+                ) {
+
+                    await navigator.clipboard.writeText(
+                        details
+                    );
+
+                    showToast(
+                        "Image details copied!"
+                    );
+
+                    return;
+                }
+
+            } catch (error) {
+
+                console.warn(
+                    "Clipboard API failed:",
+                    error
+                );
+
+            }
+
+
+            /*
+             * Fallback for browsers where
+             * Clipboard API is unavailable.
+             */
+
+            try {
+
+                const textarea =
+                    document.createElement("textarea");
+
+
+                textarea.value =
+                    details;
+
+
+                textarea.style.position =
+                    "fixed";
+
+                textarea.style.left =
+                    "-9999px";
+
+
+                document.body.appendChild(
+                    textarea
+                );
+
+
+                textarea.focus();
+
+                textarea.select();
+
+
+                const successful =
+                    document.execCommand(
+                        "copy"
+                    );
+
+
+                textarea.remove();
+
+
+                if (successful) {
+
+                    showToast(
+                        "Image details copied!"
+                    );
+
+                } else {
+
+                    showToast(
+                        "Copy failed. Please copy manually."
+                    );
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Copy error:",
+                    error
+                );
+
+                showToast(
+                    "Copy failed. Please try again."
+                );
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       CHECK ANOTHER IMAGE
+    ===================================================== */
+
+    newImage.addEventListener(
+        "click",
+        resetTool
+    );
+
+
+    /* =====================================================
+       RESET TOOL
+    ===================================================== */
+
+    function resetTool() {
+
+        /*
+         * Release object URL
+         */
+
+        if (currentObjectURL) {
+
+            URL.revokeObjectURL(
+                currentObjectURL
+            );
+
+            currentObjectURL = null;
+        }
+
+
+        currentFile = null;
+
+
+        /*
+         * Clear file input
+         */
+
+        imageInput.value = "";
+
+
+        /*
+         * Clear preview
+         */
+
+        imagePreview.removeAttribute(
+            "src"
+        );
+
+
+        /*
+         * Hide result/loading
+         */
+
+        result.classList.remove(
+            "active"
+        );
+
+        loading.style.display =
+            "none";
+
+
+        /*
+         * Restore default values
+         */
+
+        previewFormat.textContent =
+            "IMAGE";
+
+
+        fileName.textContent =
+            "image.jpg";
+
+
+        fileSize.textContent =
+            "0 KB";
+
+
+        bigDimension.textContent =
+            "1920 × 1080";
+
+
+        widthValue.textContent =
+            "—";
+
+
+        heightValue.textContent =
+            "—";
+
+
+        ratioValue.textContent =
+            "—";
+
+
+        sizeValue.textContent =
+            "—";
+
+
+        formatValue.textContent =
+            "—";
+
+
+        megaValue.textContent =
+            "—";
+
+
+        orientationValue.textContent =
+            "—";
+
+
+        showToast(
+            "Tool reset."
+        );
+
+
+        /*
+         * Move user back toward upload area
+         */
+
+        setTimeout(() => {
+
+            dropZone.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }, 50);
+
+    }
+
+
+    /* =====================================================
+       FAQ
+    ===================================================== */
+
+    document
+        .querySelectorAll(".imgd-question")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const item =
+                        this.closest(
+                            ".imgd-faq-item"
+                        );
+
+
+                    if (!item) {
+                        return;
+                    }
+
+
+                    item.classList.toggle(
+                        "active"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    function showToast(message) {
+
+        if (!toast) {
+            return;
+        }
+
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        clearTimeout(
+            toastTimer
+        );
+
+
+        toastTimer =
+            setTimeout(() => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            }, 2500);
+
+    }
+
+
+    /* =====================================================
+       FOOTER YEAR
+    ===================================================== */
+
+    const footerYear =
+        document.getElementById(
+            "footerYear"
+        );
+
+
+    if (footerYear) {
+
+        footerYear.textContent =
+            new Date().getFullYear();
+
+    }
+
+
+    /* =====================================================
+       CLEANUP WHEN PAGE CLOSES
+    ===================================================== */
+
+    window.addEventListener(
+        "beforeunload",
+        function () {
+
+            if (currentObjectURL) {
+
+                URL.revokeObjectURL(
+                    currentObjectURL
+                );
+
+            }
+
+        }
+    );
+
+
+})();
+</script>
+
+</body>
+</html>

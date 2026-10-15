@@ -1,0 +1,2376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Image Format Converter – JPG PNG WebP | ToolifyHub</title>
+
+    <meta name="description"
+          content="Convert images between JPG, PNG and WebP formats online for free. Fast, simple and browser-based image format converter.">
+
+    <meta name="keywords"
+          content="image format converter, JPG to PNG, PNG to JPG, JPG to WebP, WebP to JPG, WebP converter">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+          href="https://toolifyhub-online.netlify.app/tools/image-format-converter.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+          content="Image Format Converter – JPG PNG WebP | ToolifyHub">
+    <meta property="og:description"
+          content="Convert images between JPG, PNG and WebP formats online for free. Fast, simple and browser-based image format converter.">
+    <meta property="og:type" content="website">
+    <meta property="og:url"
+          content="https://toolifyhub-online.netlify.app/tools/image-format-converter.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title"
+          content="Image Format Converter – JPG PNG WebP | ToolifyHub">
+    <meta name="twitter:description"
+          content="Convert JPG, PNG and WebP images online for free with ToolifyHub.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="../favicon.svg"
+    >
+
+
+    <style>
+        /* =====================================================
+           IMAGE FORMAT CONVERTER
+           All page-specific classes use ifc- prefix
+        ===================================================== */
+
+        .ifc-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 10% 8%, rgba(99,102,241,.12), transparent 30%),
+                radial-gradient(circle at 90% 18%, rgba(139,92,246,.10), transparent 30%),
+                #f8fafc;
+        }
+
+        /* HERO */
+
+        .ifc-hero {
+            padding: 82px 20px 45px;
+            text-align: center;
+        }
+
+        .ifc-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 15px;
+            border-radius: 50px;
+            background: rgba(99,102,241,.08);
+            border: 1px solid rgba(99,102,241,.14);
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .ifc-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 5px rgba(34,197,94,.12);
+        }
+
+        .ifc-hero h1 {
+            margin: 0;
+            color: #0f172a;
+            font-size: clamp(38px, 6vw, 62px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+        }
+
+        .ifc-gradient {
+            background: linear-gradient(135deg,#4f46e5,#7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .ifc-hero p {
+            max-width: 680px;
+            margin: 20px auto 0;
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* MAIN */
+
+        .ifc-main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .ifc-card {
+            background: rgba(255,255,255,.94);
+            border: 1px solid #e2e8f0;
+            border-radius: 26px;
+            box-shadow: 0 20px 60px rgba(15,23,42,.08);
+            backdrop-filter: blur(15px);
+        }
+
+        /* UPLOAD */
+
+        .ifc-upload-card {
+            padding: 30px;
+        }
+
+        .ifc-upload {
+            position: relative;
+            min-height: 275px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 22px;
+            background: linear-gradient(180deg,#fff,#f8fafc);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .ifc-upload:hover,
+        .ifc-upload.dragover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(99,102,241,.10);
+        }
+
+        .ifc-upload input {
+            display: none;
+        }
+
+        .ifc-upload-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 22px;
+            display: grid;
+            place-items: center;
+            background: #eef2ff;
+            color: #4f46e5;
+            margin-bottom: 18px;
+        }
+
+        .ifc-upload-icon svg {
+            width: 37px;
+            height: 37px;
+        }
+
+        .ifc-upload h2 {
+            margin: 0 0 8px;
+            color: #0f172a;
+            font-size: 22px;
+        }
+
+        .ifc-upload p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .ifc-browse {
+            margin-top: 19px;
+            padding: 11px 19px;
+            border-radius: 11px;
+            background: #6366f1;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .ifc-formats {
+            margin-top: 15px;
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        /* WORKSPACE */
+
+        .ifc-workspace {
+            display: none;
+            margin-top: 22px;
+        }
+
+        .ifc-workspace.active {
+            display: block;
+            animation: ifcFade .35s ease;
+        }
+
+        @keyframes ifcFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ifc-work-grid {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            gap: 22px;
+        }
+
+        /* PREVIEW */
+
+        .ifc-preview-card {
+            padding: 24px;
+        }
+
+        .ifc-card-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+
+        .ifc-card-heading h3 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 17px;
+        }
+
+        .ifc-tag {
+            padding: 6px 10px;
+            border-radius: 8px;
+            background: #f1f5f9;
+            color: #64748b;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .ifc-preview {
+            height: 330px;
+            border: 1px solid #e2e8f0;
+            border-radius: 17px;
+            background:
+                repeating-conic-gradient(
+                    #f1f5f9 0% 25%,
+                    #fff 0% 50%
+                ) 50% / 20px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .ifc-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+
+        .ifc-file {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 13px;
+            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .ifc-file-icon {
+            width: 41px;
+            height: 41px;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #6366f1;
+            flex-shrink: 0;
+        }
+
+        .ifc-file-text {
+            min-width: 0;
+        }
+
+        .ifc-file-text strong {
+            display: block;
+            color: #334155;
+            font-size: 12px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ifc-file-text span {
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        /* SETTINGS */
+
+        .ifc-settings {
+            padding: 24px;
+        }
+
+        .ifc-setting {
+            margin-bottom: 23px;
+        }
+
+        .ifc-setting-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 11px;
+        }
+
+        .ifc-setting-label label {
+            color: #334155;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .ifc-setting-label span {
+            color: #6366f1;
+            background: #eef2ff;
+            padding: 6px 9px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        /* FORMAT OPTIONS */
+
+        .ifc-format-grid {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 8px;
+        }
+
+        .ifc-format {
+            position: relative;
+        }
+
+        .ifc-format input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .ifc-format label {
+            display: block;
+            padding: 13px 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background: #fff;
+            text-align: center;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .ifc-format label strong {
+            display: block;
+            color: #334155;
+            font-size: 13px;
+        }
+
+        .ifc-format label small {
+            color: #94a3b8;
+            font-size: 9px;
+        }
+
+        .ifc-format input:checked + label {
+            border-color: #818cf8;
+            background: #eef2ff;
+            box-shadow: 0 5px 15px rgba(99,102,241,.08);
+        }
+
+        .ifc-format input:checked + label strong {
+            color: #4338ca;
+        }
+
+        /* QUALITY */
+
+        .ifc-quality-wrap {
+            padding: 16px;
+            border-radius: 14px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .ifc-quality {
+            width: 100%;
+            accent-color: #6366f1;
+            cursor: pointer;
+        }
+
+        .ifc-quality-labels {
+            display: flex;
+            justify-content: space-between;
+            color: #94a3b8;
+            font-size: 10px;
+            margin-top: 6px;
+        }
+
+        .ifc-quality-note {
+            margin-top: 10px;
+            color: #64748b;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* ACTIONS */
+
+        .ifc-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+            margin-top: 25px;
+        }
+
+        .ifc-btn {
+            height: 49px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            background: #fff;
+            color: #334155;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .ifc-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(15,23,42,.08);
+        }
+
+        .ifc-btn-primary {
+            border: 0;
+            color: #fff;
+            background: linear-gradient(135deg,#4f46e5,#7c3aed);
+            box-shadow: 0 10px 25px rgba(99,102,241,.22);
+        }
+
+        /* OUTPUT */
+
+        .ifc-output {
+            display: none;
+            margin-top: 22px;
+            padding: 25px;
+        }
+
+        .ifc-output.active {
+            display: block;
+            animation: ifcFade .35s ease;
+        }
+
+        .ifc-output-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+
+        .ifc-output-heading h3 {
+            margin: 0;
+            color: #0f172a;
+            font-size: 18px;
+        }
+
+        .ifc-success {
+            color: #15803d;
+            background: #f0fdf4;
+            border: 1px solid #dcfce7;
+            padding: 7px 10px;
+            border-radius: 9px;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .ifc-output-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .ifc-output-preview {
+            height: 250px;
+            border-radius: 15px;
+            background:
+                repeating-conic-gradient(
+                    #f1f5f9 0% 25%,
+                    #fff 0% 50%
+                ) 50% / 20px 20px;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .ifc-output-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .ifc-output-info {
+            display: grid;
+            gap: 8px;
+            align-content: start;
+        }
+
+        .ifc-output-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 14px;
+            border-radius: 11px;
+            background: #f8fafc;
+        }
+
+        .ifc-output-row span {
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .ifc-output-row strong {
+            color: #1e293b;
+            font-size: 12px;
+            text-align: right;
+        }
+
+        .ifc-download {
+            width: 100%;
+            height: 49px;
+            margin-top: 8px;
+            border: 0;
+            border-radius: 12px;
+            background: #0f172a;
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .ifc-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(15,23,42,.16);
+        }
+
+        /* INFO */
+
+        .ifc-info {
+            margin-top: 22px;
+            padding: 30px;
+        }
+
+        .ifc-info h2 {
+            margin: 0 0 12px;
+            color: #0f172a;
+            font-size: 25px;
+        }
+
+        .ifc-info > p {
+            margin: 0;
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .ifc-benefits {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 14px;
+            margin-top: 25px;
+        }
+
+        .ifc-benefit {
+            padding: 20px;
+            border-radius: 16px;
+            background: #f8fafc;
+            border: 1px solid #eef2f7;
+        }
+
+        .ifc-benefit-icon {
+            font-size: 23px;
+            margin-bottom: 9px;
+        }
+
+        .ifc-benefit h3 {
+            margin: 0 0 6px;
+            color: #1e293b;
+            font-size: 15px;
+        }
+
+        .ifc-benefit p {
+            margin: 0;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        /* FAQ */
+
+        .ifc-faq {
+            max-width: 850px;
+            margin: 30px auto 70px;
+            padding: 20px;
+        }
+
+        .ifc-faq-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .ifc-faq-title h2 {
+            margin: 0 0 8px;
+            color: #0f172a;
+            font-size: 30px;
+        }
+
+        .ifc-faq-title p {
+            margin: 0;
+            color: #64748b;
+        }
+
+        .ifc-faq-item {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .ifc-question {
+            width: 100%;
+            padding: 18px 20px;
+            border: 0;
+            background: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        .ifc-plus {
+            color: #6366f1;
+            font-size: 20px;
+            transition: .25s;
+        }
+
+        .ifc-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .3s ease;
+        }
+
+        .ifc-answer p {
+            margin: 0;
+            padding: 0 20px 18px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .ifc-faq-item.active .ifc-answer {
+            max-height: 180px;
+        }
+
+        .ifc-faq-item.active .ifc-plus {
+            transform: rotate(45deg);
+        }
+
+        /* TOAST */
+
+        .ifc-toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 9999;
+            padding: 14px 18px;
+            border-radius: 13px;
+            background: #0f172a;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 15px 40px rgba(0,0,0,.2);
+            transform: translateY(100px);
+            opacity: 0;
+            pointer-events: none;
+            transition: .3s;
+        }
+
+        .ifc-toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 850px) {
+
+            .ifc-work-grid,
+            .ifc-output-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ifc-benefits {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .ifc-hero {
+                padding-top: 55px;
+            }
+
+            .ifc-hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .ifc-upload-card,
+            .ifc-info {
+                padding: 20px;
+            }
+
+            .ifc-preview {
+                height: 250px;
+            }
+
+            .ifc-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .ifc-output {
+                padding: 20px;
+            }
+
+        }
+    </style>
+
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Image Format Converter – JPG PNG WebP | ToolifyHub",
+  "url": "https://toolifyhub-online.netlify.app/tools/image-format-converter.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Convert images between JPG, PNG and WebP formats online. Free, fast and browser-based image format converter.",
+  "isAccessibleForFree": true
+}
+</script>
+<!-- TOOLIFYHUB SEO SCHEMA END -->
+
+</head>
+<body>
+
+<div class="ifc-page">
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container nav">
+
+            <a href="../index.html" class="logo">
+
+                <div class="logo-icon">T</div>
+
+                <span>
+                    Toolify<span class="logo-highlight">Hub</span>
+                </span>
+
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="../index.html#tools">
+                    Tools
+                </a>
+
+                <a href="../index.html#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="../index.html#faq">
+                    FAQ
+                </a>
+
+                <a href="../about.html">
+                    About
+                </a>
+
+            </nav>
+
+            <a href="../index.html#tools" class="nav-button">
+                All Tools
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="ifc-hero">
+
+        <div class="ifc-badge">
+
+            <span class="ifc-dot"></span>
+
+            Free Online Image Converter
+
+        </div>
+
+
+        <h1>
+            Convert Images
+            <span class="ifc-gradient">Your Way</span>
+        </h1>
+
+
+        <p>
+            Convert your images between JPG, PNG and WebP formats
+            while keeping control over output quality.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN -->
+    <main class="ifc-main">
+
+        <!-- UPLOAD -->
+        <section class="ifc-card ifc-upload-card">
+
+            <label
+                class="ifc-upload"
+                id="dropZone"
+                for="imageInput"
+            >
+
+                <input
+                    type="file"
+                    id="imageInput"
+                    accept="image/jpeg,image/png,image/webp"
+                >
+
+
+                <div class="ifc-upload-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+
+                        <rect
+                            x="3"
+                            y="4"
+                            width="18"
+                            height="16"
+                            rx="2"
+                        />
+
+                        <circle
+                            cx="8.5"
+                            cy="9"
+                            r="1.5"
+                        />
+
+                        <path
+                            d="m3 17 5-5 4 4 2-2 7 6"
+                        />
+
+                    </svg>
+
+                </div>
+
+
+                <h2>
+                    Drop your image here
+                </h2>
+
+
+                <p>
+                    or click to browse from your computer
+                </p>
+
+
+                <span class="ifc-browse">
+                    Choose Image
+                </span>
+
+
+                <div class="ifc-formats">
+                    JPG · PNG · WebP
+                </div>
+
+            </label>
+
+
+            <!-- WORKSPACE -->
+            <div class="ifc-workspace" id="workspace">
+
+                <div class="ifc-work-grid">
+
+                    <!-- PREVIEW -->
+                    <div class="ifc-card ifc-preview-card">
+
+                        <div class="ifc-card-heading">
+
+                            <h3>
+                                Original Image
+                            </h3>
+
+                            <span
+                                class="ifc-tag"
+                                id="originalFormat"
+                            >
+                                JPG
+                            </span>
+
+                        </div>
+
+
+                        <div class="ifc-preview">
+
+                            <img
+                                id="previewImage"
+                                alt="Original image preview"
+                            >
+
+                        </div>
+
+
+                        <div class="ifc-file">
+
+                            <div class="ifc-file-icon">
+
+                                <svg
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                >
+
+                                    <rect
+                                        x="4"
+                                        y="3"
+                                        width="16"
+                                        height="18"
+                                        rx="2"
+                                    />
+
+                                    <path d="M8 7h8"/>
+                                    <path d="M8 11h8"/>
+                                    <path d="M8 15h5"/>
+
+                                </svg>
+
+                            </div>
+
+
+                            <div class="ifc-file-text">
+
+                                <strong id="fileName">
+                                    image.jpg
+                                </strong>
+
+                                <span id="fileSize">
+                                    0 KB
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- SETTINGS -->
+                    <div class="ifc-card ifc-settings">
+
+                        <div class="ifc-card-heading">
+
+                            <h3>
+                                Conversion Settings
+                            </h3>
+
+                            <span class="ifc-tag">
+                                Customize
+                            </span>
+
+                        </div>
+
+
+                        <!-- FORMAT -->
+                        <div class="ifc-setting">
+
+                            <div class="ifc-setting-label">
+
+                                <label>
+                                    Convert To
+                                </label>
+
+                                <span id="selectedFormat">
+                                    PNG
+                                </span>
+
+                            </div>
+
+
+                            <div class="ifc-format-grid">
+
+                                <div class="ifc-format">
+
+                                    <input
+                                        type="radio"
+                                        name="format"
+                                        id="formatJpg"
+                                        value="jpeg"
+                                    >
+
+                                    <label for="formatJpg">
+
+                                        <strong>JPG</strong>
+
+                                        <small>
+                                            Small size
+                                        </small>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="ifc-format">
+
+                                    <input
+                                        type="radio"
+                                        name="format"
+                                        id="formatPng"
+                                        value="png"
+                                        checked
+                                    >
+
+                                    <label for="formatPng">
+
+                                        <strong>PNG</strong>
+
+                                        <small>
+                                            Lossless
+                                        </small>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="ifc-format">
+
+                                    <input
+                                        type="radio"
+                                        name="format"
+                                        id="formatWebp"
+                                        value="webp"
+                                    >
+
+                                    <label for="formatWebp">
+
+                                        <strong>WebP</strong>
+
+                                        <small>
+                                            Web optimized
+                                        </small>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- QUALITY -->
+                        <div class="ifc-setting">
+
+                            <div class="ifc-setting-label">
+
+                                <label>
+                                    Output Quality
+                                </label>
+
+                                <span id="qualityValue">
+                                    90%
+                                </span>
+
+                            </div>
+
+
+                            <div class="ifc-quality-wrap">
+
+                                <input
+                                    type="range"
+                                    id="quality"
+                                    class="ifc-quality"
+                                    min="10"
+                                    max="100"
+                                    value="90"
+                                >
+
+
+                                <div class="ifc-quality-labels">
+
+                                    <span>
+                                        Smaller
+                                    </span>
+
+                                    <span>
+                                        Better Quality
+                                    </span>
+
+                                </div>
+
+
+                                <div class="ifc-quality-note">
+
+                                    Quality mainly affects JPG and WebP.
+                                    PNG output uses lossless encoding.
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- ACTIONS -->
+                        <div class="ifc-actions">
+
+                            <button
+                                class="ifc-btn ifc-btn-primary"
+                                id="convertBtn"
+                            >
+                                Convert Image
+                            </button>
+
+                            <button
+                                class="ifc-btn"
+                                id="resetBtn"
+                            >
+                                Reset
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OUTPUT -->
+                <div
+                    class="ifc-card ifc-output"
+                    id="output"
+                >
+
+                    <div class="ifc-output-heading">
+
+                        <h3>
+                            Converted Image
+                        </h3>
+
+                        <span class="ifc-success">
+                            ✓ Ready
+                        </span>
+
+                    </div>
+
+
+                    <div class="ifc-output-grid">
+
+                        <div class="ifc-output-preview">
+
+                            <img
+                                id="outputImage"
+                                alt="Converted image preview"
+                            >
+
+                        </div>
+
+
+                        <div class="ifc-output-info">
+
+                            <div class="ifc-output-row">
+
+                                <span>
+                                    Format
+                                </span>
+
+                                <strong id="outputFormat">
+                                    PNG
+                                </strong>
+
+                            </div>
+
+
+                            <div class="ifc-output-row">
+
+                                <span>
+                                    Dimensions
+                                </span>
+
+                                <strong id="outputDimensions">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="ifc-output-row">
+
+                                <span>
+                                    File Size
+                                </span>
+
+                                <strong id="outputSize">
+                                    —
+                                </strong>
+
+                            </div>
+
+
+                            <div class="ifc-output-row">
+
+                                <span>
+                                    Quality
+                                </span>
+
+                                <strong id="outputQuality">
+                                    90%
+                                </strong>
+
+                            </div>
+
+
+                            <button
+                                class="ifc-download"
+                                id="downloadBtn"
+                            >
+                                ↓ &nbsp; Download Converted Image
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFO -->
+        <section class="ifc-card ifc-info">
+
+            <h2>
+                Convert JPG, PNG & WebP Online
+            </h2>
+
+            <p>
+                ToolifyHub's Image Format Converter lets you change
+                your image format directly in your browser. Choose
+                JPG for common photo use, PNG when you need lossless
+                output and transparency support, or WebP for a modern
+                web-friendly format. Your image is processed locally
+                using your browser's Canvas API.
+            </p>
+
+
+            <div class="ifc-benefits">
+
+                <div class="ifc-benefit">
+
+                    <div class="ifc-benefit-icon">
+                        🔄
+                    </div>
+
+                    <h3>
+                        Multiple Formats
+                    </h3>
+
+                    <p>
+                        Convert between JPG, PNG and WebP formats.
+                    </p>
+
+                </div>
+
+
+                <div class="ifc-benefit">
+
+                    <div class="ifc-benefit-icon">
+                        🎛️
+                    </div>
+
+                    <h3>
+                        Quality Control
+                    </h3>
+
+                    <p>
+                        Adjust output quality for JPG and WebP files.
+                    </p>
+
+                </div>
+
+
+                <div class="ifc-benefit">
+
+                    <div class="ifc-benefit-icon">
+                        🔒
+                    </div>
+
+                    <h3>
+                        Browser Based
+                    </h3>
+
+                    <p>
+                        Image conversion happens locally in your browser.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FAQ -->
+    <section class="ifc-faq">
+
+        <div class="ifc-faq-title">
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+            <p>
+                Common questions about image conversion.
+            </p>
+
+        </div>
+
+
+        <div class="ifc-faq-item">
+
+            <button class="ifc-question">
+
+                Can I convert JPG to PNG?
+
+                <span class="ifc-plus">+</span>
+
+            </button>
+
+            <div class="ifc-answer">
+
+                <p>
+                    Yes. Upload your JPG image, select PNG as the
+                    output format and click Convert Image.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ifc-faq-item">
+
+            <button class="ifc-question">
+
+                Can I convert PNG to JPG?
+
+                <span class="ifc-plus">+</span>
+
+            </button>
+
+            <div class="ifc-answer">
+
+                <p>
+                    Yes. PNG images can be converted to JPG directly
+                    in the browser. Transparent areas are rendered
+                    against a white background because JPG does not
+                    support transparency.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ifc-faq-item">
+
+            <button class="ifc-question">
+
+                Which format is best for websites?
+
+                <span class="ifc-plus">+</span>
+
+            </button>
+
+            <div class="ifc-answer">
+
+                <p>
+                    WebP can provide efficient image compression
+                    while maintaining good visual quality, making
+                    it useful for many modern websites.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="ifc-faq-item">
+
+            <button class="ifc-question">
+
+                Are my images uploaded?
+
+                <span class="ifc-plus">+</span>
+
+            </button>
+
+            <div class="ifc-answer">
+
+                <p>
+                    This converter processes images locally using
+                    your browser. The conversion does not require
+                    uploading the image to a ToolifyHub server.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-grid">
+
+            <div>
+
+                <a href="../index.html" class="logo">
+
+                    <div class="logo-icon">T</div>
+
+                    <span>
+                        Toolify<span class="logo-highlight">Hub</span>
+                    </span>
+
+                </a>
+
+                <p>
+                    Simple, fast and useful online tools
+                    for everyday tasks.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Tools</h4>
+
+                <a href="image-resizer.html">
+                    Image Resizer
+                </a>
+
+                <a href="image-compressor.html">
+                    Image Compressor
+                </a>
+
+                <a href="image-cropper.html">
+                    Image Cropper
+                </a>
+
+                <a href="image-dimensions.html">
+                    Image Dimensions
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>Company</h4>
+
+                <a href="../about.html">About</a>
+
+                <a href="../contact.html">Contact</a>
+
+                <a href="../privacy.html">Privacy</a>
+
+                <a href="../terms.html">Terms</a>
+
+            </div>
+
+
+            <div>
+
+                <h4>Popular</h4>
+
+                <a href="jpg-to-pdf.html">
+                    JPG to PDF
+                </a>
+
+                <a href="pdf-to-jpg.html">
+                    PDF to JPG
+                </a>
+
+                <a href="qr-generator.html">
+                    QR Generator
+                </a>
+
+                <a href="password-generator.html">
+                    Password Generator
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="container footer-bottom">
+
+            <p>
+                © <span id="footerYear"></span>
+                ToolifyHub. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<!-- TOAST -->
+<div class="ifc-toast" id="toast">
+    Image converted successfully!
+</div>
+
+
+<script>
+(() => {
+    "use strict";
+
+    /* =====================================================
+       IMAGE FORMAT CONVERTER - REAL WORKING
+       100% client-side using Canvas API
+    ===================================================== */
+
+    const imageInput = document.getElementById("imageInput");
+    const dropZone = document.getElementById("dropZone");
+    const workspace = document.getElementById("workspace");
+
+    const previewImage = document.getElementById("previewImage");
+    const originalFormat = document.getElementById("originalFormat");
+    const fileName = document.getElementById("fileName");
+    const fileSize = document.getElementById("fileSize");
+
+    const selectedFormat = document.getElementById("selectedFormat");
+    const quality = document.getElementById("quality");
+    const qualityValue = document.getElementById("qualityValue");
+
+    const convertBtn = document.getElementById("convertBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const output = document.getElementById("output");
+    const outputImage = document.getElementById("outputImage");
+    const outputFormat = document.getElementById("outputFormat");
+    const outputDimensions = document.getElementById("outputDimensions");
+    const outputSize = document.getElementById("outputSize");
+    const outputQuality = document.getElementById("outputQuality");
+    const downloadBtn = document.getElementById("downloadBtn");
+
+    const toast = document.getElementById("toast");
+
+    let currentFile = null;
+    let currentImage = null;
+
+    let originalObjectURL = null;
+    let convertedURL = null;
+    let convertedBlob = null;
+
+    let toastTimer = null;
+
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+    const MAX_FILE_SIZE = 100 * 1024 * 1024;
+    const MAX_DIMENSION = 12000;
+    const MAX_PIXELS = 50000000;
+
+
+    /* =====================================================
+       FILE SIZE
+    ===================================================== */
+
+    function formatFileSize(bytes) {
+        if (!Number.isFinite(bytes) || bytes <= 0) {
+            return "0 Bytes";
+        }
+
+        const units = ["Bytes", "KB", "MB", "GB"];
+
+        const index = Math.min(
+            Math.floor(Math.log(bytes) / Math.log(1024)),
+            units.length - 1
+        );
+
+        const value = bytes / Math.pow(1024, index);
+
+        return `${value.toFixed(index === 0 ? 0 : 2)} ${units[index]}`;
+    }
+
+
+    /* =====================================================
+       GET FORMAT
+    ===================================================== */
+
+    function getFormat(file) {
+        switch (file.type) {
+            case "image/jpeg":
+                return "JPG";
+
+            case "image/png":
+                return "PNG";
+
+            case "image/webp":
+                return "WebP";
+
+            default:
+                return "Image";
+        }
+    }
+
+
+    /* =====================================================
+       GET EXTENSION
+    ===================================================== */
+
+    function getExtension(format) {
+        switch (format) {
+            case "jpeg":
+                return "jpg";
+
+            case "png":
+                return "png";
+
+            case "webp":
+                return "webp";
+
+            default:
+                return "jpg";
+        }
+    }
+
+
+    /* =====================================================
+       VALIDATE FILE
+    ===================================================== */
+
+    function validateFile(file) {
+        if (!file) {
+            showToast("Please select an image.");
+            return false;
+        }
+
+        if (!allowedTypes.includes(file.type)) {
+            showToast("Please select a JPG, PNG or WebP image.");
+            return false;
+        }
+
+        if (file.size > MAX_FILE_SIZE) {
+            showToast("Maximum file size is 100 MB.");
+            return false;
+        }
+
+        return true;
+    }
+
+
+    /* =====================================================
+       FILE INPUT
+    ===================================================== */
+
+    imageInput.addEventListener("change", function () {
+        const file = this.files && this.files[0];
+
+        if (file) {
+            loadImage(file);
+        }
+    });
+
+
+    /* =====================================================
+       DRAG & DROP
+    ===================================================== */
+
+    ["dragenter", "dragover"].forEach(eventName => {
+        dropZone.addEventListener(eventName, event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            dropZone.classList.add("dragover");
+        });
+    });
+
+
+    ["dragleave", "drop"].forEach(eventName => {
+        dropZone.addEventListener(eventName, event => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            dropZone.classList.remove("dragover");
+        });
+    });
+
+
+    dropZone.addEventListener("drop", event => {
+        const files = event.dataTransfer.files;
+
+        if (!files || !files.length) {
+            return;
+        }
+
+        loadImage(files[0]);
+    });
+
+
+    /* =====================================================
+       LOAD IMAGE
+    ===================================================== */
+
+    function loadImage(file) {
+
+        if (!validateFile(file)) {
+            return;
+        }
+
+        currentFile = file;
+
+        /* Release old object URL */
+        if (originalObjectURL) {
+            URL.revokeObjectURL(originalObjectURL);
+            originalObjectURL = null;
+        }
+
+        /* Release old converted URL */
+        clearConvertedData();
+
+        originalObjectURL = URL.createObjectURL(file);
+
+        const img = new Image();
+
+        img.onload = function () {
+
+            const width = img.naturalWidth;
+            const height = img.naturalHeight;
+
+            if (!width || !height) {
+                showToast("Could not read image dimensions.");
+                return;
+            }
+
+            if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
+                showToast(
+                    `Image dimensions cannot exceed ${MAX_DIMENSION.toLocaleString()} × ${MAX_DIMENSION.toLocaleString()} pixels.`
+                );
+
+                URL.revokeObjectURL(originalObjectURL);
+                originalObjectURL = null;
+
+                return;
+            }
+
+            if (width * height > MAX_PIXELS) {
+                showToast(
+                    "This image is too large to process safely in the browser."
+                );
+
+                URL.revokeObjectURL(originalObjectURL);
+                originalObjectURL = null;
+
+                return;
+            }
+
+            currentImage = img;
+
+            previewImage.src = originalObjectURL;
+
+            originalFormat.textContent = getFormat(file);
+
+            fileName.textContent = file.name;
+
+            fileSize.textContent = formatFileSize(file.size);
+
+            workspace.classList.add("active");
+
+            output.classList.remove("active");
+
+            updateSelectedFormat();
+
+            showToast("Image loaded successfully.");
+        };
+
+
+        img.onerror = function () {
+            currentImage = null;
+
+            showToast(
+                "Could not read this image. Please try another file."
+            );
+        };
+
+
+        img.src = originalObjectURL;
+    }
+
+
+    /* =====================================================
+       FORMAT SELECTION
+    ===================================================== */
+
+    document
+        .querySelectorAll('input[name="format"]')
+        .forEach(radio => {
+
+            radio.addEventListener("change", function () {
+                updateSelectedFormat();
+
+                /*
+                 * PNG is lossless.
+                 * Quality slider still remains visible,
+                 * but it does not affect PNG encoding.
+                 */
+            });
+        });
+
+
+    function updateSelectedFormat() {
+
+        const selected = document.querySelector(
+            'input[name="format"]:checked'
+        );
+
+        if (!selected) {
+            return;
+        }
+
+        const names = {
+            jpeg: "JPG",
+            png: "PNG",
+            webp: "WebP"
+        };
+
+        selectedFormat.textContent =
+            names[selected.value] || "PNG";
+    }
+
+
+    /* =====================================================
+       QUALITY SLIDER
+    ===================================================== */
+
+    quality.addEventListener("input", function () {
+        qualityValue.textContent = `${this.value}%`;
+    });
+
+
+    /* =====================================================
+       CONVERT BUTTON
+    ===================================================== */
+
+    convertBtn.addEventListener("click", convertImage);
+
+
+    function convertImage() {
+
+        if (!currentImage || !currentFile) {
+            showToast("Please select an image first.");
+            return;
+        }
+
+        const selected = document.querySelector(
+            'input[name="format"]:checked'
+        );
+
+        if (!selected) {
+            showToast("Please select an output format.");
+            return;
+        }
+
+        const format = selected.value;
+
+        const width = currentImage.naturalWidth;
+        const height = currentImage.naturalHeight;
+
+        if (
+            !width ||
+            !height ||
+            width > MAX_DIMENSION ||
+            height > MAX_DIMENSION
+        ) {
+            showToast("Image dimensions are too large.");
+            return;
+        }
+
+        if (width * height > MAX_PIXELS) {
+            showToast("Image is too large to process.");
+            return;
+        }
+
+        const qualityNumber =
+            Number(quality.value) / 100;
+
+        convertBtn.disabled = true;
+        resetBtn.disabled = true;
+
+        convertBtn.textContent = "Converting...";
+
+        /*
+         * Small timeout allows the browser to update the button
+         * before starting canvas processing.
+         */
+        setTimeout(() => {
+
+            try {
+
+                const canvas = document.createElement("canvas");
+
+                canvas.width = width;
+                canvas.height = height;
+
+                const ctx = canvas.getContext("2d", {
+                    alpha: true
+                });
+
+                if (!ctx) {
+                    throw new Error(
+                        "Canvas is not supported by this browser."
+                    );
+                }
+
+                /*
+                 * High quality image rendering.
+                 */
+                ctx.imageSmoothingEnabled = true;
+                ctx.imageSmoothingQuality = "high";
+
+
+                /*
+                 * JPG does not support transparency.
+                 * Therefore transparent PNG/WebP areas become white.
+                 */
+                if (format === "jpeg") {
+
+                    ctx.fillStyle = "#ffffff";
+
+                    ctx.fillRect(
+                        0,
+                        0,
+                        width,
+                        height
+                    );
+                }
+
+
+                /*
+                 * Draw original image onto canvas.
+                 */
+                ctx.drawImage(
+                    currentImage,
+                    0,
+                    0,
+                    width,
+                    height
+                );
+
+
+                const mimeType = `image/${format}`;
+
+
+                /*
+                 * PNG = lossless
+                 * JPG/WebP = selected quality
+                 */
+                const blobQuality =
+                    format === "png"
+                        ? undefined
+                        : qualityNumber;
+
+
+                canvas.toBlob(
+                    blob => {
+
+                        if (!blob) {
+                            throw new Error(
+                                "Browser could not create the converted image."
+                            );
+                        }
+
+                        convertedBlob = blob;
+
+                        if (convertedURL) {
+                            URL.revokeObjectURL(convertedURL);
+                        }
+
+                        convertedURL =
+                            URL.createObjectURL(blob);
+
+
+                        /*
+                         * Show converted preview.
+                         */
+                        outputImage.src = convertedURL;
+
+
+                        const names = {
+                            jpeg: "JPG",
+                            png: "PNG",
+                            webp: "WebP"
+                        };
+
+
+                        outputFormat.textContent =
+                            names[format];
+
+
+                        outputDimensions.textContent =
+                            `${width.toLocaleString()} × ${height.toLocaleString()} px`;
+
+
+                        outputSize.textContent =
+                            formatFileSize(blob.size);
+
+
+                        outputQuality.textContent =
+                            format === "png"
+                                ? "Lossless"
+                                : `${quality.value}%`;
+
+
+                        output.classList.add("active");
+
+
+                        convertBtn.disabled = false;
+                        resetBtn.disabled = false;
+
+                        convertBtn.textContent =
+                            "Convert Image";
+
+
+                        showToast(
+                            `${names[format]} conversion completed!`
+                        );
+
+
+                        setTimeout(() => {
+                            output.scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+                        }, 150);
+
+                    },
+                    mimeType,
+                    blobQuality
+                );
+
+            } catch (error) {
+
+                console.error(
+                    "Image conversion error:",
+                    error
+                );
+
+                convertBtn.disabled = false;
+                resetBtn.disabled = false;
+
+                convertBtn.textContent =
+                    "Convert Image";
+
+                showToast(
+                    "Conversion failed. Please try another image."
+                );
+            }
+
+        }, 50);
+    }
+
+
+    /* =====================================================
+       DOWNLOAD
+    ===================================================== */
+
+    downloadBtn.addEventListener("click", function () {
+
+        if (!convertedBlob || !convertedURL || !currentFile) {
+            showToast("Please convert the image first.");
+            return;
+        }
+
+        const selected = document.querySelector(
+            'input[name="format"]:checked'
+        );
+
+        if (!selected) {
+            showToast("Please select an output format.");
+            return;
+        }
+
+        const extension =
+            getExtension(selected.value);
+
+
+        /*
+         * Remove original extension safely.
+         */
+        const originalName =
+            currentFile.name.replace(/\.[^/.]+$/, "");
+
+
+        const downloadName =
+            `${originalName}-converted.${extension}`;
+
+
+        /*
+         * Create temporary download link.
+         */
+        const link =
+            document.createElement("a");
+
+        link.href = convertedURL;
+
+        link.download = downloadName;
+
+        link.style.display = "none";
+
+        document.body.appendChild(link);
+
+        link.click();
+
+        link.remove();
+
+
+        showToast("Download started!");
+    });
+
+
+    /* =====================================================
+       CLEAR CONVERTED DATA
+    ===================================================== */
+
+    function clearConvertedData() {
+
+        if (convertedURL) {
+            URL.revokeObjectURL(convertedURL);
+            convertedURL = null;
+        }
+
+        convertedBlob = null;
+
+        outputImage.removeAttribute("src");
+    }
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    resetBtn.addEventListener(
+        "click",
+        resetTool
+    );
+
+
+    function resetTool() {
+
+        if (originalObjectURL) {
+            URL.revokeObjectURL(originalObjectURL);
+            originalObjectURL = null;
+        }
+
+        clearConvertedData();
+
+
+        currentFile = null;
+        currentImage = null;
+
+
+        imageInput.value = "";
+
+
+        previewImage.removeAttribute("src");
+
+        fileName.textContent = "image.jpg";
+
+        fileSize.textContent = "0 KB";
+
+        originalFormat.textContent = "JPG";
+
+
+        workspace.classList.remove("active");
+
+        output.classList.remove("active");
+
+
+        /*
+         * Restore default settings.
+         */
+        quality.value = 90;
+
+        qualityValue.textContent = "90%";
+
+
+        document.getElementById("formatPng").checked = true;
+
+        updateSelectedFormat();
+
+
+        convertBtn.disabled = false;
+
+        resetBtn.disabled = false;
+
+        convertBtn.textContent = "Convert Image";
+
+
+        showToast("Tool reset.");
+    }
+
+
+    /* =====================================================
+       FAQ
+    ===================================================== */
+
+    document
+        .querySelectorAll(".ifc-question")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    const item =
+                        this.closest(".ifc-faq-item");
+
+                    if (!item) {
+                        return;
+                    }
+
+                    item.classList.toggle("active");
+                }
+            );
+        });
+
+
+    /* =====================================================
+       TOAST
+    ===================================================== */
+
+    function showToast(message) {
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 2500);
+    }
+
+
+    /* =====================================================
+       FOOTER YEAR
+    ===================================================== */
+
+    const footerYear =
+        document.getElementById("footerYear");
+
+    if (footerYear) {
+        footerYear.textContent =
+            new Date().getFullYear();
+    }
+
+
+    /* =====================================================
+       CLEANUP
+    ===================================================== */
+
+    window.addEventListener(
+        "beforeunload",
+        function () {
+
+            if (originalObjectURL) {
+                URL.revokeObjectURL(originalObjectURL);
+            }
+
+            if (convertedURL) {
+                URL.revokeObjectURL(convertedURL);
+            }
+        }
+    );
+
+
+    /* =====================================================
+       INITIAL STATE
+    ===================================================== */
+
+    updateSelectedFormat();
+
+})();
+</script>
+
+</body>
+</html>

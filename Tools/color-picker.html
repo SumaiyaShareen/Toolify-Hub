@@ -1,0 +1,2597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Color Picker - Pick Colors Online Free | ToolifyHub</title>
+
+    <meta name="description"
+          content="Pick colors online with ToolifyHub's free Color Picker. Get HEX, RGB and HSL values, copy colors instantly, generate shades and create color palettes.">
+
+    <meta name="keywords"
+          content="color picker, online color picker, HEX color picker, RGB color picker, HSL color picker, color palette generator">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+          href="https://toolifyhub-online.netlify.app/tools/color-picker.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+          content="Color Picker - Pick Colors Online Free | ToolifyHub">
+    <meta property="og:description"
+          content="Pick colors online with ToolifyHub's free Color Picker.">
+    <meta property="og:type" content="website">
+    <meta property="og:url"
+          content="https://toolifyhub-online.netlify.app/tools/color-picker.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title"
+          content="Color Picker - Pick Colors Online Free | ToolifyHub">
+    <meta name="twitter:description"
+          content="Pick colors online with ToolifyHub's free Color Picker.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="../favicon.svg"
+    >
+
+    <style>
+        /* =========================================
+           COLOR PICKER PAGE
+        ========================================== */
+
+        .cp-page {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(99,102,241,.10),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 20%,
+                    rgba(14,165,233,.10),
+                    transparent 30%
+                ),
+                #f8fafc;
+        }
+
+        /* =========================================
+           HERO
+        ========================================== */
+
+        .cp-hero {
+            padding: 82px 20px 48px;
+            text-align: center;
+        }
+
+        .cp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 8px 15px;
+
+            border: 1px solid rgba(99,102,241,.16);
+            border-radius: 999px;
+
+            background: rgba(255,255,255,.85);
+
+            color: #4f46e5;
+
+            font-size: 13px;
+            font-weight: 800;
+
+            box-shadow:
+                0 8px 25px rgba(15,23,42,.05);
+
+            animation:
+                cpFloat 3s ease-in-out infinite;
+        }
+
+        .cp-badge-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #6366f1;
+
+            box-shadow:
+                0 0 0 5px rgba(99,102,241,.10);
+        }
+
+        @keyframes cpFloat {
+
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-4px);
+            }
+
+        }
+
+        .cp-hero h1 {
+            max-width: 850px;
+
+            margin: 22px auto 15px;
+
+            color: #0f172a;
+
+            font-size: clamp(38px, 6vw, 68px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2.5px;
+        }
+
+        .cp-gradient {
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #0ea5e9
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .cp-hero p {
+            max-width: 680px;
+
+            margin: auto;
+
+            color: #64748b;
+
+            font-size: 17px;
+
+            line-height: 1.75;
+        }
+
+        /* =========================================
+           MAIN
+        ========================================== */
+
+        .cp-main {
+            width: min(1080px, calc(100% - 32px));
+
+            margin: 0 auto 80px;
+        }
+
+        .cp-card {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 28px;
+
+            padding: 30px;
+
+            background: rgba(255,255,255,.96);
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 25px 70px rgba(15,23,42,.08),
+                0 4px 15px rgba(15,23,42,.04);
+        }
+
+        /* =========================================
+           PICKER PANEL
+        ========================================== */
+
+        .cp-panel-title {
+            color: #0f172a;
+
+            font-size: 20px;
+
+            font-weight: 850;
+
+            margin-bottom: 7px;
+        }
+
+        .cp-panel-subtitle {
+            color: #94a3b8;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            margin-bottom: 22px;
+        }
+
+        .cp-color-box {
+            position: relative;
+
+            min-height: 330px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 22px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e2e8f0,
+                    #f8fafc
+                );
+
+            border: 1px solid #e2e8f0;
+
+            transition: .25s ease;
+        }
+
+        .cp-color-box:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 15px 35px rgba(15,23,42,.08);
+        }
+
+        .cp-color-input {
+            position: absolute;
+
+            width: 100%;
+            height: 100%;
+
+            opacity: 0;
+
+            cursor: pointer;
+        }
+
+        .cp-color-preview {
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: #6366f1;
+
+            border: 8px solid rgba(255,255,255,.9);
+
+            box-shadow:
+                0 18px 45px rgba(15,23,42,.20);
+
+            pointer-events: none;
+
+            transition: .25s ease;
+        }
+
+        .cp-pick-text {
+            position: absolute;
+
+            bottom: 24px;
+
+            padding: 9px 15px;
+
+            border-radius: 999px;
+
+            background: rgba(15,23,42,.78);
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            pointer-events: none;
+        }
+
+        /* =========================================
+           COLOR VALUES
+        ========================================== */
+
+        .cp-values {
+            margin-top: 18px;
+
+            display: grid;
+
+            gap: 11px;
+        }
+
+        .cp-value-row {
+            display: grid;
+
+            grid-template-columns: 70px 1fr auto;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 12px 13px;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 13px;
+
+            background: #fff;
+        }
+
+        .cp-value-label {
+            color: #64748b;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+        .cp-value-code {
+            min-width: 0;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+
+            white-space: nowrap;
+
+            color: #0f172a;
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Monaco,
+                Consolas,
+                monospace;
+
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+        .cp-copy {
+            border: 0;
+
+            padding: 7px 10px;
+
+            border-radius: 8px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .2s ease;
+        }
+
+        .cp-copy:hover {
+            background: #e0e7ff;
+
+            transform: translateY(-1px);
+        }
+
+        /* =========================================
+           RIGHT PANEL
+        ========================================== */
+
+        .cp-right {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+        .cp-current {
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f8fafc,
+                    #eef2ff
+                );
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .cp-current-head {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 14px;
+        }
+
+        .cp-current-title {
+            color: #334155;
+
+            font-size: 13px;
+
+            font-weight: 800;
+        }
+
+        .cp-hex-large {
+            color: #6366f1;
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Monaco,
+                Consolas,
+                monospace;
+
+            font-size: 13px;
+
+            font-weight: 900;
+        }
+
+        .cp-big-preview {
+            width: 100%;
+
+            height: 115px;
+
+            border-radius: 15px;
+
+            background: #6366f1;
+
+            box-shadow:
+                inset 0 0 0 1px rgba(255,255,255,.18),
+                0 12px 30px rgba(15,23,42,.10);
+
+            transition: .25s ease;
+        }
+
+        /* =========================================
+           ACTIONS
+        ========================================== */
+
+        .cp-actions {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .cp-btn {
+            min-height: 45px;
+
+            padding: 0 16px;
+
+            border-radius: 11px;
+
+            border: 1px solid #e2e8f0;
+
+            background: #fff;
+
+            color: #334155;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .22s ease;
+        }
+
+        .cp-btn:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 18px rgba(15,23,42,.07);
+        }
+
+        .cp-btn-primary {
+            border-color: #4f46e5;
+
+            background: #4f46e5;
+
+            color: #fff;
+
+            box-shadow:
+                0 8px 20px rgba(79,70,229,.20);
+        }
+
+        .cp-btn-primary:hover {
+            background: #4338ca;
+
+            border-color: #4338ca;
+        }
+
+        .cp-btn-danger {
+            color: #dc2626;
+        }
+
+        /* =========================================
+           HEX INPUT
+        ========================================== */
+
+        .cp-custom-section {
+            padding: 20px;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 18px;
+
+            background: #fff;
+        }
+
+        .cp-section-title {
+            color: #0f172a;
+
+            font-size: 14px;
+
+            font-weight: 850;
+
+            margin-bottom: 12px;
+        }
+
+        .cp-hex-form {
+            display: flex;
+
+            gap: 9px;
+        }
+
+        .cp-hex-input {
+            flex: 1;
+
+            min-width: 0;
+
+            height: 45px;
+
+            padding: 0 13px;
+
+            border: 2px solid #e2e8f0;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #f8fafc;
+
+            color: #0f172a;
+
+            font-family:
+                ui-monospace,
+                SFMono-Regular,
+                Menlo,
+                Monaco,
+                Consolas,
+                monospace;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            transition: .2s ease;
+        }
+
+        .cp-hex-input:focus {
+            border-color: #818cf8;
+
+            background: #fff;
+
+            box-shadow:
+                0 0 0 4px rgba(99,102,241,.09);
+        }
+
+        /* =========================================
+           RANDOM / PALETTE
+        ========================================== */
+
+        .cp-palette-section {
+            padding: 20px;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 18px;
+
+            background: #fff;
+        }
+
+        .cp-palette {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 9px;
+        }
+
+        .cp-swatch {
+            height: 62px;
+
+            border-radius: 11px;
+
+            border: 1px solid rgba(15,23,42,.08);
+
+            cursor: pointer;
+
+            position: relative;
+
+            transition: .2s ease;
+        }
+
+        .cp-swatch:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 8px 18px rgba(15,23,42,.12);
+        }
+
+        .cp-swatch span {
+            position: absolute;
+
+            left: 50%;
+            bottom: 5px;
+
+            transform: translateX(-50%);
+
+            padding: 3px 5px;
+
+            border-radius: 5px;
+
+            background: rgba(255,255,255,.78);
+
+            color: #0f172a;
+
+            font-size: 8px;
+
+            font-weight: 900;
+
+            opacity: 0;
+
+            transition: .2s ease;
+        }
+
+        .cp-swatch:hover span {
+            opacity: 1;
+        }
+
+        /* =========================================
+           SHADES
+        ========================================== */
+
+        .cp-shades {
+            display: grid;
+
+            grid-template-columns:
+                repeat(8, 1fr);
+
+            gap: 7px;
+
+            margin-top: 15px;
+        }
+
+        .cp-shade {
+            height: 35px;
+
+            border-radius: 7px;
+
+            cursor: pointer;
+
+            border: 1px solid rgba(15,23,42,.07);
+
+            transition: .2s ease;
+        }
+
+        .cp-shade:hover {
+            transform: scale(1.07);
+        }
+
+        /* =========================================
+           INFO
+        ========================================== */
+
+        .cp-info {
+            width: min(1050px, calc(100% - 32px));
+
+            margin: 0 auto 70px;
+        }
+
+        .cp-info-card {
+            padding: 32px;
+
+            margin-bottom: 18px;
+
+            background: #fff;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 22px;
+        }
+
+        .cp-info-card h2 {
+            color: #0f172a;
+
+            font-size: 24px;
+
+            margin-bottom: 12px;
+        }
+
+        .cp-info-card > p {
+            color: #64748b;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+        }
+
+        .cp-steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 24px;
+        }
+
+        .cp-step {
+            padding: 22px;
+
+            border-radius: 16px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .cp-step-number {
+            width: 38px;
+            height: 38px;
+
+            display: grid;
+
+            place-items: center;
+
+            border-radius: 11px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            font-weight: 900;
+
+            margin-bottom: 13px;
+        }
+
+        .cp-step h3 {
+            color: #0f172a;
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+        }
+
+        .cp-step p {
+            color: #64748b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+        /* =========================================
+           FAQ
+        ========================================== */
+
+        .cp-faq-item {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .cp-faq-item:last-child {
+            border-bottom: 0;
+        }
+
+        .cp-faq-question {
+            width: 100%;
+
+            padding: 19px 0;
+
+            border: 0;
+
+            background: transparent;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            text-align: left;
+
+            cursor: pointer;
+
+            color: #0f172a;
+
+            font-family: inherit;
+
+            font-size: 15px;
+
+            font-weight: 800;
+        }
+
+        .cp-faq-icon {
+            color: #6366f1;
+
+            font-size: 20px;
+
+            transition: .25s ease;
+        }
+
+        .cp-faq-answer {
+            max-height: 0;
+
+            overflow: hidden;
+
+            transition: .3s ease;
+        }
+
+        .cp-faq-answer p {
+            padding: 0 0 18px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        .cp-faq-item.open .cp-faq-answer {
+            max-height: 180px;
+        }
+
+        .cp-faq-item.open .cp-faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* =========================================
+           TOAST
+        ========================================== */
+
+        .cp-toast {
+            position: fixed;
+
+            left: 50%;
+            bottom: 28px;
+
+            transform:
+                translate(-50%, 100px);
+
+            opacity: 0;
+
+            z-index: 9999;
+
+            padding: 12px 18px;
+
+            border-radius: 12px;
+
+            background: #0f172a;
+
+            color: #fff;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 15px 35px rgba(15,23,42,.25);
+
+            transition: .3s ease;
+
+            pointer-events: none;
+        }
+
+        .cp-toast.show {
+            transform:
+                translate(-50%, 0);
+
+            opacity: 1;
+        }
+
+        /* =========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 900px) {
+
+            .cp-card {
+                grid-template-columns: 1fr;
+            }
+
+            .cp-steps {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .cp-hero {
+                padding: 55px 16px 35px;
+            }
+
+            .cp-hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .cp-main,
+            .cp-info {
+                width: min(100% - 20px, 1080px);
+            }
+
+            .cp-card {
+                padding: 17px;
+
+                border-radius: 20px;
+            }
+
+            .cp-color-box {
+                min-height: 270px;
+            }
+
+            .cp-color-preview {
+                width: 145px;
+                height: 145px;
+            }
+
+            .cp-value-row {
+                grid-template-columns:
+                    60px 1fr auto;
+            }
+
+            .cp-palette {
+                grid-template-columns:
+                    repeat(5, 1fr);
+            }
+
+            .cp-shades {
+                grid-template-columns:
+                    repeat(4, 1fr);
+            }
+
+            .cp-hex-form {
+                flex-direction: column;
+            }
+
+            .cp-hex-input {
+                width: 100%;
+            }
+
+            .cp-hex-form .cp-btn {
+                width: 100%;
+            }
+
+            .cp-actions {
+                flex-direction: column;
+            }
+
+            .cp-btn {
+                width: 100%;
+            }
+
+            .cp-info-card {
+                padding: 22px;
+            }
+
+        }
+
+    </style>
+
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Color Picker - Pick Colors Online Free | ToolifyHub",
+  "url": "https://toolifyhub-online.netlify.app/tools/color-picker.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Pick colors online with ToolifyHub",
+  "isAccessibleForFree": true
+}
+</script>
+<!-- TOOLIFYHUB SEO SCHEMA END -->
+    
+</head>
+
+
+<body>
+
+<div class="cp-page">
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="header">
+
+        <div class="container nav">
+
+            <a href="../index.html" class="logo">
+
+                <div class="logo-icon">
+                    T
+                </div>
+
+                <span>
+                    Toolify<span class="logo-highlight">Hub</span>
+                </span>
+
+            </a>
+
+
+            <nav class="nav-links">
+
+                <a href="../index.html#tools">
+                    Tools
+                </a>
+
+                <a href="../index.html#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="../index.html#faq">
+                    FAQ
+                </a>
+
+                <a href="../about.html">
+                    About
+                </a>
+
+            </nav>
+
+
+            <a
+                href="../index.html#tools"
+                class="nav-button"
+            >
+                All Tools
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
+    <section class="cp-hero">
+
+        <div class="cp-badge">
+
+            <span class="cp-badge-dot"></span>
+
+            Free Online Color Tool
+
+        </div>
+
+
+        <h1>
+
+            Pick Your
+            <span class="cp-gradient">
+                Perfect Color
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Pick any color and instantly get its HEX,
+            RGB and HSL values. Create shades and
+            palettes with our free online Color Picker.
+
+        </p>
+
+    </section>
+
+
+    <!-- =========================================
+         MAIN TOOL
+    ========================================== -->
+
+    <main class="cp-main">
+
+        <div class="cp-card">
+
+
+            <!-- =====================================
+                 LEFT PANEL
+            ====================================== -->
+
+            <div>
+
+                <div class="cp-panel-title">
+                    Choose a Color
+                </div>
+
+                <div class="cp-panel-subtitle">
+                    Click the color area below to open
+                    your browser's color picker.
+                </div>
+
+
+                <div class="cp-color-box">
+
+                    <input
+                        type="color"
+                        id="colorInput"
+                        class="cp-color-input"
+                        value="#6366f1"
+                    >
+
+
+                    <div
+                        id="colorPreview"
+                        class="cp-color-preview"
+                    ></div>
+
+
+                    <div class="cp-pick-text">
+                        Click to Pick Color
+                    </div>
+
+                </div>
+
+
+                <!-- VALUES -->
+
+                <div class="cp-values">
+
+
+                    <div class="cp-value-row">
+
+                        <span class="cp-value-label">
+                            HEX
+                        </span>
+
+                        <span
+                            id="hexValue"
+                            class="cp-value-code"
+                        >
+                            #6366F1
+                        </span>
+
+                        <button
+                            class="cp-copy"
+                            data-copy="hex"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                    <div class="cp-value-row">
+
+                        <span class="cp-value-label">
+                            RGB
+                        </span>
+
+                        <span
+                            id="rgbValue"
+                            class="cp-value-code"
+                        >
+                            rgb(99, 102, 241)
+                        </span>
+
+                        <button
+                            class="cp-copy"
+                            data-copy="rgb"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                    <div class="cp-value-row">
+
+                        <span class="cp-value-label">
+                            HSL
+                        </span>
+
+                        <span
+                            id="hslValue"
+                            class="cp-value-code"
+                        >
+                            hsl(239, 84%, 67%)
+                        </span>
+
+                        <button
+                            class="cp-copy"
+                            data-copy="hsl"
+                        >
+                            Copy
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- =====================================
+                 RIGHT PANEL
+            ====================================== -->
+
+            <div class="cp-right">
+
+
+                <!-- CURRENT COLOR -->
+
+                <div class="cp-current">
+
+                    <div class="cp-current-head">
+
+                        <span class="cp-current-title">
+                            Current Color
+                        </span>
+
+                        <span
+                            id="largeHex"
+                            class="cp-hex-large"
+                        >
+                            #6366F1
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="bigPreview"
+                        class="cp-big-preview"
+                    ></div>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="cp-actions">
+
+                    <button
+                        id="randomBtn"
+                        class="cp-btn cp-btn-primary"
+                    >
+                        Random Color
+                    </button>
+
+
+                    <button
+                        id="copyAllBtn"
+                        class="cp-btn"
+                    >
+                        Copy All Values
+                    </button>
+
+
+                    <button
+                        id="resetBtn"
+                        class="cp-btn cp-btn-danger"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- CUSTOM HEX -->
+
+                <div class="cp-custom-section">
+
+                    <div class="cp-section-title">
+                        Enter HEX Color
+                    </div>
+
+
+                    <div class="cp-hex-form">
+
+                        <input
+                            id="hexInput"
+                            class="cp-hex-input"
+                            type="text"
+                            value="#6366F1"
+                            maxlength="7"
+                            placeholder="#6366FF"
+                        >
+
+
+                        <button
+                            id="applyHexBtn"
+                            class="cp-btn cp-btn-primary"
+                        >
+                            Apply Color
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PALETTE -->
+
+                <div class="cp-palette-section">
+
+                    <div class="cp-section-title">
+                        Color Palette
+                    </div>
+
+
+                    <div
+                        id="palette"
+                        class="cp-palette"
+                    >
+                    </div>
+
+
+                    <div class="cp-section-title"
+                         style="margin-top:20px;">
+                        Shades & Tints
+                    </div>
+
+
+                    <div
+                        id="shades"
+                        class="cp-shades"
+                    >
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================
+         INFORMATION
+    ========================================== -->
+
+    <section class="cp-info">
+
+
+        <div class="cp-info-card">
+
+            <h2>
+                Free Online Color Picker
+            </h2>
+
+            <p>
+                ToolifyHub's Color Picker helps designers,
+                developers, students and content creators
+                quickly identify and work with colors.
+                Pick a color visually or enter a HEX value
+                to get accurate HEX, RGB and HSL values.
+            </p>
+
+
+            <div class="cp-steps">
+
+
+                <div class="cp-step">
+
+                    <div class="cp-step-number">
+                        1
+                    </div>
+
+                    <h3>
+                        Pick a Color
+                    </h3>
+
+                    <p>
+                        Select any color using the built-in
+                        browser color picker.
+                    </p>
+
+                </div>
+
+
+                <div class="cp-step">
+
+                    <div class="cp-step-number">
+                        2
+                    </div>
+
+                    <h3>
+                        Get Color Values
+                    </h3>
+
+                    <p>
+                        Instantly view HEX, RGB and HSL
+                        representations of your color.
+                    </p>
+
+                </div>
+
+
+                <div class="cp-step">
+
+                    <div class="cp-step-number">
+                        3
+                    </div>
+
+                    <h3>
+                        Copy & Use
+                    </h3>
+
+                    <p>
+                        Copy your preferred color value
+                        and use it in your design or code.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             FAQ
+        ====================================== -->
+
+        <div class="cp-info-card">
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="cp-faq-item">
+
+                <button class="cp-faq-question">
+
+                    What is a color picker?
+
+                    <span class="cp-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+
+                <div class="cp-faq-answer">
+
+                    <p>
+                        A color picker is a tool that lets
+                        you select a color and obtain its
+                        digital color values such as HEX,
+                        RGB and HSL.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cp-faq-item">
+
+                <button class="cp-faq-question">
+
+                    What is a HEX color?
+
+                    <span class="cp-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+
+                <div class="cp-faq-answer">
+
+                    <p>
+                        HEX is a six-character hexadecimal
+                        representation commonly used for
+                        colors in websites and CSS.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cp-faq-item">
+
+                <button class="cp-faq-question">
+
+                    What is RGB?
+
+                    <span class="cp-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+
+                <div class="cp-faq-answer">
+
+                    <p>
+                        RGB represents a color using
+                        red, green and blue values.
+                        Each channel normally ranges
+                        from 0 to 255.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="cp-faq-item">
+
+                <button class="cp-faq-question">
+
+                    Is this color picker free?
+
+                    <span class="cp-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+
+                <div class="cp-faq-answer">
+
+                    <p>
+                        Yes. The ToolifyHub Color Picker
+                        is designed as a free online utility
+                        and does not require an account.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         TOAST
+    ========================================== -->
+
+    <div
+        id="toast"
+        class="cp-toast"
+    >
+        Color copied!
+    </div>
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+
+                <div>
+
+                    <a
+                        href="../index.html"
+                        class="logo"
+                    >
+
+                        <div class="logo-icon">
+                            T
+                        </div>
+
+                        <span>
+                            Toolify<span class="logo-highlight">Hub</span>
+                        </span>
+
+                    </a>
+
+
+                    <p>
+                        Simple, fast and useful online tools.
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Tools
+                    </h4>
+
+                    <a href="image-resizer.html">
+                        Image Resizer
+                    </a>
+
+                    <a href="image-compressor.html">
+                        Image Compressor
+                    </a>
+
+                    <a href="jpg-to-pdf.html">
+                        JPG to PDF
+                    </a>
+
+                    <a href="word-counter.html">
+                        Word Counter
+                    </a>
+
+                    <a href="case-converter.html">
+                        Case Converter
+                    </a>
+
+                    <a href="qr-generator.html">
+                        QR Generator
+                    </a>
+
+                    <a href="color-picker.html">
+                        Color Picker
+                    </a>
+
+                </div>
+
+
+                <div>
+
+                    <h4>
+                        Company
+                    </h4>
+
+                    <a href="../about.html">
+                        About
+                    </a>
+
+                    <a href="../contact.html">
+                        Contact
+                    </a>
+
+                    <a href="../privacy.html">
+                        Privacy
+                    </a>
+
+                    <a href="../terms.html">
+                        Terms
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+
+                    ©
+                    <span id="footerYear"></span>
+                    ToolifyHub.
+                    All rights reserved.
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    /* =========================================
+       ELEMENTS
+    ========================================== */
+
+    const colorInput =
+        document.getElementById("colorInput");
+
+    const colorPreview =
+        document.getElementById("colorPreview");
+
+    const bigPreview =
+        document.getElementById("bigPreview");
+
+    const hexValue =
+        document.getElementById("hexValue");
+
+    const rgbValue =
+        document.getElementById("rgbValue");
+
+    const hslValue =
+        document.getElementById("hslValue");
+
+    const largeHex =
+        document.getElementById("largeHex");
+
+    const hexInput =
+        document.getElementById("hexInput");
+
+    const applyHexBtn =
+        document.getElementById("applyHexBtn");
+
+    const randomBtn =
+        document.getElementById("randomBtn");
+
+    const copyAllBtn =
+        document.getElementById("copyAllBtn");
+
+    const resetBtn =
+        document.getElementById("resetBtn");
+
+    const palette =
+        document.getElementById("palette");
+
+    const shades =
+        document.getElementById("shades");
+
+    const toast =
+        document.getElementById("toast");
+
+
+    let currentColor = "#6366f1";
+
+
+    /* =========================================
+       HEX → RGB
+    ========================================== */
+
+    function hexToRgb(hex) {
+
+        hex = hex.replace("#", "");
+
+        const number =
+            parseInt(hex, 16);
+
+        return {
+
+            r: (number >> 16) & 255,
+
+            g: (number >> 8) & 255,
+
+            b: number & 255
+
+        };
+
+    }
+
+
+    /* =========================================
+       RGB → HSL
+    ========================================== */
+
+    function rgbToHsl(r, g, b) {
+
+        r /= 255;
+        g /= 255;
+        b /= 255;
+
+        const max =
+            Math.max(r, g, b);
+
+        const min =
+            Math.min(r, g, b);
+
+        let h;
+        let s;
+
+        const l =
+            (max + min) / 2;
+
+
+        if (max === min) {
+
+            h = 0;
+            s = 0;
+
+        } else {
+
+            const d =
+                max - min;
+
+            s =
+                l > 0.5
+                    ? d / (2 - max - min)
+                    : d / (max + min);
+
+
+            switch(max) {
+
+                case r:
+
+                    h =
+                        (g - b) / d +
+                        (g < b ? 6 : 0);
+
+                    break;
+
+
+                case g:
+
+                    h =
+                        (b - r) / d + 2;
+
+                    break;
+
+
+                case b:
+
+                    h =
+                        (r - g) / d + 4;
+
+                    break;
+
+            }
+
+            h /= 6;
+
+        }
+
+
+        return {
+
+            h: Math.round(h * 360),
+
+            s: Math.round(s * 100),
+
+            l: Math.round(l * 100)
+
+        };
+
+    }
+
+
+    /* =========================================
+       UPDATE COLOR
+    ========================================== */
+
+    function updateColor(hex) {
+
+        currentColor =
+            hex.toLowerCase();
+
+
+        const rgb =
+            hexToRgb(currentColor);
+
+
+        const hsl =
+            rgbToHsl(
+                rgb.r,
+                rgb.g,
+                rgb.b
+            );
+
+
+        const upperHex =
+            currentColor.toUpperCase();
+
+
+        colorInput.value =
+            currentColor;
+
+
+        hexInput.value =
+            upperHex;
+
+
+        colorPreview.style.background =
+            currentColor;
+
+
+        bigPreview.style.background =
+            currentColor;
+
+
+        hexValue.textContent =
+            upperHex;
+
+
+        largeHex.textContent =
+            upperHex;
+
+
+        rgbValue.textContent =
+            `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
+
+        hslValue.textContent =
+            `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+
+
+        generatePalette(
+            currentColor
+        );
+
+
+        generateShades(
+            currentColor
+        );
+
+    }
+
+
+    /* =========================================
+       COLOR INPUT
+    ========================================== */
+
+    colorInput.addEventListener(
+        "input",
+        () => {
+
+            updateColor(
+                colorInput.value
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       APPLY HEX
+    ========================================== */
+
+    applyHexBtn.addEventListener(
+        "click",
+        applyHex
+    );
+
+
+    hexInput.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                applyHex();
+
+            }
+
+        }
+    );
+
+
+    function applyHex() {
+
+        let value =
+            hexInput.value.trim();
+
+
+        if (!value.startsWith("#")) {
+
+            value =
+                "#" + value;
+
+        }
+
+
+        const valid =
+            /^#[0-9A-Fa-f]{6}$/.test(
+                value
+            );
+
+
+        if (!valid) {
+
+            showToast(
+                "Enter a valid 6-digit HEX color."
+            );
+
+            return;
+
+        }
+
+
+        updateColor(
+            value
+        );
+
+
+        showToast(
+            "Color applied successfully!"
+        );
+
+    }
+
+
+    /* =========================================
+       RANDOM COLOR
+    ========================================== */
+
+    randomBtn.addEventListener(
+        "click",
+        () => {
+
+            const random =
+                Math.floor(
+                    Math.random() * 16777215
+                );
+
+
+            const hex =
+                "#" +
+                random
+                    .toString(16)
+                    .padStart(6, "0");
+
+
+            updateColor(hex);
+
+
+            showToast(
+                "Random color generated!"
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       COPY INDIVIDUAL VALUE
+    ========================================== */
+
+    const copyButtons =
+        document.querySelectorAll(
+            ".cp-copy"
+        );
+
+
+    copyButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            async () => {
+
+                const type =
+                    button.dataset.copy;
+
+
+                let value = "";
+
+
+                if (type === "hex") {
+
+                    value =
+                        hexValue.textContent;
+
+                }
+
+
+                if (type === "rgb") {
+
+                    value =
+                        rgbValue.textContent;
+
+                }
+
+
+                if (type === "hsl") {
+
+                    value =
+                        hslValue.textContent;
+
+                }
+
+
+                await copyText(value);
+
+
+                showToast(
+                    type.toUpperCase() +
+                    " copied!"
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =========================================
+       COPY ALL
+    ========================================== */
+
+    copyAllBtn.addEventListener(
+        "click",
+        async () => {
+
+            const all =
+`HEX: ${hexValue.textContent}
+RGB: ${rgbValue.textContent}
+HSL: ${hslValue.textContent}`;
+
+
+            await copyText(all);
+
+
+            showToast(
+                "All color values copied!"
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       COPY FUNCTION
+    ========================================== */
+
+    async function copyText(text) {
+
+        try {
+
+            await navigator.clipboard.writeText(
+                text
+            );
+
+        } catch {
+
+            const temp =
+                document.createElement(
+                    "textarea"
+                );
+
+            temp.value = text;
+
+            document.body.appendChild(temp);
+
+            temp.select();
+
+            document.execCommand("copy");
+
+            temp.remove();
+
+        }
+
+    }
+
+
+    /* =========================================
+       GENERATE PALETTE
+    ========================================== */
+
+    function generatePalette(hex) {
+
+        const rgb =
+            hexToRgb(hex);
+
+
+        const base =
+            [rgb.r, rgb.g, rgb.b];
+
+
+        const paletteColors = [];
+
+
+        /*
+           Darker variations
+        */
+
+        for (
+            let i = 4;
+            i >= 1;
+            i--
+        ) {
+
+            const factor =
+                i * 0.15;
+
+
+            paletteColors.push(
+                rgbToHex(
+                    Math.round(base[0] * (1 - factor)),
+                    Math.round(base[1] * (1 - factor)),
+                    Math.round(base[2] * (1 - factor))
+                )
+            );
+
+        }
+
+
+        /*
+           Base
+        */
+
+        paletteColors.push(hex);
+
+
+        /*
+           Lighter variations
+        */
+
+        for (
+            let i = 1;
+            i <= 4;
+            i++
+        ) {
+
+            const factor =
+                i * 0.15;
+
+
+            paletteColors.push(
+                rgbToHex(
+                    Math.round(
+                        base[0] +
+                        (255 - base[0]) * factor
+                    ),
+
+                    Math.round(
+                        base[1] +
+                        (255 - base[1]) * factor
+                    ),
+
+                    Math.round(
+                        base[2] +
+                        (255 - base[2]) * factor
+                    )
+                )
+            );
+
+        }
+
+
+        palette.innerHTML = "";
+
+
+        paletteColors.forEach(
+            color => {
+
+                const swatch =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                swatch.className =
+                    "cp-swatch";
+
+
+                swatch.style.background =
+                    color;
+
+
+                const label =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                label.textContent =
+                    color.toUpperCase();
+
+
+                swatch.appendChild(
+                    label
+                );
+
+
+                swatch.addEventListener(
+                    "click",
+                    async () => {
+
+                        updateColor(
+                            color
+                        );
+
+                        await copyText(
+                            color.toUpperCase()
+                        );
+
+                        showToast(
+                            color.toUpperCase() +
+                            " copied!"
+                        );
+
+                    }
+                );
+
+
+                palette.appendChild(
+                    swatch
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       GENERATE SHADES
+    ========================================== */
+
+    function generateShades(hex) {
+
+        const rgb =
+            hexToRgb(hex);
+
+
+        shades.innerHTML = "";
+
+
+        for (
+            let i = 0;
+            i < 8;
+            i++
+        ) {
+
+            const factor =
+                i / 7;
+
+
+            const r =
+                Math.round(
+                    rgb.r * (1 - factor)
+                );
+
+
+            const g =
+                Math.round(
+                    rgb.g * (1 - factor)
+                );
+
+
+            const b =
+                Math.round(
+                    rgb.b * (1 - factor)
+                );
+
+
+            const color =
+                rgbToHex(
+                    r,
+                    g,
+                    b
+                );
+
+
+            const shade =
+                document.createElement(
+                    "div"
+                );
+
+
+            shade.className =
+                "cp-shade";
+
+
+            shade.style.background =
+                color;
+
+
+            shade.title =
+                color.toUpperCase();
+
+
+            shade.addEventListener(
+                "click",
+                async () => {
+
+                    updateColor(
+                        color
+                    );
+
+                    await copyText(
+                        color.toUpperCase()
+                    );
+
+                    showToast(
+                        color.toUpperCase() +
+                        " copied!"
+                    );
+
+                }
+            );
+
+
+            shades.appendChild(
+                shade
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       RGB → HEX
+    ========================================== */
+
+    function rgbToHex(r, g, b) {
+
+        return "#" +
+            [r, g, b]
+                .map(
+                    value =>
+                        Math.max(
+                            0,
+                            Math.min(
+                                255,
+                                value
+                            )
+                        )
+                        .toString(16)
+                        .padStart(2, "0")
+                )
+                .join("");
+
+    }
+
+
+    /* =========================================
+       RESET
+    ========================================== */
+
+    resetBtn.addEventListener(
+        "click",
+        () => {
+
+            updateColor(
+                "#6366f1"
+            );
+
+            showToast(
+                "Color picker reset!"
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       TOAST
+    ========================================== */
+
+    let toastTimer;
+
+
+    function showToast(message) {
+
+        toast.textContent =
+            message;
+
+
+        toast.classList.add(
+            "show"
+        );
+
+
+        clearTimeout(
+            toastTimer
+        );
+
+
+        toastTimer =
+            setTimeout(
+                () => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                },
+                2200
+            );
+
+    }
+
+
+    /* =========================================
+       FAQ
+    ========================================== */
+
+    const faqItems =
+        document.querySelectorAll(
+            ".cp-faq-item"
+        );
+
+
+    faqItems.forEach(item => {
+
+        const question =
+            item.querySelector(
+                ".cp-faq-question"
+            );
+
+
+        question.addEventListener(
+            "click",
+            () => {
+
+                faqItems.forEach(
+                    other => {
+
+                        if (
+                            other !== item
+                        ) {
+
+                            other.classList.remove(
+                                "open"
+                            );
+
+                        }
+
+                    }
+                );
+
+
+                item.classList.toggle(
+                    "open"
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =========================================
+       FOOTER YEAR
+    ========================================== */
+
+    document.getElementById(
+        "footerYear"
+    ).textContent =
+        new Date().getFullYear();
+
+
+    /* =========================================
+       INITIAL COLOR
+    ========================================== */
+
+    updateColor(
+        "#6366f1"
+    );
+
+</script>
+
+</body>
+</html>
