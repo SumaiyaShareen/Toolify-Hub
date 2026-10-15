@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Word Counter Online - Free Word & Character Counter | ToolifyHub</title>
+
+    <meta name="description"
+          content="Free online Word Counter to count words, characters, sentences, paragraphs and reading time instantly. Fast, private and easy to use.">
+
+    <meta name="keywords"
+          content="word counter, online word counter, character counter, word count tool, sentence counter, paragraph counter, reading time">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+          href="https://toolifyhub-online.netlify.app/tools/word-counter.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+          content="Word Counter Online - Free Word & Character Counter | ToolifyHub">
+    <meta property="og:description"
+          content="Free online Word Counter to count words, characters, sentences, paragraphs and reading time instantly. Fast, private and easy to use.">
+    <meta property="og:type" content="website">
+    <meta property="og:url"
+          content="https://toolifyhub-online.netlify.app/tools/word-counter.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title"
+          content="Word Counter Online - Free Word & Character Counter | ToolifyHub">
+    <meta name="twitter:description"
+          content="Free online Word Counter to count words, characters, sentences, paragraphs and reading time instantly with ToolifyHub.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="../favicon.svg"
+    >
+
+
+    <style>
+
+        /* =====================================================
+           PAGE
+        ===================================================== */
+
+        .wc-page {
+            min-height: 100vh;
+            padding: 135px 20px 90px;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 8% 10%,
+                    rgba(99,102,241,.13),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 92% 15%,
+                    rgba(6,182,212,.11),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    180deg,
+                    #f8fafc 0%,
+                    #f1f5f9 100%
+                );
+        }
+
+        .wc-page::before {
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            background: rgba(99,102,241,.07);
+
+            filter: blur(80px);
+
+            left: -240px;
+            top: 300px;
+
+            pointer-events: none;
+        }
+
+        .wc-page::after {
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            background: rgba(6,182,212,.06);
+
+            filter: blur(80px);
+
+            right: -250px;
+            bottom: 200px;
+
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .wc-hero {
+            position: relative;
+            z-index: 1;
+
+            max-width: 850px;
+
+            margin: 0 auto 42px;
+
+            text-align: center;
+        }
+
+        .wc-badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 8px 15px;
+
+            border-radius: 50px;
+
+            border: 1px solid
+                rgba(99,102,241,.15);
+
+            background:
+                rgba(255,255,255,.8);
+
+            color: #4f46e5;
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            box-shadow:
+                0 8px 25px
+                rgba(15,23,42,.05);
+
+            backdrop-filter: blur(10px);
+
+            animation:
+                wcBadge 3s ease-in-out infinite;
+        }
+
+        .wc-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #22c55e;
+
+            box-shadow:
+                0 0 0 5px
+                rgba(34,197,94,.12);
+        }
+
+        @keyframes wcBadge {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
+
+        }
+
+        .wc-hero h1 {
+            margin: 20px 0 16px;
+
+            color: #0f172a;
+
+            font-size:
+                clamp(38px, 6vw, 64px);
+
+            line-height: 1.02;
+
+            letter-spacing: -2px;
+        }
+
+        .wc-gradient {
+            background:
+                linear-gradient(
+                    100deg,
+                    #4f46e5,
+                    #6366f1,
+                    #06b6d4
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            color: transparent;
+        }
+
+        .wc-hero p {
+            max-width: 680px;
+
+            margin: auto;
+
+            color: #64748b;
+
+            font-size: 17px;
+
+            line-height: 1.75;
+        }
+
+
+        /* =====================================================
+           MAIN CARD
+        ===================================================== */
+
+        .wc-card {
+            position: relative;
+            z-index: 2;
+
+            max-width: 1120px;
+
+            margin: auto;
+
+            padding: 10px;
+
+            border-radius: 30px;
+
+            background:
+                rgba(255,255,255,.72);
+
+            border: 1px solid
+                rgba(255,255,255,.95);
+
+            box-shadow:
+                0 30px 80px
+                rgba(15,23,42,.10);
+
+            backdrop-filter: blur(15px);
+        }
+
+        .wc-inner {
+            padding: 26px;
+
+            border-radius: 23px;
+
+            background: white;
+
+            border: 1px solid #e2e8f0;
+        }
+
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .wc-editor-top {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .wc-editor-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .editor-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            font-weight: 900;
+
+            font-size: 15px;
+        }
+
+        .wc-editor-title strong {
+            display: block;
+
+            color: #0f172a;
+
+            font-size: 15px;
+        }
+
+        .wc-editor-title span {
+            display: block;
+
+            margin-top: 2px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+        .wc-actions {
+            display: flex;
+
+            gap: 8px;
+        }
+
+        .wc-action {
+            border: 1px solid #e2e8f0;
+
+            background: #f8fafc;
+
+            color: #475569;
+
+            padding: 9px 13px;
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .2s;
+        }
+
+        .wc-action:hover {
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            border-color: #c7d2fe;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           TEXT EDITOR
+        ===================================================== */
+
+        .wc-editor-wrap {
+            position: relative;
+        }
+
+        #textInput {
+            display: block;
+
+            width: 100%;
+
+            min-height: 360px;
+
+            box-sizing: border-box;
+
+            resize: vertical;
+
+            padding: 23px;
+
+            border-radius: 18px;
+
+            border: 2px solid #e2e8f0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffffff,
+                    #fbfdff
+                );
+
+            color: #1e293b;
+
+            font-family:
+                Inter,
+                Arial,
+                sans-serif;
+
+            font-size: 16px;
+
+            line-height: 1.85;
+
+            outline: none;
+
+            transition:
+                border-color .25s,
+                box-shadow .25s;
+        }
+
+        #textInput::placeholder {
+            color: #94a3b8;
+        }
+
+        #textInput:focus {
+            border-color: #6366f1;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(99,102,241,.09);
+        }
+
+        .editor-footer {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-top: 10px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            flex-wrap: wrap;
+        }
+
+
+        /* =====================================================
+           STATS
+        ===================================================== */
+
+        .wc-stats {
+            display: grid;
+
+            grid-template-columns:
+                repeat(6, minmax(0,1fr));
+
+            gap: 12px;
+
+            margin-top: 22px;
+        }
+
+        .wc-stat {
+            position: relative;
+
+            padding: 18px 12px;
+
+            border-radius: 16px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            text-align: center;
+
+            overflow: hidden;
+
+            transition: .25s;
+        }
+
+        .wc-stat::before {
+            content: "";
+
+            position: absolute;
+
+            width: 80px;
+            height: 80px;
+
+            border-radius: 50%;
+
+            background: rgba(99,102,241,.06);
+
+            right: -35px;
+            top: -35px;
+        }
+
+        .wc-stat:hover {
+            transform: translateY(-4px);
+
+            background: white;
+
+            border-color: #c7d2fe;
+
+            box-shadow:
+                0 12px 30px
+                rgba(15,23,42,.07);
+        }
+
+        .stat-value {
+            position: relative;
+
+            color: #4f46e5;
+
+            font-size: 27px;
+
+            line-height: 1;
+
+            font-weight: 950;
+
+            margin-bottom: 8px;
+        }
+
+        .stat-name {
+            color: #64748b;
+
+            font-size: 11px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           ANALYTICS
+        ===================================================== */
+
+        .wc-analysis {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 18px;
+
+            margin-top: 18px;
+        }
+
+        .analysis-card {
+            padding: 20px;
+
+            border-radius: 17px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .analysis-head {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .analysis-head strong {
+            color: #0f172a;
+
+            font-size: 13px;
+        }
+
+        .analysis-head span {
+            color: #64748b;
+
+            font-size: 11px;
+        }
+
+
+        /* Progress */
+
+        .progress-track {
+            height: 9px;
+
+            overflow: hidden;
+
+            border-radius: 50px;
+
+            background: #e2e8f0;
+        }
+
+        .progress-bar {
+            width: 0%;
+
+            height: 100%;
+
+            border-radius: 50px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #06b6d4
+                );
+
+            transition:
+                width .45s ease;
+        }
+
+        .progress-text {
+            margin-top: 9px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+
+        /* Reading */
+
+        .reading-display {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+        .reading-icon {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            background: #ecfeff;
+
+            color: #0891b2;
+
+            font-size: 18px;
+        }
+
+        .reading-value {
+            color: #0f172a;
+
+            font-size: 21px;
+
+            font-weight: 900;
+        }
+
+        .reading-label {
+            margin-top: 2px;
+
+            color: #94a3b8;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           INFO
+        ===================================================== */
+
+        .wc-info {
+            position: relative;
+
+            z-index: 1;
+
+            max-width: 920px;
+
+            margin: 60px auto 0;
+        }
+
+        .wc-info-card {
+            padding: 30px;
+
+            border-radius: 22px;
+
+            background:
+                rgba(255,255,255,.82);
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 15px 45px
+                rgba(15,23,42,.05);
+        }
+
+        .wc-info-card h2 {
+            margin: 0 0 12px;
+
+            color: #0f172a;
+
+            font-size: 27px;
+
+            letter-spacing: -.5px;
+        }
+
+        .wc-info-card p {
+            margin: 0 0 25px;
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+        .wc-info-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 14px;
+        }
+
+        .wc-info-item {
+            padding: 17px;
+
+            border-radius: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+        }
+
+        .wc-info-number {
+            width: 28px;
+            height: 28px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+            background: #eef2ff;
+
+            color: #4f46e5;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            margin-bottom: 10px;
+        }
+
+        .wc-info-item strong {
+            display: block;
+
+            color: #0f172a;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+        }
+
+        .wc-info-item span {
+            color: #94a3b8;
+
+            font-size: 11px;
+
+            line-height: 1.55;
+        }
+
+
+        /* =====================================================
+           FAQ
+        ===================================================== */
+
+        .wc-faq {
+            margin-top: 30px;
+        }
+
+        .wc-faq h2 {
+            margin: 0 0 16px;
+
+            color: #0f172a;
+
+            font-size: 27px;
+        }
+
+        .wc-faq-box {
+            margin-bottom: 10px;
+
+            padding: 17px 18px;
+
+            border-radius: 13px;
+
+            border: 1px solid #e2e8f0;
+
+            background:
+                rgba(255,255,255,.82);
+        }
+
+        .wc-faq-box strong {
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #0f172a;
+
+            font-size: 13px;
+        }
+
+        .wc-faq-box p {
+            margin: 0;
+
+            color: #64748b;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .wc-footer {
+            position: relative;
+
+            z-index: 1;
+
+            max-width: 920px;
+
+            margin: 65px auto 0;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #e2e8f0;
+
+            text-align: center;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .wc-stats {
+                grid-template-columns:
+                    repeat(3,1fr);
+            }
+
+        }
+
+        @media (max-width: 720px) {
+
+            .wc-analysis {
+                grid-template-columns: 1fr;
+            }
+
+            .wc-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .wc-page {
+                padding-top: 115px;
+            }
+
+            .wc-inner {
+                padding: 17px;
+            }
+
+            .wc-card {
+                padding: 7px;
+            }
+
+            .wc-stats {
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            #textInput {
+                min-height: 300px;
+
+                padding: 17px;
+
+                font-size: 15px;
+            }
+
+            .wc-editor-top {
+                align-items: flex-start;
+            }
+
+            .wc-actions {
+                width: 100%;
+            }
+
+            .wc-action {
+                flex: 1;
+            }
+
+            .wc-info-card {
+                padding: 22px;
+            }
+
+        }
+
+        @media (max-width: 400px) {
+
+            .wc-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .stat-value {
+                font-size: 23px;
+            }
+
+        }
+
+    </style>
+
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Word Counter Online - Free Word & Character Counter | ToolifyHub",
+"url": "https://toolifyhub-online.netlify.app/tools/word-counter.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Free online Word Counter to count words, characters, sentences, paragraphs and reading time instantly. Fast, private and easy to use.",
+  "isAccessibleForFree": true
+}
+</script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="container nav">
+
+        <a href="../index.html" class="logo">
+
+            <div class="logo-icon">
+                T
+            </div>
+
+            <span>
+                Toolify<span class="logo-highlight">Hub</span>
+            </span>
+
+        </a>
+
+
+        <nav class="nav-links">
+
+            <a href="../index.html#tools">
+                Tools
+            </a>
+
+            <a href="../index.html#how-it-works">
+                How It Works
+            </a>
+
+            <a href="../index.html#faq">
+                FAQ
+            </a>
+
+            <a href="../about.html">
+                About
+            </a>
+
+        </nav>
+
+
+        <a
+            href="../index.html#tools"
+            class="nav-button"
+        >
+            All Tools
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="wc-page">
+
+
+    <!-- HERO -->
+
+    <section class="wc-hero">
+
+        <div class="wc-badge">
+
+            <span class="wc-dot"></span>
+
+            Free Writing Tool
+
+        </div>
+
+
+        <h1>
+
+            Count Every
+            <span class="wc-gradient">
+                Word
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            Analyze your text instantly with word count,
+            character count, sentences, paragraphs and
+            estimated reading time.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =================================================
+         TOOL CARD
+    ================================================== -->
+
+    <section class="wc-card">
+
+        <div class="wc-inner">
+
+
+            <!-- EDITOR HEADER -->
+
+            <div class="wc-editor-top">
+
+                <div class="wc-editor-title">
+
+                    <div class="editor-icon">
+                        Aa
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Text Analyzer
+                        </strong>
+
+                        <span>
+                            Type or paste your text below
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="wc-actions">
+
+                    <button
+                        class="wc-action"
+                        id="copyBtn"
+                    >
+                        Copy Text
+                    </button>
+
+                    <button
+                        class="wc-action"
+                        id="clearBtn"
+                    >
+                        Clear
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TEXT AREA -->
+
+            <div class="wc-editor-wrap">
+
+                <textarea
+                    id="textInput"
+                    placeholder="Start typing or paste your text here...
+
+Your word count and other statistics will update automatically."
+                    spellcheck="true"
+                ></textarea>
+
+
+                <div class="editor-footer">
+
+                    <span>
+                        Your text is processed in your browser.
+                    </span>
+
+                    <span id="liveStatus">
+                        Ready
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STATS
+            ================================================== -->
+
+            <div class="wc-stats">
+
+
+                <div class="wc-stat">
+
+                    <div
+                        class="stat-value"
+                        id="words"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-name">
+                        Words
+                    </div>
+
+                </div>
+
+
+                <div class="wc-stat">
+
+                    <div
+                        class="stat-value"
+                        id="characters"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-name">
+                        Characters
+                    </div>
+
+                </div>
+
+
+                <div class="wc-stat">
+
+                    <div
+                        class="stat-value"
+                        id="noSpaces"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-name">
+                        No Spaces
+                    </div>
+
+                </div>
+
+
+                <div class="wc-stat">
+
+                    <div
+                        class="stat-value"
+                        id="sentences"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-name">
+                        Sentences
+                    </div>
+
+                </div>
+
+
+                <div class="wc-stat">
+
+                    <div
+                        class="stat-value"
+                        id="paragraphs"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-name">
+                        Paragraphs
+                    </div>
+
+                </div>
+
+
+                <div class="wc-stat">
+
+                    <div
+                        class="stat-value"
+                        id="lines"
+                    >
+                        0
+                    </div>
+
+                    <div class="stat-name">
+                        Lines
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ANALYSIS
+            ================================================== -->
+
+            <div class="wc-analysis">
+
+
+                <!-- PROGRESS -->
+
+                <div class="analysis-card">
+
+                    <div class="analysis-head">
+
+                        <strong>
+                            Writing Activity
+                        </strong>
+
+                        <span id="progressNumber">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div
+                            class="progress-bar"
+                            id="progressBar"
+                        ></div>
+
+                    </div>
+
+
+                    <div class="progress-text">
+                        Progress based on a 500-word writing target.
+                    </div>
+
+                </div>
+
+
+
+                <!-- READING TIME -->
+
+                <div class="analysis-card">
+
+                    <div class="analysis-head">
+
+                        <strong>
+                            Estimated Reading Time
+                        </strong>
+
+                        <span>
+                            ~200 WPM
+                        </span>
+
+                    </div>
+
+
+                    <div class="reading-display">
+
+                        <div class="reading-icon">
+                            ⏱
+                        </div>
+
+
+                        <div>
+
+                            <div
+                                class="reading-value"
+                                id="readingTime"
+                            >
+                                0 sec
+                            </div>
+
+                            <div class="reading-label">
+                                Approximate reading time
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         INFO
+    ================================================== -->
+
+    <section class="wc-info">
+
+        <div class="wc-info-card">
+
+            <h2>
+                Free Online Word Counter
+            </h2>
+
+
+            <p>
+                ToolifyHub Word Counter is designed for students,
+                writers, bloggers, teachers and professionals who
+                need a quick way to analyze written content.
+                Simply type or paste your text and the statistics
+                update instantly.
+            </p>
+
+
+            <div class="wc-info-grid">
+
+
+                <div class="wc-info-item">
+
+                    <div class="wc-info-number">
+                        01
+                    </div>
+
+                    <strong>
+                        Word Count
+                    </strong>
+
+                    <span>
+                        See the total number of words in your text.
+                    </span>
+
+                </div>
+
+
+                <div class="wc-info-item">
+
+                    <div class="wc-info-number">
+                        02
+                    </div>
+
+                    <strong>
+                        Character Count
+                    </strong>
+
+                    <span>
+                        Check characters with and without spaces.
+                    </span>
+
+                </div>
+
+
+                <div class="wc-info-item">
+
+                    <div class="wc-info-number">
+                        03
+                    </div>
+
+                    <strong>
+                        Reading Time
+                    </strong>
+
+                    <span>
+                        Get an approximate reading time based on
+                        your word count.
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- FAQ -->
+
+            <div class="wc-faq">
+
+                <h2>
+                    Frequently Asked Questions
+                </h2>
+
+
+                <div class="wc-faq-box">
+
+                    <strong>
+                        Is the Word Counter free?
+                    </strong>
+
+                    <p>
+                        Yes. You can use the ToolifyHub Word Counter
+                        without creating an account.
+                    </p>
+
+                </div>
+
+
+                <div class="wc-faq-box">
+
+                    <strong>
+                        Can I paste a long article?
+                    </strong>
+
+                    <p>
+                        Yes. The tool is designed to analyze normal
+                        articles, essays, assignments and other text
+                        directly in your browser.
+                    </p>
+
+                </div>
+
+
+                <div class="wc-faq-box">
+
+                    <strong>
+                        Is my text uploaded to a server?
+                    </strong>
+
+                    <p>
+                        No ToolifyHub server upload is required for
+                        the counting functions. The analysis runs
+                        directly in your browser.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- FOOTER -->
+
+    <footer class="wc-footer">
+
+        ©
+        <span id="year"></span>
+        ToolifyHub. All rights reserved.
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const textInput =
+    document.getElementById("textInput");
+
+const words =
+    document.getElementById("words");
+
+const characters =
+    document.getElementById("characters");
+
+const noSpaces =
+    document.getElementById("noSpaces");
+
+const sentences =
+    document.getElementById("sentences");
+
+const paragraphs =
+    document.getElementById("paragraphs");
+
+const lines =
+    document.getElementById("lines");
+
+const readingTime =
+    document.getElementById("readingTime");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const progressNumber =
+    document.getElementById("progressNumber");
+
+const liveStatus =
+    document.getElementById("liveStatus");
+
+const copyBtn =
+    document.getElementById("copyBtn");
+
+const clearBtn =
+    document.getElementById("clearBtn");
+
+
+
+/* =====================================================
+   UPDATE COUNTER
+===================================================== */
+
+function updateCounter() {
+
+    const text =
+        textInput.value;
+
+
+    const trimmed =
+        text.trim();
+
+
+    /* -------------------------
+       Characters
+    ------------------------- */
+
+    characters.textContent =
+        text.length;
+
+
+    /* -------------------------
+       Characters without spaces
+    ------------------------- */
+
+    noSpaces.textContent =
+        text.replace(/\s/g, "").length;
+
+
+    /* -------------------------
+       Words
+    ------------------------- */
+
+    let wordCount = 0;
+
+
+    if (trimmed.length > 0) {
+
+        const wordList =
+            trimmed.match(/\S+/g);
+
+        wordCount =
+            wordList
+                ? wordList.length
+                : 0;
+
+    }
+
+
+    words.textContent =
+        wordCount;
+
+
+    /* -------------------------
+       Sentences
+    ------------------------- */
+
+    let sentenceCount = 0;
+
+
+    if (trimmed.length > 0) {
+
+        const sentenceList =
+            trimmed
+                .split(/[.!?]+/)
+                .filter(
+                    item =>
+                        item.trim().length > 0
+                );
+
+        sentenceCount =
+            sentenceList.length;
+
+    }
+
+
+    sentences.textContent =
+        sentenceCount;
+
+
+    /* -------------------------
+       Paragraphs
+    ------------------------- */
+
+    let paragraphCount = 0;
+
+
+    if (trimmed.length > 0) {
+
+        const paragraphList =
+            trimmed
+                .split(/\n\s*\n/)
+                .filter(
+                    item =>
+                        item.trim().length > 0
+                );
+
+        paragraphCount =
+            paragraphList.length;
+
+    }
+
+
+    paragraphs.textContent =
+        paragraphCount;
+
+
+    /* -------------------------
+       Lines
+    ------------------------- */
+
+    let lineCount = 0;
+
+
+    if (text.length > 0) {
+
+        lineCount =
+            text
+                .split(/\r?\n/)
+                .length;
+
+    }
+
+
+    lines.textContent =
+        lineCount;
+
+
+    /* -------------------------
+       Reading time
+       Average = 200 WPM
+    ------------------------- */
+
+    const seconds =
+        Math.ceil(
+            (wordCount / 200) * 60
+        );
+
+
+    if (wordCount === 0) {
+
+        readingTime.textContent =
+            "0 sec";
+
+    } else if (seconds < 60) {
+
+        readingTime.textContent =
+            seconds + " sec";
+
+    } else {
+
+        const minutes =
+            Math.floor(
+                seconds / 60
+            );
+
+        const remainingSeconds =
+            seconds % 60;
+
+
+        if (remainingSeconds === 0) {
+
+            readingTime.textContent =
+                minutes + " min";
+
+        } else {
+
+            readingTime.textContent =
+                minutes
+                + " min "
+                + remainingSeconds
+                + " sec";
+
+        }
+
+    }
+
+
+    /* -------------------------
+       500 word progress
+    ------------------------- */
+
+    const percentage =
+        Math.min(
+            100,
+            Math.round(
+                (wordCount / 500) * 100
+            )
+        );
+
+
+    progressBar.style.width =
+        percentage + "%";
+
+
+    progressNumber.textContent =
+        percentage + "%";
+
+
+    /* -------------------------
+       Status
+    ------------------------- */
+
+    if (wordCount === 0) {
+
+        liveStatus.textContent =
+            "Ready";
+
+    } else {
+
+        liveStatus.textContent =
+            "Analyzing text";
+
+    }
+
+}
+
+
+
+textInput.addEventListener(
+    "input",
+    updateCounter
+);
+
+
+
+/* =====================================================
+   COPY
+===================================================== */
+
+copyBtn.addEventListener(
+    "click",
+    async function () {
+
+        const text =
+            textInput.value;
+
+
+        if (!text) {
+
+            copyBtn.textContent =
+                "Nothing to Copy";
+
+            setTimeout(
+                () => {
+                    copyBtn.textContent =
+                        "Copy Text";
+                },
+                1400
+            );
+
+            return;
+        }
+
+
+        try {
+
+            await navigator.clipboard.writeText(
+                text
+            );
+
+            copyBtn.textContent =
+                "Copied ✓";
+
+        } catch (error) {
+
+            textInput.select();
+
+            document.execCommand(
+                "copy"
+            );
+
+            copyBtn.textContent =
+                "Copied ✓";
+
+        }
+
+
+        setTimeout(
+            () => {
+
+                copyBtn.textContent =
+                    "Copy Text";
+
+            },
+            1500
+        );
+
+    }
+);
+
+
+
+/* =====================================================
+   CLEAR
+===================================================== */
+
+clearBtn.addEventListener(
+    "click",
+    function () {
+
+        textInput.value = "";
+
+        updateCounter();
+
+        textInput.focus();
+
+    }
+);
+
+
+
+/* =====================================================
+   FOOTER YEAR
+===================================================== */
+
+document.getElementById(
+    "year"
+).textContent =
+    new Date().getFullYear();
+
+
+
+/* Initial */
+
+updateCounter();
+
+</script>
+
+
+</body>
+</html>

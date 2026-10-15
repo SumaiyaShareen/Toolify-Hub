@@ -1,0 +1,2401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JPG to PDF Converter Online - Free | ToolifyHub</title>
+
+    <meta name="description"
+          content="Convert JPG and PNG images to PDF online for free. Combine multiple images into one PDF directly in your browser with ToolifyHub.">
+
+    <meta name="keywords"
+          content="JPG to PDF, JPG to PDF converter, PNG to PDF, image to PDF, convert JPG to PDF online, free PDF converter">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+          href="https://toolifyhub-online.netlify.app/tools/jpg-to-pdf.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+          content="JPG to PDF Converter Online - Free | ToolifyHub">
+    <meta property="og:description"
+          content="Convert JPG and PNG images to PDF online for free. Combine multiple images into one PDF directly in your browser with ToolifyHub.">
+    <meta property="og:type" content="website">
+    <meta property="og:url"
+          content="https://toolifyhub-online.netlify.app/tools/jpg-to-pdf.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title"
+          content="JPG to PDF Converter Online - Free | ToolifyHub">
+    <meta name="twitter:description"
+          content="Convert JPG and PNG images to PDF online for free with ToolifyHub.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="../favicon.svg"
+    >
+
+
+    <style>
+        /* =========================================
+           JPG TO PDF
+           PAGE-SPECIFIC CSS
+        ========================================= */
+
+        .jp-page {
+            min-height: 100vh;
+            padding: 72px 20px 100px;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(99,102,241,.09), transparent 28%),
+                radial-gradient(circle at 90% 15%, rgba(139,92,246,.08), transparent 28%),
+                #f8fafc;
+        }
+
+        /* HERO */
+
+        .jp-hero {
+            max-width: 760px;
+            margin: 0 auto 42px;
+            text-align: center;
+        }
+
+        .jp-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .jp-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .jp-hero h1 {
+            margin: 0;
+            color: #0f172a;
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.08;
+            letter-spacing: -1.8px;
+        }
+
+        .jp-hero h1 span {
+            background: linear-gradient(90deg, #4f46e5, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .jp-hero p {
+            max-width: 650px;
+            margin: 18px auto 0;
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        /* MAIN CARD */
+
+        .jp-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(15,23,42,.08);
+        }
+
+        /* UPLOAD */
+
+        .jp-upload {
+            position: relative;
+            min-height: 250px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 20px;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            cursor: pointer;
+            transition: .25s ease;
+        }
+
+        .jp-upload:hover,
+        .jp-upload.dragover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+            transform: translateY(-2px);
+        }
+
+        .jp-upload input {
+            display: none;
+        }
+
+        .jp-upload-content {
+            pointer-events: none;
+        }
+
+        .jp-upload-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            color: white;
+            font-size: 28px;
+            font-weight: 800;
+            box-shadow: 0 12px 25px rgba(79,70,229,.20);
+        }
+
+        .jp-upload h3 {
+            margin: 0 0 7px;
+            color: #0f172a;
+            font-size: 20px;
+        }
+
+        .jp-upload p {
+            margin: 0 0 7px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .jp-upload small {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        /* WORKSPACE */
+
+        .jp-workspace {
+            display: none;
+            margin-top: 25px;
+        }
+
+        /* TOP INFO */
+
+        .jp-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .jp-count {
+            color: #334155;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .jp-add-more {
+            border: 0;
+            padding: 9px 14px;
+            border-radius: 9px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* IMAGE GRID */
+
+        .jp-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .jp-image-card {
+            position: relative;
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            background: #f8fafc;
+            cursor: grab;
+            transition: .2s;
+        }
+
+        .jp-image-card:hover {
+            border-color: #c7d2fe;
+            transform: translateY(-2px);
+        }
+
+        .jp-image-card.dragging {
+            opacity: .45;
+        }
+
+        .jp-image-preview {
+            height: 190px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jp-image-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .jp-image-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .jp-page-number {
+            width: 25px;
+            height: 25px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 7px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .jp-image-name {
+            min-width: 0;
+            flex: 1;
+            color: #475569;
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .jp-remove-image {
+            width: 25px;
+            height: 25px;
+            border: 0;
+            border-radius: 7px;
+            background: #fee2e2;
+            color: #dc2626;
+            cursor: pointer;
+            font-weight: 800;
+        }
+
+        /* SETTINGS */
+
+        .jp-settings {
+            margin-top: 22px;
+            padding: 22px;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+        }
+
+        .jp-settings-header {
+            margin-bottom: 20px;
+        }
+
+        .jp-settings-header h3 {
+            margin: 0 0 5px;
+            color: #0f172a;
+            font-size: 17px;
+        }
+
+        .jp-settings-header p {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .jp-settings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .jp-field label {
+            display: block;
+            margin-bottom: 9px;
+            color: #334155;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .jp-select {
+            width: 100%;
+            height: 46px;
+            padding: 0 13px;
+            border: 1px solid #e2e8f0;
+            border-radius: 11px;
+            background: #f8fafc;
+            color: #334155;
+            font-size: 13px;
+            outline: none;
+        }
+
+        .jp-select:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(99,102,241,.08);
+        }
+
+        /* BUTTONS */
+
+        .jp-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .jp-btn {
+            flex: 1;
+            border: 0;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .25s ease;
+        }
+
+        .jp-btn-primary {
+            color: white;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            box-shadow: 0 8px 20px rgba(79,70,229,.16);
+        }
+
+        .jp-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 13px 25px rgba(79,70,229,.25);
+        }
+
+        .jp-btn-secondary {
+            color: #475569;
+            background: #f1f5f9;
+        }
+
+        .jp-btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        /* PROCESSING */
+
+        .jp-processing {
+            display: none;
+            text-align: center;
+            padding: 20px 0 5px;
+            color: #6366f1;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .jp-spinner {
+            width: 25px;
+            height: 25px;
+            margin: 0 auto 9px;
+            border: 3px solid #ddd6fe;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: jpSpin .75s linear infinite;
+        }
+
+        @keyframes jpSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* RESULT */
+
+        .jp-result {
+            display: none;
+            margin-top: 22px;
+            padding: 23px;
+            text-align: center;
+            border-radius: 17px;
+            border: 1px solid #bbf7d0;
+            background: #f0fdf4;
+        }
+
+        .jp-result-icon {
+            width: 45px;
+            height: 45px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .jp-result h3 {
+            margin: 0 0 6px;
+            color: #166534;
+            font-size: 17px;
+        }
+
+        .jp-result p {
+            margin: 0 0 16px;
+            color: #15803d;
+            font-size: 13px;
+        }
+
+        .jp-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            background: #16a34a;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .jp-download:hover {
+            background: #15803d;
+            transform: translateY(-1px);
+        }
+
+        /* INFORMATION */
+
+        .jp-info {
+            max-width: 900px;
+            margin: 70px auto 0;
+        }
+
+        .jp-info h2 {
+            margin: 0 0 13px;
+            color: #0f172a;
+            font-size: 30px;
+        }
+
+        .jp-info > p {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .jp-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+            margin-top: 28px;
+        }
+
+        .jp-step {
+            padding: 22px;
+            border-radius: 17px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .jp-step-number {
+            width: 37px;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 13px;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .jp-step h3 {
+            margin: 0 0 7px;
+            color: #1e293b;
+            font-size: 16px;
+        }
+
+        .jp-step p {
+            margin: 0;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        /* FAQ */
+
+        .jp-faq {
+            margin-top: 60px;
+        }
+
+        .jp-faq h2 {
+            margin-bottom: 20px;
+        }
+
+        .jp-faq-item {
+            margin-bottom: 11px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            border-radius: 13px;
+            background: #fff;
+        }
+
+        .jp-faq-question {
+            width: 100%;
+            border: 0;
+            padding: 17px 19px;
+            text-align: left;
+            background: #fff;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .jp-faq-answer {
+            display: none;
+            padding: 0 19px 17px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .jp-faq-item.active .jp-faq-answer {
+            display: block;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 760px) {
+
+            .jp-page {
+                padding: 50px 15px 75px;
+            }
+
+            .jp-card {
+                padding: 18px;
+                border-radius: 19px;
+            }
+
+            .jp-images {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .jp-settings-grid,
+            .jp-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .jp-buttons {
+                flex-direction: column;
+            }
+
+            .jp-image-preview {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .jp-images {
+                grid-template-columns: 1fr;
+            }
+
+            .jp-topbar {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .jp-hero h1 {
+                font-size: 34px;
+            }
+        }
+    </style>
+
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "JPG to PDF Converter Online - Free | ToolifyHub",
+    "url": "https://toolifyhub-online.netlify.app/tools/jpg-to-pdf.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "description": "Convert JPG and PNG images to PDF online for free. Combine multiple images into one PDF directly in your browser with ToolifyHub.",
+  "isAccessibleForFree": true
+}
+</script>
+<!-- TOOLIFYHUB SEO SCHEMA END -->
+   
+</head>
+
+<body>
+
+<!-- =========================================
+     SAME TOOLIFYHUB HEADER
+========================================= -->
+
+<header class="header">
+    <div class="container nav">
+
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">T</div>
+            <span>Toolify<span class="logo-highlight">Hub</span></span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html#tools">Tools</a>
+            <a href="../index.html#how-it-works">How It Works</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="../about.html">About</a>
+        </nav>
+
+        <a href="../index.html#tools" class="nav-button">
+            All Tools
+        </a>
+
+    </div>
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="jp-page">
+
+    <!-- HERO -->
+
+    <section class="jp-hero">
+
+        <div class="jp-badge">
+            <span class="jp-badge-dot"></span>
+            Free Online Tool
+        </div>
+
+        <h1>
+            JPG to <span>PDF Converter</span>
+        </h1>
+
+        <p>
+            Convert JPG, PNG and WebP images into a PDF document.
+            Combine multiple images into one PDF directly in your browser.
+        </p>
+
+    </section>
+
+
+    <!-- TOOL CARD -->
+
+    <section class="jp-card">
+
+        <!-- UPLOAD -->
+
+        <label class="jp-upload" id="jpUpload">
+
+            <input
+                type="file"
+                id="jpFile"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+            >
+
+            <div class="jp-upload-content">
+
+                <div class="jp-upload-icon">
+                    JPG
+                </div>
+
+                <h3>
+                    Upload Your Images
+                </h3>
+
+                <p>
+                    Drag & drop images here or click to browse
+                </p>
+
+                <small>
+                    JPG, PNG or WebP • Multiple images supported
+                </small>
+
+            </div>
+
+        </label>
+
+
+        <!-- WORKSPACE -->
+
+        <div
+            class="jp-workspace"
+            id="jpWorkspace"
+        >
+
+            <div class="jp-topbar">
+
+                <div
+                    class="jp-count"
+                    id="jpCount"
+                >
+                    0 images selected
+                </div>
+
+                <button
+                    type="button"
+                    class="jp-add-more"
+                    id="jpAddMore"
+                >
+                    + Add More Images
+                </button>
+
+            </div>
+
+
+            <!-- IMAGE GRID -->
+
+            <div
+                class="jp-images"
+                id="jpImages"
+            ></div>
+
+
+            <!-- SETTINGS -->
+
+            <div class="jp-settings">
+
+                <div class="jp-settings-header">
+
+                    <h3>
+                        PDF Settings
+                    </h3>
+
+                    <p>
+                        Choose your page size and image fit.
+                    </p>
+
+                </div>
+
+
+                <div class="jp-settings-grid">
+
+                    <div class="jp-field">
+
+                        <label for="pageSize">
+                            Page Size
+                        </label>
+
+                        <select
+                            class="jp-select"
+                            id="pageSize"
+                        >
+
+                            <option value="a4">
+                                A4
+                            </option>
+
+                            <option value="letter">
+                                Letter
+                            </option>
+
+                            <option value="original">
+                                Original Image Size
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="jp-field">
+
+                        <label for="imageFit">
+                            Image Fit
+                        </label>
+
+                        <select
+                            class="jp-select"
+                            id="imageFit"
+                        >
+
+                            <option value="contain">
+                                Fit Inside Page
+                            </option>
+
+                            <option value="cover">
+                                Fill Page
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="jp-tip" style="
+                    margin-top:18px;
+                    padding:12px 14px;
+                    border-radius:11px;
+                    background:#f8fafc;
+                    color:#64748b;
+                    font-size:12px;
+                    line-height:1.6;
+                ">
+                    💡 Images are processed locally in your browser.
+                    Your selected images are not uploaded to a server.
+                </div>
+
+            </div>
+
+
+            <!-- BUTTONS -->
+
+            <div class="jp-buttons">
+
+                <button
+                    type="button"
+                    class="jp-btn jp-btn-primary"
+                    id="convertBtn"
+                >
+                    Convert to PDF
+                </button>
+
+                <button
+                    type="button"
+                    class="jp-btn jp-btn-secondary"
+                    id="resetBtn"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+
+            <!-- PROCESSING -->
+
+            <div
+                class="jp-processing"
+                id="jpProcessing"
+            >
+
+                <div class="jp-spinner"></div>
+
+                Creating your PDF...
+
+            </div>
+
+
+            <!-- RESULT -->
+
+            <div
+                class="jp-result"
+                id="jpResult"
+            >
+
+                <div class="jp-result-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    PDF Created Successfully!
+                </h3>
+
+                <p id="jpResultText">
+                    Your PDF is ready.
+                </p>
+
+                <a
+                    href="#"
+                    id="downloadPDF"
+                    class="jp-download"
+                    download="toolifyhub-images.pdf"
+                >
+                    ↓ Download PDF
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- INFORMATION -->
+
+    <section class="jp-info">
+
+        <h2>
+            Convert JPG Images to PDF Online
+        </h2>
+
+        <p>
+            ToolifyHub's JPG to PDF converter lets you combine
+            multiple images into a single PDF document. You can
+            choose the page size and image fitting mode before
+            creating your PDF.
+        </p>
+
+
+        <div class="jp-steps">
+
+            <div class="jp-step">
+
+                <div class="jp-step-number">
+                    01
+                </div>
+
+                <h3>
+                    Upload Images
+                </h3>
+
+                <p>
+                    Select one or multiple JPG, PNG or WebP images.
+                </p>
+
+            </div>
+
+
+            <div class="jp-step">
+
+                <div class="jp-step-number">
+                    02
+                </div>
+
+                <h3>
+                    Arrange & Customize
+                </h3>
+
+                <p>
+                    Drag images to arrange their page order and
+                    choose your PDF settings.
+                </p>
+
+            </div>
+
+
+            <div class="jp-step">
+
+                <div class="jp-step-number">
+                    03
+                </div>
+
+                <h3>
+                    Download PDF
+                </h3>
+
+                <p>
+                    Create the PDF and download it to your device.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FAQ -->
+
+        <div class="jp-faq">
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="jp-faq-item">
+
+                <button class="jp-faq-question">
+                    Is JPG to PDF conversion free?
+                </button>
+
+                <div class="jp-faq-answer">
+                    Yes. ToolifyHub provides this image-to-PDF
+                    conversion tool for free.
+                </div>
+
+            </div>
+
+
+            <div class="jp-faq-item">
+
+                <button class="jp-faq-question">
+                    Can I convert multiple images?
+                </button>
+
+                <div class="jp-faq-answer">
+                    Yes. You can select multiple images and combine
+                    them into a single PDF document.
+                </div>
+
+            </div>
+
+
+            <div class="jp-faq-item">
+
+                <button class="jp-faq-question">
+                    Are my images uploaded?
+                </button>
+
+                <div class="jp-faq-answer">
+                    No. The conversion is performed directly inside
+                    your browser.
+                </div>
+
+            </div>
+
+
+            <div class="jp-faq-item">
+
+                <button class="jp-faq-question">
+                    Can I change the order of images?
+                </button>
+
+                <div class="jp-faq-answer">
+                    Yes. Drag the image cards to arrange their order
+                    before creating the PDF.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 ToolifyHub. All rights reserved.
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================
+     PDF LIBRARY
+========================================= -->
+
+<!-- =========================================
+     PDF LIBRARY
+========================================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+(() => {
+    "use strict";
+
+    /* =========================================
+       ELEMENTS
+    ========================================= */
+
+    const jpFile = document.getElementById("jpFile");
+    const jpUpload = document.getElementById("jpUpload");
+    const jpWorkspace = document.getElementById("jpWorkspace");
+    const jpImages = document.getElementById("jpImages");
+    const jpCount = document.getElementById("jpCount");
+    const jpAddMore = document.getElementById("jpAddMore");
+
+    const pageSize = document.getElementById("pageSize");
+    const imageFit = document.getElementById("imageFit");
+
+    const convertBtn = document.getElementById("convertBtn");
+    const resetBtn = document.getElementById("resetBtn");
+
+    const jpProcessing = document.getElementById("jpProcessing");
+    const jpResult = document.getElementById("jpResult");
+    const jpResultText = document.getElementById("jpResultText");
+    const downloadPDF = document.getElementById("downloadPDF");
+
+    let selectedImages = [];
+    let pdfURL = "";
+
+
+    /* =========================================
+       HELPERS
+    ========================================= */
+
+    function formatSize(bytes) {
+
+        if (bytes < 1024) {
+            return bytes + " B";
+        }
+
+        if (bytes < 1024 * 1024) {
+            return (bytes / 1024).toFixed(1) + " KB";
+        }
+
+        return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+    }
+
+
+    function escapeHTML(text) {
+
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    function showMessage(message) {
+        alert(message);
+    }
+
+
+    /* =========================================
+       FILE VALIDATION
+    ========================================= */
+
+    function isValidImage(file) {
+
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+        return allowedTypes.includes(file.type);
+
+    }
+
+
+    /* =========================================
+       ADD IMAGES
+    ========================================= */
+
+    jpFile.addEventListener("change", function () {
+
+        const files = Array.from(this.files || []);
+
+        addImages(files);
+
+        this.value = "";
+
+    });
+
+
+    jpAddMore.addEventListener("click", function () {
+
+        jpFile.click();
+
+    });
+
+
+    function addImages(files) {
+
+        if (!files.length) {
+            return;
+        }
+
+        const validFiles = files.filter(isValidImage);
+
+        if (!validFiles.length) {
+
+            showMessage(
+                "Please select JPG, PNG or WebP images."
+            );
+
+            return;
+
+        }
+
+
+        validFiles.forEach(function (file) {
+
+            const imageObject = {
+
+                id:
+                    Date.now() +
+                    "_" +
+                    cryptoRandomId(),
+
+                file: file,
+
+                url:
+                    URL.createObjectURL(file)
+
+            };
+
+            selectedImages.push(imageObject);
+
+        });
+
+
+        renderImages();
+
+    }
+
+
+    function cryptoRandomId() {
+
+        if (
+            window.crypto &&
+            typeof window.crypto.getRandomValues === "function"
+        ) {
+
+            const array = new Uint32Array(1);
+
+            window.crypto.getRandomValues(array);
+
+            return array[0].toString(36);
+
+        }
+
+        return String(
+            Date.now() +
+            Math.floor(Math.random() * 100000)
+        );
+
+    }
+
+
+    /* =========================================
+       RENDER IMAGES
+    ========================================= */
+
+    function renderImages() {
+
+        jpImages.innerHTML = "";
+
+        selectedImages.forEach(function (item, index) {
+
+            const card =
+                document.createElement("div");
+
+            card.className = "jp-image-card";
+
+            card.draggable = true;
+
+            card.dataset.id = item.id;
+
+
+            card.innerHTML = `
+
+                <div class="jp-image-preview">
+
+                    <img
+                        src="${item.url}"
+                        alt="Image ${index + 1}"
+                    >
+
+                </div>
+
+                <div class="jp-image-footer">
+
+                    <span class="jp-page-number">
+                        ${index + 1}
+                    </span>
+
+                    <span
+                        class="jp-image-name"
+                        title="${escapeHTML(item.file.name)}"
+                    >
+                        ${escapeHTML(item.file.name)}
+                    </span>
+
+                    <button
+                        class="jp-remove-image"
+                        type="button"
+                        title="Remove image"
+                        aria-label="Remove image"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            `;
+
+
+            /* REMOVE */
+
+            const removeButton =
+                card.querySelector(".jp-remove-image");
+
+
+            removeButton.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    removeImage(item.id);
+
+                }
+            );
+
+
+            /* =================================
+               DRAG START
+            ================================= */
+
+            card.addEventListener(
+                "dragstart",
+                function (event) {
+
+                    event.dataTransfer.effectAllowed =
+                        "move";
+
+                    event.dataTransfer.setData(
+                        "text/plain",
+                        item.id
+                    );
+
+                    card.classList.add("dragging");
+
+                }
+            );
+
+
+            /* =================================
+               DRAG END
+            ================================= */
+
+            card.addEventListener(
+                "dragend",
+                function () {
+
+                    card.classList.remove("dragging");
+
+                }
+            );
+
+
+            /* =================================
+               DRAG OVER
+            ================================= */
+
+            card.addEventListener(
+                "dragover",
+                function (event) {
+
+                    event.preventDefault();
+
+                    event.dataTransfer.dropEffect =
+                        "move";
+
+                }
+            );
+
+
+            /* =================================
+               DROP
+            ================================= */
+
+            card.addEventListener(
+                "drop",
+                function (event) {
+
+                    event.preventDefault();
+
+                    const draggedId =
+                        event.dataTransfer.getData(
+                            "text/plain"
+                        );
+
+                    if (!draggedId) {
+                        return;
+                    }
+
+                    reorderImages(
+                        draggedId,
+                        item.id
+                    );
+
+                }
+            );
+
+
+            jpImages.appendChild(card);
+
+        });
+
+
+        /* COUNT */
+
+        jpCount.textContent =
+            selectedImages.length +
+            (
+                selectedImages.length === 1
+                    ? " image selected"
+                    : " images selected"
+            );
+
+
+        /* WORKSPACE */
+
+        jpWorkspace.style.display =
+            selectedImages.length > 0
+                ? "block"
+                : "none";
+
+    }
+
+
+    /* =========================================
+       REMOVE IMAGE
+    ========================================= */
+
+    function removeImage(id) {
+
+        const index =
+            selectedImages.findIndex(
+                function (item) {
+
+                    return String(item.id) === String(id);
+
+                }
+            );
+
+
+        if (index === -1) {
+            return;
+        }
+
+
+        URL.revokeObjectURL(
+            selectedImages[index].url
+        );
+
+
+        selectedImages.splice(index, 1);
+
+
+        renderImages();
+
+
+        /* Hide old result */
+
+        jpResult.style.display = "none";
+
+
+        if (pdfURL) {
+
+            URL.revokeObjectURL(pdfURL);
+
+            pdfURL = "";
+
+            downloadPDF.removeAttribute("href");
+
+        }
+
+    }
+
+
+    /* =========================================
+       REORDER IMAGES
+    ========================================= */
+
+    function reorderImages(
+        draggedId,
+        targetId
+    ) {
+
+        const fromIndex =
+            selectedImages.findIndex(
+                function (item) {
+
+                    return String(item.id) ===
+                        String(draggedId);
+
+                }
+            );
+
+
+        const toIndex =
+            selectedImages.findIndex(
+                function (item) {
+
+                    return String(item.id) ===
+                        String(targetId);
+
+                }
+            );
+
+
+        if (
+            fromIndex === -1 ||
+            toIndex === -1 ||
+            fromIndex === toIndex
+        ) {
+
+            return;
+
+        }
+
+
+        const moved =
+            selectedImages.splice(
+                fromIndex,
+                1
+            )[0];
+
+
+        selectedImages.splice(
+            toIndex,
+            0,
+            moved
+        );
+
+
+        renderImages();
+
+
+        /* Existing PDF becomes outdated */
+
+        jpResult.style.display = "none";
+
+
+        if (pdfURL) {
+
+            URL.revokeObjectURL(pdfURL);
+
+            pdfURL = "";
+
+            downloadPDF.removeAttribute("href");
+
+        }
+
+    }
+
+
+    /* =========================================
+       UPLOAD DRAG & DROP
+    ========================================= */
+
+    jpUpload.addEventListener(
+        "dragover",
+        function (event) {
+
+            event.preventDefault();
+
+            jpUpload.classList.add("dragover");
+
+        }
+    );
+
+
+    jpUpload.addEventListener(
+        "dragleave",
+        function () {
+
+            jpUpload.classList.remove("dragover");
+
+        }
+    );
+
+
+    jpUpload.addEventListener(
+        "drop",
+        function (event) {
+
+            event.preventDefault();
+
+            jpUpload.classList.remove("dragover");
+
+            const files =
+                Array.from(
+                    event.dataTransfer.files || []
+                );
+
+            addImages(files);
+
+        }
+    );
+
+
+    /* =========================================
+       LOAD IMAGE
+    ========================================= */
+
+    function loadImage(url) {
+
+        return new Promise(
+            function (resolve, reject) {
+
+                const img =
+                    new Image();
+
+
+                img.onload =
+                    function () {
+
+                        resolve(img);
+
+                    };
+
+
+                img.onerror =
+                    function () {
+
+                        reject(
+                            new Error(
+                                "Unable to load image."
+                            )
+                        );
+
+                    };
+
+
+                img.src = url;
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       CONVERT WEBP / OTHER IMAGE TO JPEG
+       This prevents jsPDF compatibility issues.
+    ========================================= */
+
+    function imageToDataURL(
+        img,
+        type = "image/jpeg",
+        quality = 0.92
+    ) {
+
+        const canvas =
+            document.createElement("canvas");
+
+
+        canvas.width =
+            img.naturalWidth;
+
+
+        canvas.height =
+            img.naturalHeight;
+
+
+        const ctx =
+            canvas.getContext("2d");
+
+
+        if (!ctx) {
+
+            throw new Error(
+                "Canvas is not supported."
+            );
+
+        }
+
+
+        /* White background */
+
+        ctx.fillStyle = "#ffffff";
+
+        ctx.fillRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        ctx.drawImage(
+            img,
+            0,
+            0
+        );
+
+
+        return canvas.toDataURL(
+            type,
+            quality
+        );
+
+    }
+
+
+    /* =========================================
+       PDF PAGE SIZE
+    ========================================= */
+
+    function getPageSize() {
+
+        const size =
+            pageSize.value;
+
+
+        if (size === "letter") {
+
+            return {
+                width: 612,
+                height: 792
+            };
+
+        }
+
+
+        if (size === "original") {
+
+            return null;
+
+        }
+
+
+        /* A4 */
+
+        return {
+            width: 595.28,
+            height: 841.89
+        };
+
+    }
+
+
+    /* =========================================
+       ADD IMAGE TO PDF
+    ========================================= */
+
+    function addImageToPDF(
+        pdf,
+        imageData,
+        img,
+        pageWidth,
+        pageHeight,
+        fit
+    ) {
+
+        const margin = 20;
+
+        const availableWidth =
+            pageWidth - margin * 2;
+
+        const availableHeight =
+            pageHeight - margin * 2;
+
+
+        const imageWidth =
+            img.naturalWidth;
+
+        const imageHeight =
+            img.naturalHeight;
+
+
+        const imageRatio =
+            imageWidth / imageHeight;
+
+
+        const pageRatio =
+            availableWidth / availableHeight;
+
+
+        let drawWidth;
+        let drawHeight;
+
+
+        /* =================================
+           CONTAIN
+        ================================= */
+
+        if (fit === "contain") {
+
+            if (imageRatio > pageRatio) {
+
+                drawWidth =
+                    availableWidth;
+
+                drawHeight =
+                    drawWidth / imageRatio;
+
+            } else {
+
+                drawHeight =
+                    availableHeight;
+
+                drawWidth =
+                    drawHeight * imageRatio;
+
+            }
+
+        }
+
+
+        /* =================================
+           COVER
+        ================================= */
+
+        else {
+
+            if (imageRatio > pageRatio) {
+
+                drawHeight =
+                    availableHeight;
+
+                drawWidth =
+                    drawHeight * imageRatio;
+
+            } else {
+
+                drawWidth =
+                    availableWidth;
+
+                drawHeight =
+                    drawWidth / imageRatio;
+
+            }
+
+        }
+
+
+        const x =
+            (pageWidth - drawWidth) / 2;
+
+
+        const y =
+            (pageHeight - drawHeight) / 2;
+
+
+        pdf.addImage(
+            imageData,
+            "JPEG",
+            x,
+            y,
+            drawWidth,
+            drawHeight,
+            undefined,
+            "FAST"
+        );
+
+    }
+
+
+    /* =========================================
+       CONVERT TO PDF
+    ========================================= */
+
+    convertBtn.addEventListener(
+        "click",
+        async function () {
+
+            if (!selectedImages.length) {
+
+                showMessage(
+                    "Please upload at least one image first."
+                );
+
+                return;
+
+            }
+
+
+            /* Check jsPDF */
+
+            if (
+                !window.jspdf ||
+                !window.jspdf.jsPDF
+            ) {
+
+                showMessage(
+                    "PDF library could not load. Please refresh the page and try again."
+                );
+
+                return;
+
+            }
+
+
+            convertBtn.disabled = true;
+
+            resetBtn.disabled = true;
+
+            jpProcessing.style.display = "block";
+
+            jpResult.style.display = "none";
+
+
+            try {
+
+                const { jsPDF } =
+                    window.jspdf;
+
+
+                const selectedPageSize =
+                    getPageSize();
+
+
+                let pdf = null;
+
+
+                /* =================================
+                   PROCESS EACH IMAGE
+                ================================= */
+
+                for (
+                    let i = 0;
+                    i < selectedImages.length;
+                    i++
+                ) {
+
+                    const item =
+                        selectedImages[i];
+
+
+                    /* Update processing text */
+
+                    jpProcessing.innerHTML = `
+
+                        <div class="jp-spinner"></div>
+
+                        Creating PDF... ${i + 1}
+                        / ${selectedImages.length}
+
+                    `;
+
+
+                    const img =
+                        await loadImage(
+                            item.url
+                        );
+
+
+                    if (
+                        !img.naturalWidth ||
+                        !img.naturalHeight
+                    ) {
+
+                        throw new Error(
+                            "Invalid image dimensions."
+                        );
+
+                    }
+
+
+                    /* =================================
+                       ORIGINAL IMAGE SIZE
+                    ================================= */
+
+                    if (!selectedPageSize) {
+
+                        let width =
+                            img.naturalWidth * 0.75;
+
+                        let height =
+                            img.naturalHeight * 0.75;
+
+
+                        /*
+                         * Prevent extremely large
+                         * PDF pages.
+                         */
+
+                        const MAX_WIDTH = 1000;
+                        const MAX_HEIGHT = 1400;
+
+
+                        if (
+                            width > MAX_WIDTH ||
+                            height > MAX_HEIGHT
+                        ) {
+
+                            const scale =
+                                Math.min(
+                                    MAX_WIDTH / width,
+                                    MAX_HEIGHT / height
+                                );
+
+
+                            width *= scale;
+                            height *= scale;
+
+                        }
+
+
+                        const orientation =
+                            width >= height
+                                ? "landscape"
+                                : "portrait";
+
+
+                        if (i === 0) {
+
+                            pdf =
+                                new jsPDF({
+                                    orientation:
+                                        orientation,
+                                    unit: "pt",
+                                    format: [
+                                        width,
+                                        height
+                                    ],
+                                    compress: true
+                                });
+
+                        } else {
+
+                            pdf.addPage(
+                                [
+                                    width,
+                                    height
+                                ],
+                                orientation
+                            );
+
+                        }
+
+
+                        const imageData =
+                            imageToDataURL(
+                                img
+                            );
+
+
+                        pdf.addImage(
+                            imageData,
+                            "JPEG",
+                            0,
+                            0,
+                            width,
+                            height,
+                            undefined,
+                            "FAST"
+                        );
+
+
+                        continue;
+
+                    }
+
+
+                    /* =================================
+                       A4 / LETTER
+                    ================================= */
+
+                    const pageWidth =
+                        selectedPageSize.width;
+
+
+                    const pageHeight =
+                        selectedPageSize.height;
+
+
+                    if (i === 0) {
+
+                        pdf =
+                            new jsPDF({
+                                orientation: "portrait",
+                                unit: "pt",
+                                format: [
+                                    pageWidth,
+                                    pageHeight
+                                ],
+                                compress: true
+                            });
+
+                    } else {
+
+                        pdf.addPage(
+                            [
+                                pageWidth,
+                                pageHeight
+                            ],
+                            "portrait"
+                        );
+
+                    }
+
+
+                    /*
+                     * Convert image to JPEG.
+                     * Works for JPG, PNG and WebP.
+                     */
+
+                    const imageData =
+                        imageToDataURL(
+                            img,
+                            "image/jpeg",
+                            0.92
+                        );
+
+
+                    addImageToPDF(
+                        pdf,
+                        imageData,
+                        img,
+                        pageWidth,
+                        pageHeight,
+                        imageFit.value
+                    );
+
+                }
+
+
+                /* =================================
+                   CREATE BLOB
+                ================================= */
+
+                const blob =
+                    pdf.output("blob");
+
+
+                if (pdfURL) {
+
+                    URL.revokeObjectURL(
+                        pdfURL
+                    );
+
+                }
+
+
+                pdfURL =
+                    URL.createObjectURL(
+                        blob
+                    );
+
+
+                /* =================================
+                   DOWNLOAD LINK
+                ================================= */
+
+                downloadPDF.href =
+                    pdfURL;
+
+
+                downloadPDF.download =
+                    "toolifyhub-images.pdf";
+
+
+                /* =================================
+                   SHOW RESULT
+                ================================= */
+
+                jpProcessing.style.display =
+                    "none";
+
+
+                jpResult.style.display =
+                    "block";
+
+
+                jpResultText.textContent =
+                    selectedImages.length +
+                    (
+                        selectedImages.length === 1
+                            ? " image was converted into your PDF."
+                            : " images were combined into your PDF."
+                    );
+
+
+                /* Scroll result into view */
+
+                jpResult.scrollIntoView({
+                    behavior: "smooth",
+                    block: "nearest"
+                });
+
+
+            }
+
+            catch (error) {
+
+                console.error(
+                    "JPG to PDF error:",
+                    error
+                );
+
+
+                jpProcessing.style.display =
+                    "none";
+
+
+                jpResult.style.display =
+                    "none";
+
+
+                showMessage(
+                    "Something went wrong while creating the PDF. Please try smaller or valid JPG, PNG or WebP images."
+                );
+
+            }
+
+            finally {
+
+                convertBtn.disabled = false;
+
+                resetBtn.disabled = false;
+
+                /*
+                 * Restore processing text
+                 */
+
+                jpProcessing.innerHTML = `
+
+                    <div class="jp-spinner"></div>
+
+                    Creating your PDF...
+
+                `;
+
+            }
+
+        }
+    );
+
+
+    /* =========================================
+       RESET
+    ========================================= */
+
+    resetBtn.addEventListener(
+        "click",
+        function () {
+
+            /* Revoke image URLs */
+
+            selectedImages.forEach(
+                function (item) {
+
+                    URL.revokeObjectURL(
+                        item.url
+                    );
+
+                }
+            );
+
+
+            selectedImages = [];
+
+
+            /* Revoke PDF */
+
+            if (pdfURL) {
+
+                URL.revokeObjectURL(
+                    pdfURL
+                );
+
+                pdfURL = "";
+
+            }
+
+
+            /* Reset input */
+
+            jpFile.value = "";
+
+
+            /* Reset UI */
+
+            jpImages.innerHTML = "";
+
+            jpWorkspace.style.display =
+                "none";
+
+            jpProcessing.style.display =
+                "none";
+
+            jpResult.style.display =
+                "none";
+
+
+            downloadPDF.removeAttribute(
+                "href"
+            );
+
+
+            jpCount.textContent =
+                "0 images selected";
+
+        }
+    );
+
+
+    /* =========================================
+       FAQ
+    ========================================= */
+
+    document
+        .querySelectorAll(".jp-faq-question")
+        .forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const item =
+                            this.parentElement;
+
+
+                        item.classList.toggle(
+                            "active"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /* =========================================
+       CLEANUP WHEN PAGE CLOSES
+    ========================================= */
+
+    window.addEventListener(
+        "beforeunload",
+        function () {
+
+            selectedImages.forEach(
+                function (item) {
+
+                    URL.revokeObjectURL(
+                        item.url
+                    );
+
+                }
+            );
+
+
+            if (pdfURL) {
+
+                URL.revokeObjectURL(
+                    pdfURL
+                );
+
+            }
+
+        }
+    );
+
+})();
+</script>
+
+</body>
+</html>
+
+</body>
+</html>

@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PDF Compressor Online - Free PDF Size Reducer | ToolifyHub</title>
+
+    <meta name="description"
+        content="Compress PDF files online for free with ToolifyHub. Reduce PDF file size quickly and easily directly in your browser.">
+
+    <meta name="keywords"
+        content="PDF compressor, compress PDF online, reduce PDF size, PDF size reducer, free PDF compressor">
+
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical"
+        href="https://toolifyhub-online.netlify.app/tools/pdf-compressor.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title"
+        content="PDF Compressor Online - Free PDF Size Reducer | ToolifyHub">
+
+    <meta property="og:description"
+        content="Compress PDF files online for free with ToolifyHub. Reduce PDF file size quickly and easily directly in your browser.">
+
+    <meta property="og:type" content="website">
+
+    <meta property="og:url"
+        content="https://toolifyhub-online.netlify.app/tools/pdf-compressor.html">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+
+    <meta name="twitter:title"
+        content="PDF Compressor Online - Free PDF Size Reducer | ToolifyHub">
+
+    <meta name="twitter:description"
+        content="Compress PDF files online for free with ToolifyHub.">
+
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="icon"
+        type="image/svg+xml"
+        href="../favicon.svg">
+
+    <!-- pdf-lib -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+
+    <style>
+        .pdf-page {
+            min-height: 100vh;
+            padding: 72px 20px 100px;
+            background:
+                radial-gradient(circle at 10% 10%, rgba(99, 102, 241, .09), transparent 28%),
+                radial-gradient(circle at 90% 15%, rgba(139, 92, 246, .08), transparent 28%),
+                #f8fafc;
+        }
+
+        .pdf-hero {
+            max-width: 760px;
+            margin: 0 auto 42px;
+            text-align: center;
+        }
+
+        .pdf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .pdf-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .pdf-hero h1 {
+            margin: 0;
+            font-size: clamp(36px, 5vw, 58px);
+            line-height: 1.08;
+            letter-spacing: -1.8px;
+            color: #0f172a;
+        }
+
+        .pdf-hero h1 span {
+            background: linear-gradient(90deg, #4f46e5, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pdf-hero p {
+            max-width: 650px;
+            margin: 18px auto 0;
+            color: #64748b;
+            font-size: 16px;
+            line-height: 1.75;
+        }
+
+        .pdf-card {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, .08);
+        }
+
+        .pdf-upload {
+            position: relative;
+            min-height: 260px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 20px;
+            background: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            cursor: pointer;
+            transition: .25s ease;
+        }
+
+        .pdf-upload:hover,
+        .pdf-upload.dragover {
+            border-color: #6366f1;
+            background: #f5f3ff;
+            transform: translateY(-2px);
+        }
+
+        .pdf-upload input {
+            display: none;
+        }
+
+        .pdf-upload-content {
+            pointer-events: none;
+        }
+
+        .pdf-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 17px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            font-size: 24px;
+            font-weight: 800;
+            box-shadow: 0 12px 25px rgba(239, 68, 68, .20);
+        }
+
+        .pdf-upload h3 {
+            margin: 0 0 7px;
+            color: #0f172a;
+            font-size: 20px;
+        }
+
+        .pdf-upload p {
+            margin: 0 0 7px;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .pdf-upload small {
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .pdf-workspace {
+            display: none;
+            margin-top: 25px;
+        }
+
+        .pdf-file-card {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 17px;
+            background: #f8fafc;
+        }
+
+        .pdf-file-icon {
+            width: 52px;
+            height: 52px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #fee2e2;
+            color: #dc2626;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .pdf-file-details {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .pdf-file-name {
+            margin: 0 0 5px;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .pdf-file-size {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .pdf-change {
+            border: 0;
+            padding: 9px 13px;
+            border-radius: 9px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pdf-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 20px;
+        }
+
+        .pdf-stat {
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            background: #fff;
+        }
+
+        .pdf-stat span {
+            display: block;
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .4px;
+            margin-bottom: 7px;
+        }
+
+        .pdf-stat strong {
+            color: #0f172a;
+            font-size: 18px;
+        }
+
+        .pdf-settings {
+            margin-top: 22px;
+            padding: 23px;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+        }
+
+        .pdf-settings h3 {
+            margin: 0 0 5px;
+            color: #0f172a;
+            font-size: 17px;
+        }
+
+        .pdf-settings > p {
+            margin: 0 0 20px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .quality-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .quality-option {
+            position: relative;
+        }
+
+        .quality-option input {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .quality-option label {
+            display: block;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: .2s;
+            background: #fff;
+        }
+
+        .quality-option label:hover {
+            border-color: #a5b4fc;
+            background: #f8f7ff;
+        }
+
+        .quality-option input:checked + label {
+            border-color: #6366f1;
+            background: #eef2ff;
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, .08);
+        }
+
+        .quality-title {
+            display: block;
+            margin-bottom: 5px;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .quality-description {
+            display: block;
+            color: #64748b;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .pdf-tip {
+            margin-top: 18px;
+            padding: 12px 14px;
+            border-radius: 11px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .pdf-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .pdf-btn {
+            flex: 1;
+            border: 0;
+            border-radius: 12px;
+            padding: 14px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: .25s;
+        }
+
+        .pdf-btn:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .pdf-btn-primary {
+            color: #fff;
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, .16);
+        }
+
+        .pdf-btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 13px 25px rgba(79, 70, 229, .25);
+        }
+
+        .pdf-btn-secondary {
+            color: #475569;
+            background: #f1f5f9;
+        }
+
+        .pdf-btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .pdf-processing {
+            display: none;
+            text-align: center;
+            padding: 20px 0 5px;
+            color: #6366f1;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .pdf-spinner {
+            width: 25px;
+            height: 25px;
+            margin: 0 auto 9px;
+            border: 3px solid #ddd6fe;
+            border-top-color: #6366f1;
+            border-radius: 50%;
+            animation: pdfSpin .75s linear infinite;
+        }
+
+        @keyframes pdfSpin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .pdf-result {
+            display: none;
+            margin-top: 22px;
+            padding: 23px;
+            text-align: center;
+            border-radius: 17px;
+            border: 1px solid #bbf7d0;
+            background: #f0fdf4;
+        }
+
+        .pdf-result-icon {
+            width: 45px;
+            height: 45px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #dcfce7;
+            color: #16a34a;
+            font-size: 21px;
+            font-weight: 900;
+        }
+
+        .pdf-result h3 {
+            margin: 0 0 6px;
+            color: #166534;
+            font-size: 17px;
+        }
+
+        .pdf-result p {
+            margin: 0 0 16px;
+            color: #15803d;
+            font-size: 13px;
+        }
+
+        .pdf-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: white;
+            background: #16a34a;
+            font-size: 13px;
+            font-weight: 700;
+            transition: .2s;
+        }
+
+        .pdf-download:hover {
+            background: #15803d;
+            transform: translateY(-1px);
+        }
+
+        .pdf-note {
+            display: none;
+            margin-top: 15px;
+            padding: 13px;
+            border-radius: 11px;
+            background: #fff7ed;
+            color: #9a3412;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .pdf-info {
+            max-width: 900px;
+            margin: 70px auto 0;
+        }
+
+        .pdf-info h2 {
+            margin: 0 0 13px;
+            color: #0f172a;
+            font-size: 30px;
+            letter-spacing: -.5px;
+        }
+
+        .pdf-info > p {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        .pdf-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 17px;
+            margin-top: 28px;
+        }
+
+        .pdf-step {
+            padding: 22px;
+            border-radius: 17px;
+            background: #fff;
+            border: 1px solid #e2e8f0;
+        }
+
+        .pdf-step-number {
+            width: 37px;
+            height: 37px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 13px;
+            border-radius: 10px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-weight: 800;
+            font-size: 13px;
+        }
+
+        .pdf-step h3 {
+            margin: 0 0 7px;
+            color: #1e293b;
+            font-size: 16px;
+        }
+
+        .pdf-step p {
+            margin: 0;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.65;
+        }
+
+        .pdf-faq {
+            margin-top: 60px;
+        }
+
+        .pdf-faq h2 {
+            margin-bottom: 20px;
+        }
+
+        .pdf-faq-item {
+            margin-bottom: 11px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            border-radius: 13px;
+            background: #fff;
+        }
+
+        .pdf-faq-question {
+            width: 100%;
+            border: 0;
+            padding: 17px 19px;
+            text-align: left;
+            background: #fff;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .pdf-faq-answer {
+            display: none;
+            padding: 0 19px 17px;
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .pdf-faq-item.active .pdf-faq-answer {
+            display: block;
+        }
+
+        @media (max-width: 760px) {
+            .pdf-page {
+                padding: 50px 15px 75px;
+            }
+
+            .pdf-card {
+                padding: 18px;
+                border-radius: 19px;
+            }
+
+            .pdf-stats,
+            .quality-options,
+            .pdf-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .pdf-buttons {
+                flex-direction: column;
+            }
+
+            .pdf-file-card {
+                align-items: flex-start;
+            }
+
+            .pdf-change {
+                margin-left: auto;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .pdf-hero h1 {
+                font-size: 34px;
+            }
+
+            .pdf-hero p {
+                font-size: 14px;
+            }
+
+            .pdf-upload {
+                min-height: 230px;
+            }
+
+            .pdf-file-card {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+
+    <!-- TOOLIFYHUB SEO SCHEMA START -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PDF Compressor Online - Free | ToolifyHub",
+        "url": "https://toolifyhub-online.netlify.app/tools/pdf-compressor.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "description": "Compress PDF files online for free with ToolifyHub. Reduce PDF file size directly in your browser.",
+        "isAccessibleForFree": true
+    }
+    </script>
+    <!-- TOOLIFYHUB SEO SCHEMA END -->
+
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container nav">
+
+        <a href="../index.html" class="logo">
+            <div class="logo-icon">T</div>
+            <span>Toolify<span class="logo-highlight">Hub</span></span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="../index.html#tools">Tools</a>
+            <a href="../index.html#how-it-works">How It Works</a>
+            <a href="../index.html#faq">FAQ</a>
+            <a href="../about.html">About</a>
+        </nav>
+
+        <a href="../index.html#tools" class="nav-button">
+            All Tools
+        </a>
+
+    </div>
+</header>
+
+
+<main class="pdf-page">
+
+    <section class="pdf-hero">
+
+        <div class="pdf-badge">
+            <span class="pdf-badge-dot"></span>
+            Free Online Tool
+        </div>
+
+        <h1>
+            Compress PDF <span>Files</span>
+        </h1>
+
+        <p>
+            Reduce PDF file size quickly and easily.
+            Your PDF is processed directly in your browser.
+        </p>
+
+    </section>
+
+
+    <section class="pdf-card">
+
+        <label class="pdf-upload" id="pdfUpload">
+
+            <input
+                type="file"
+                id="pdfFile"
+                accept="application/pdf,.pdf"
+            >
+
+            <div class="pdf-upload-content">
+
+                <div class="pdf-icon">
+                    PDF
+                </div>
+
+                <h3>
+                    Upload Your PDF
+                </h3>
+
+                <p>
+                    Drag & drop your PDF here or click to browse
+                </p>
+
+                <small>
+                    PDF files • Recommended under 25MB
+                </small>
+
+            </div>
+
+        </label>
+
+
+        <div class="pdf-workspace" id="pdfWorkspace">
+
+            <div class="pdf-file-card">
+
+                <div class="pdf-file-icon">
+                    PDF
+                </div>
+
+                <div class="pdf-file-details">
+
+                    <p
+                        class="pdf-file-name"
+                        id="pdfFileName"
+                    >
+                        document.pdf
+                    </p>
+
+                    <p
+                        class="pdf-file-size"
+                        id="pdfFileSize"
+                    >
+                        0 KB
+                    </p>
+
+                </div>
+
+                <button
+                    class="pdf-change"
+                    id="pdfChange"
+                    type="button"
+                >
+                    Change
+                </button>
+
+            </div>
+
+
+            <div class="pdf-stats">
+
+                <div class="pdf-stat">
+
+                    <span>
+                        Original Size
+                    </span>
+
+                    <strong id="originalSize">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="pdf-stat">
+
+                    <span>
+                        Pages
+                    </span>
+
+                    <strong id="pageCount">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="pdf-stat">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong id="pdfStatus">
+                        Ready
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="pdf-settings">
+
+                <h3>
+                    Compression Level
+                </h3>
+
+                <p>
+                    Choose the balance between PDF size and image quality.
+                </p>
+
+
+                <div class="quality-options">
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="compression"
+                            id="low"
+                            value="low"
+                        >
+
+                        <label for="low">
+
+                            <span class="quality-title">
+                                Low Compression
+                            </span>
+
+                            <span class="quality-description">
+                                Better quality with moderate size reduction.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="compression"
+                            id="medium"
+                            value="medium"
+                            checked
+                        >
+
+                        <label for="medium">
+
+                            <span class="quality-title">
+                                Recommended
+                            </span>
+
+                            <span class="quality-description">
+                                Balanced quality and file size.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="quality-option">
+
+                        <input
+                            type="radio"
+                            name="compression"
+                            id="high"
+                            value="high"
+                        >
+
+                        <label for="high">
+
+                            <span class="quality-title">
+                                High Compression
+                            </span>
+
+                            <span class="quality-description">
+                                Smaller file with stronger image compression.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="pdf-tip">
+                    💡 Image-heavy PDFs usually get the biggest reduction.
+                    Text-heavy or already-compressed PDFs may show a smaller
+                    reduction.
+                </div>
+
+            </div>
+
+
+            <div class="pdf-buttons">
+
+                <button
+                    class="pdf-btn pdf-btn-primary"
+                    id="compressBtn"
+                    type="button"
+                    disabled
+                >
+                    Compress PDF
+                </button>
+
+                <button
+                    class="pdf-btn pdf-btn-secondary"
+                    id="resetBtn"
+                    type="button"
+                >
+                    Reset
+                </button>
+
+            </div>
+
+
+            <div
+                class="pdf-processing"
+                id="pdfProcessing"
+            >
+
+                <div class="pdf-spinner"></div>
+
+                <span id="processingText">
+                    Compressing your PDF...
+                </span>
+
+            </div>
+
+
+            <div
+                class="pdf-note"
+                id="pdfNote"
+            ></div>
+
+
+            <div
+                class="pdf-result"
+                id="pdfResult"
+            >
+
+                <div class="pdf-result-icon">
+                    ✓
+                </div>
+
+                <h3>
+                    PDF Compression Complete
+                </h3>
+
+                <p id="resultText">
+                    Your compressed PDF is ready.
+                </p>
+
+                <a
+                    href="#"
+                    id="downloadPdf"
+                    class="pdf-download"
+                    download="toolifyhub-compressed.pdf"
+                >
+                    ↓ Download Compressed PDF
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="pdf-info">
+
+        <h2>
+            Free Online PDF Compressor
+        </h2>
+
+        <p>
+            ToolifyHub's PDF compressor reduces PDF file size by rendering
+            PDF pages and rebuilding the document with optimized JPEG
+            images. Processing happens directly in your browser, so the
+            selected PDF does not need to be uploaded to a ToolifyHub server.
+        </p>
+
+
+        <div class="pdf-steps">
+
+            <div class="pdf-step">
+
+                <div class="pdf-step-number">
+                    01
+                </div>
+
+                <h3>
+                    Upload PDF
+                </h3>
+
+                <p>
+                    Select a PDF file from your computer or drag it
+                    into the upload area.
+                </p>
+
+            </div>
+
+
+            <div class="pdf-step">
+
+                <div class="pdf-step-number">
+                    02
+                </div>
+
+                <h3>
+                    Choose Compression
+                </h3>
+
+                <p>
+                    Select low, recommended or high compression
+                    depending on the required file size and quality.
+                </p>
+
+            </div>
+
+
+            <div class="pdf-step">
+
+                <div class="pdf-step-number">
+                    03
+                </div>
+
+                <h3>
+                    Download File
+                </h3>
+
+                <p>
+                    Download your newly generated compressed PDF
+                    when processing is complete.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="pdf-faq">
+
+            <h2>
+                Frequently Asked Questions
+            </h2>
+
+
+            <div class="pdf-faq-item">
+
+                <button
+                    class="pdf-faq-question"
+                    type="button"
+                >
+                    Is this PDF compressor free?
+                </button>
+
+                <div class="pdf-faq-answer">
+                    Yes. ToolifyHub's PDF compressor is available
+                    to use for free in your browser.
+                </div>
+
+            </div>
+
+
+            <div class="pdf-faq-item">
+
+                <button
+                    class="pdf-faq-question"
+                    type="button"
+                >
+                    Are my PDF files uploaded?
+                </button>
+
+                <div class="pdf-faq-answer">
+                    No server upload is required by this page.
+                    PDF processing is performed locally in your
+                    browser using client-side PDF libraries.
+                </div>
+
+            </div>
+
+
+            <div class="pdf-faq-item">
+
+                <button
+                    class="pdf-faq-question"
+                    type="button"
+                >
+                    Will the PDF actually become smaller?
+                </button>
+
+                <div class="pdf-faq-answer">
+                    The compressor rebuilds each PDF page as an
+                    optimized JPEG image. Image-heavy PDFs can
+                    therefore receive significant size reduction.
+                    Results vary depending on the original PDF.
+                </div>
+
+            </div>
+
+
+            <div class="pdf-faq-item">
+
+                <button
+                    class="pdf-faq-question"
+                    type="button"
+                >
+                    Will the text remain selectable?
+                </button>
+
+                <div class="pdf-faq-answer">
+                    This browser-based compression method converts
+                    PDF pages into images, so text in the compressed
+                    output may no longer be selectable or searchable.
+                    The original PDF remains unchanged.
+                </div>
+
+            </div>
+
+
+            <div class="pdf-faq-item">
+
+                <button
+                    class="pdf-faq-question"
+                    type="button"
+                >
+                    Which PDFs compress the most?
+                </button>
+
+                <div class="pdf-faq-answer">
+                    PDFs containing large photographs, scans and
+                    other high-resolution images generally have
+                    more potential for size reduction than PDFs
+                    that are mostly text or already compressed.
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 ToolifyHub. All rights reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script type="module">
+
+    import * as pdfjsLib from
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs";
+
+
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
+
+
+    const pdfFile =
+        document.getElementById("pdfFile");
+
+    const pdfUpload =
+        document.getElementById("pdfUpload");
+
+    const pdfWorkspace =
+        document.getElementById("pdfWorkspace");
+
+    const pdfFileName =
+        document.getElementById("pdfFileName");
+
+    const pdfFileSize =
+        document.getElementById("pdfFileSize");
+
+    const originalSize =
+        document.getElementById("originalSize");
+
+    const pageCount =
+        document.getElementById("pageCount");
+
+    const pdfStatus =
+        document.getElementById("pdfStatus");
+
+    const pdfChange =
+        document.getElementById("pdfChange");
+
+    const compressBtn =
+        document.getElementById("compressBtn");
+
+    const resetBtn =
+        document.getElementById("resetBtn");
+
+    const pdfProcessing =
+        document.getElementById("pdfProcessing");
+
+    const processingText =
+        document.getElementById("processingText");
+
+    const pdfResult =
+        document.getElementById("pdfResult");
+
+    const resultText =
+        document.getElementById("resultText");
+
+    const downloadPdf =
+        document.getElementById("downloadPdf");
+
+    const pdfNote =
+        document.getElementById("pdfNote");
+
+
+    let selectedPDF = null;
+    let downloadURL = "";
+    let pdfDocument = null;
+    let isCompressing = false;
+
+
+    function formatSize(bytes) {
+
+        if (!Number.isFinite(bytes) || bytes <= 0) {
+            return "0 B";
+        }
+
+        if (bytes < 1024) {
+            return bytes + " B";
+        }
+
+        if (bytes < 1024 * 1024) {
+            return (bytes / 1024).toFixed(1) + " KB";
+        }
+
+        if (bytes < 1024 * 1024 * 1024) {
+            return (bytes / (1024 * 1024)).toFixed(2) + " MB";
+        }
+
+        return (bytes / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+    }
+
+
+    function getCompressionSettings(level) {
+
+        if (level === "low") {
+
+            return {
+                scale: 1.5,
+                quality: 0.82
+            };
+
+        }
+
+        if (level === "high") {
+
+            return {
+                scale: 0.9,
+                quality: 0.48
+            };
+
+        }
+
+        return {
+            scale: 1.15,
+            quality: 0.65
+        };
+    }
+
+
+    function getSafeFileName(filename) {
+
+        return filename
+            .replace(/\.[^/.]+$/, "")
+            .replace(/[<>:"/\\|?*]+/g, "_")
+            .trim() || "document";
+    }
+
+
+    function createJpegBlob(canvas, quality) {
+
+        return new Promise((resolve, reject) => {
+
+            canvas.toBlob(
+                blob => {
+
+                    if (blob) {
+                        resolve(blob);
+                    } else {
+                        reject(
+                            new Error("Could not create JPEG image.")
+                        );
+                    }
+
+                },
+                "image/jpeg",
+                quality
+            );
+
+        });
+    }
+
+
+    function resetResult() {
+
+        pdfResult.style.display = "none";
+
+        pdfNote.style.display = "none";
+
+        resultText.textContent =
+            "Your compressed PDF is ready.";
+
+        if (downloadURL) {
+
+            URL.revokeObjectURL(downloadURL);
+
+            downloadURL = "";
+
+        }
+
+        downloadPdf.removeAttribute("href");
+
+    }
+
+
+    async function loadPDF(file) {
+
+        if (!file) {
+            return;
+        }
+
+
+        const isPDF =
+            file.type === "application/pdf" ||
+            file.name.toLowerCase().endsWith(".pdf");
+
+
+        if (!isPDF) {
+
+            alert("Please select a PDF file.");
+
+            pdfFile.value = "";
+
+            return;
+        }
+
+
+        if (pdfDocument) {
+
+            try {
+                await pdfDocument.destroy();
+            } catch (error) {
+                console.warn(error);
+            }
+
+            pdfDocument = null;
+        }
+
+
+        resetResult();
+
+
+        selectedPDF = file;
+
+
+        pdfFileName.textContent =
+            file.name;
+
+        pdfFileSize.textContent =
+            formatSize(file.size);
+
+        originalSize.textContent =
+            formatSize(file.size);
+
+        pageCount.textContent =
+            "—";
+
+        pdfStatus.textContent =
+            "Reading...";
+
+
+        pdfWorkspace.style.display =
+            "block";
+
+
+        compressBtn.disabled = true;
+
+
+        try {
+
+            const arrayBuffer =
+                await file.arrayBuffer();
+
+
+            const typedArray =
+                new Uint8Array(arrayBuffer);
+
+
+            pdfDocument =
+                await pdfjsLib
+                    .getDocument({
+                        data: typedArray
+                    })
+                    .promise;
+
+
+            pageCount.textContent =
+                pdfDocument.numPages;
+
+
+            pdfStatus.textContent =
+                "Ready";
+
+
+            compressBtn.disabled =
+                false;
+
+
+        } catch (error) {
+
+            console.error(
+                "PDF loading error:",
+                error
+            );
+
+
+            selectedPDF = null;
+            pdfDocument = null;
+
+
+            pageCount.textContent =
+                "—";
+
+            pdfStatus.textContent =
+                "Error";
+
+
+            compressBtn.disabled =
+                true;
+
+
+            alert(
+                "This PDF could not be opened. " +
+                "Please try another PDF file."
+            );
+
+        }
+
+    }
+
+
+    pdfFile.addEventListener(
+        "change",
+        function () {
+
+            if (!this.files || !this.files.length) {
+                return;
+            }
+
+            loadPDF(this.files[0]);
+
+        }
+    );
+
+
+    pdfChange.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            if (isCompressing) {
+                return;
+            }
+
+            pdfFile.click();
+
+        }
+    );
+
+
+    pdfUpload.addEventListener(
+        "dragover",
+        function (event) {
+
+            event.preventDefault();
+
+            if (!isCompressing) {
+
+                pdfUpload.classList.add(
+                    "dragover"
+                );
+
+            }
+
+        }
+    );
+
+
+    pdfUpload.addEventListener(
+        "dragleave",
+        function () {
+
+            pdfUpload.classList.remove(
+                "dragover"
+            );
+
+        }
+    );
+
+
+    pdfUpload.addEventListener(
+        "drop",
+        function (event) {
+
+            event.preventDefault();
+
+            pdfUpload.classList.remove(
+                "dragover"
+            );
+
+
+            if (isCompressing) {
+                return;
+            }
+
+
+            if (
+                event.dataTransfer &&
+                event.dataTransfer.files &&
+                event.dataTransfer.files.length
+            ) {
+
+                loadPDF(
+                    event.dataTransfer.files[0]
+                );
+
+            }
+
+        }
+    );
+
+
+    compressBtn.addEventListener(
+        "click",
+        async function () {
+
+            if (
+                !selectedPDF ||
+                !pdfDocument ||
+                isCompressing
+            ) {
+
+                alert(
+                    "Please upload a valid PDF first."
+                );
+
+                return;
+            }
+
+
+            isCompressing = true;
+
+
+            compressBtn.disabled = true;
+            resetBtn.disabled = true;
+            pdfChange.disabled = true;
+            pdfFile.disabled = true;
+
+
+            resetResult();
+
+
+            pdfProcessing.style.display =
+                "block";
+
+
+            pdfStatus.textContent =
+                "Processing...";
+
+
+            processingText.textContent =
+                "Preparing PDF...";
+
+
+            try {
+
+                const compressionInput =
+                    document.querySelector(
+                        'input[name="compression"]:checked'
+                    );
+
+
+                if (!compressionInput) {
+
+                    throw new Error(
+                        "Compression setting not selected."
+                    );
+
+                }
+
+
+                const settings =
+                    getCompressionSettings(
+                        compressionInput.value
+                    );
+
+
+                if (
+                    typeof PDFLib === "undefined" ||
+                    !PDFLib.PDFDocument
+                ) {
+
+                    throw new Error(
+                        "PDF library failed to load."
+                    );
+
+                }
+
+
+                const outputPDF =
+                    await PDFLib.PDFDocument.create();
+
+
+                const totalPages =
+                    pdfDocument.numPages;
+
+
+                for (
+                    let i = 1;
+                    i <= totalPages;
+                    i++
+                ) {
+
+                    processingText.textContent =
+                        `Compressing page ${i} of ${totalPages}...`;
+
+
+                    const page =
+                        await pdfDocument.getPage(i);
+
+
+                    const originalViewport =
+                        page.getViewport({
+                            scale: 1
+                        });
+
+
+                    const viewport =
+                        page.getViewport({
+                            scale: settings.scale
+                        });
+
+
+                    const canvas =
+                        document.createElement(
+                            "canvas"
+                        );
+
+
+                    const context =
+                        canvas.getContext(
+                            "2d",
+                            {
+                                alpha: false
+                            }
+                        );
+
+
+                    if (!context) {
+
+                        throw new Error(
+                            "Browser canvas is not supported."
+                        );
+
+                    }
+
+
+                    canvas.width =
+                        Math.max(
+                            1,
+                            Math.ceil(
+                                viewport.width
+                            )
+                        );
+
+
+                    canvas.height =
+                        Math.max(
+                            1,
+                            Math.ceil(
+                                viewport.height
+                            )
+                        );
+
+
+                    context.fillStyle =
+                        "#ffffff";
+
+                    context.fillRect(
+                        0,
+                        0,
+                        canvas.width,
+                        canvas.height
+                    );
+
+
+                    await page.render({
+
+                        canvasContext:
+                            context,
+
+                        viewport:
+                            viewport
+
+                    }).promise;
+
+
+                    const jpegBlob =
+                        await createJpegBlob(
+                            canvas,
+                            settings.quality
+                        );
+
+
+                    const jpegBytes =
+                        new Uint8Array(
+                            await jpegBlob.arrayBuffer()
+                        );
+
+
+                    const image =
+                        await outputPDF.embedJpg(
+                            jpegBytes
+                        );
+
+
+                    const pdfPage =
+                        outputPDF.addPage([
+                            originalViewport.width,
+                            originalViewport.height
+                        ]);
+
+
+                    pdfPage.drawImage(
+                        image,
+                        {
+                            x: 0,
+                            y: 0,
+                            width:
+                                originalViewport.width,
+                            height:
+                                originalViewport.height
+                        }
+                    );
+
+
+                    canvas.width = 1;
+                    canvas.height = 1;
+
+
+                    try {
+                        page.cleanup();
+                    } catch (cleanupError) {
+                        console.warn(
+                            "Page cleanup warning:",
+                            cleanupError
+                        );
+                    }
+
+                }
+
+
+                processingText.textContent =
+                    "Creating compressed PDF...";
+
+
+                const compressedBytes =
+                    await outputPDF.save({
+                        useObjectStreams: true
+                    });
+
+
+                const compressedBlob =
+                    new Blob(
+                        [compressedBytes],
+                        {
+                            type: "application/pdf"
+                        }
+                    );
+
+
+                const originalBytes =
+                    selectedPDF.size;
+
+
+                const newBytes =
+                    compressedBlob.size;
+
+
+                const savedBytes =
+                    originalBytes - newBytes;
+
+
+                let percentage = 0;
+
+
+                if (originalBytes > 0) {
+
+                    percentage =
+                        (
+                            savedBytes /
+                            originalBytes
+                        ) * 100;
+
+                }
+
+
+                if (downloadURL) {
+
+                    URL.revokeObjectURL(
+                        downloadURL
+                    );
+
+                }
+
+
+                downloadURL =
+                    URL.createObjectURL(
+                        compressedBlob
+                    );
+
+
+                downloadPdf.href =
+                    downloadURL;
+
+
+                downloadPdf.download =
+                    getSafeFileName(
+                        selectedPDF.name
+                    ) +
+                    "-compressed.pdf";
+
+
+                pdfProcessing.style.display =
+                    "none";
+
+
+                pdfResult.style.display =
+                    "block";
+
+
+                pdfStatus.textContent =
+                    "Complete";
+
+
+                if (newBytes < originalBytes) {
+
+                    resultText.textContent =
+                        `Original: ${formatSize(originalBytes)} • ` +
+                        `Compressed: ${formatSize(newBytes)} • ` +
+                        `Reduced by ${percentage.toFixed(1)}%`;
+
+
+                    pdfNote.textContent =
+                        "Compression was successful. " +
+                        "The output PDF was rebuilt using optimized JPEG images.";
+
+                } else {
+
+                    resultText.textContent =
+                        `Original: ${formatSize(originalBytes)} • ` +
+                        `Output: ${formatSize(newBytes)} • ` +
+                        `This PDF could not be reduced further with the selected setting.`;
+
+
+                    pdfNote.textContent =
+                        "The original PDF may already be highly compressed. " +
+                        "Try High Compression if you need a smaller file.";
+
+                }
+
+
+                pdfNote.style.display =
+                    "block";
+
+
+            } catch (error) {
+
+                console.error(
+                    "PDF compression error:",
+                    error
+                );
+
+
+                pdfProcessing.style.display =
+                    "none";
+
+
+                pdfStatus.textContent =
+                    "Error";
+
+
+                pdfNote.textContent =
+                    "Compression failed. The PDF may be too large, " +
+                    "complex, password-protected or unsupported by the browser.";
+
+
+                pdfNote.style.display =
+                    "block";
+
+            }
+
+
+            isCompressing = false;
+
+
+            compressBtn.disabled =
+                !selectedPDF || !pdfDocument;
+
+            resetBtn.disabled =
+                false;
+
+            pdfChange.disabled =
+                false;
+
+            pdfFile.disabled =
+                false;
+
+        }
+    );
+
+
+    resetBtn.addEventListener(
+        "click",
+        async function () {
+
+            if (isCompressing) {
+                return;
+            }
+
+
+            if (pdfDocument) {
+
+                try {
+                    await pdfDocument.destroy();
+                } catch (error) {
+                    console.warn(error);
+                }
+
+            }
+
+
+            pdfFile.value = "";
+
+            selectedPDF = null;
+
+            pdfDocument = null;
+
+
+            pdfWorkspace.style.display =
+                "none";
+
+
+            pdfProcessing.style.display =
+                "none";
+
+
+            pdfResult.style.display =
+                "none";
+
+
+            pdfNote.style.display =
+                "none";
+
+
+            pdfFileName.textContent =
+                "document.pdf";
+
+
+            pdfFileSize.textContent =
+                "0 KB";
+
+
+            originalSize.textContent =
+                "—";
+
+
+            pageCount.textContent =
+                "—";
+
+
+            pdfStatus.textContent =
+                "Ready";
+
+
+            processingText.textContent =
+                "Compressing your PDF...";
+
+
+            resultText.textContent =
+                "Your compressed PDF is ready.";
+
+
+            if (downloadURL) {
+
+                URL.revokeObjectURL(
+                    downloadURL
+                );
+
+                downloadURL = "";
+
+            }
+
+
+            downloadPdf.removeAttribute(
+                "href"
+            );
+
+
+            compressBtn.disabled =
+                true;
+
+
+            resetBtn.disabled =
+                false;
+
+
+            pdfChange.disabled =
+                false;
+
+
+            pdfFile.disabled =
+                false;
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(".pdf-faq-question")
+        .forEach(
+            function (button) {
+
+                button.addEventListener(
+                    "click",
+                    function () {
+
+                        const item =
+                            this.parentElement;
+
+
+                        item.classList.toggle(
+                            "active"
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    window.addEventListener(
+        "beforeunload",
+        function () {
+
+            if (downloadURL) {
+
+                URL.revokeObjectURL(
+                    downloadURL
+                );
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+</html>
