@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://toolifyhub-online.netlify.app/sitemap.xml

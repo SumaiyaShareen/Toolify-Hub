@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact ToolifyHub - Get in Touch</title>
+
+    <meta
+        name="description"
+        content="Contact ToolifyHub for questions, feedback, tool suggestions, technical issues and general inquiries."
+    >
+
+    <meta
+        name="keywords"
+        content="contact ToolifyHub, online tools support, ToolifyHub help, tool feedback"
+    >
+
+    <meta name="robots" content="index, follow">
+
+    <link
+        rel="canonical"
+        href="https://toolifyhub-online.netlify.app/contact.html"
+    >
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="Contact ToolifyHub - Get in Touch"
+    >
+
+    <meta
+        property="og:description"
+        content="Contact ToolifyHub for questions, feedback, tool suggestions, technical issues and general inquiries."
+    >
+
+    <meta property="og:type" content="website">
+
+    <meta
+        property="og:url"
+        content="https://toolifyhub-online.netlify.app/contact.html"
+    >
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+
+    <meta
+        name="twitter:title"
+        content="Contact ToolifyHub - Get in Touch"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Contact ToolifyHub for questions, feedback, tool suggestions, technical issues and general inquiries."
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="favicon.svg"
+    >
+
+
+
+    <style>
+        /* =====================================================
+           CONTACT PAGE
+           Page-specific CSS only
+        ===================================================== */
+
+        .contact-page {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 12% 12%,
+                    rgba(99,102,241,.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 88% 18%,
+                    rgba(14,165,233,.08),
+                    transparent 30%
+                ),
+                #f8fafc;
+        }
+
+        /* HERO */
+
+        .contact-hero {
+            text-align: center;
+            padding: 85px 20px 55px;
+        }
+
+        .contact-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            background: #eef2ff;
+            color: #4f46e5;
+            font-size: 13px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .contact-badge span {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .contact-hero h1 {
+            max-width: 800px;
+            margin: 0 auto 17px;
+            color: #0f172a;
+            font-size: clamp(40px, 6vw, 66px);
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+        }
+
+        .contact-gradient {
+            background:
+                linear-gradient(
+                    90deg,
+                    #4f46e5,
+                    #7c3aed,
+                    #0284c7
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .contact-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.75;
+        }
+
+        /* MAIN */
+
+        .contact-main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 10px 20px 90px;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: .85fr 1.35fr;
+            gap: 22px;
+            align-items: start;
+        }
+
+        /* INFORMATION */
+
+        .contact-info {
+            background: #0f172a;
+            border-radius: 25px;
+            padding: 32px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::before {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            background: rgba(99,102,241,.25);
+            top: -100px;
+            right: -90px;
+            filter: blur(5px);
+        }
+
+        .contact-info h2 {
+            position: relative;
+            margin: 0 0 12px;
+            font-size: 28px;
+        }
+
+        .contact-info > p {
+            position: relative;
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .contact-detail {
+            position: relative;
+            display: flex;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .contact-detail-icon {
+            flex: 0 0 45px;
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: rgba(255,255,255,.09);
+            color: #a5b4fc;
+            font-weight: 900;
+        }
+
+        .contact-detail strong {
+            display: block;
+            margin-bottom: 4px;
+            color: white;
+        }
+
+        .contact-detail span {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contact-note {
+            position: relative;
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.07);
+            color: #cbd5e1;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* FORM */
+
+        .contact-form-box {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 25px;
+            padding: 32px;
+            box-shadow:
+                0 20px 55px rgba(15,23,42,.07);
+        }
+
+        .contact-form-box h2 {
+            margin: 0 0 7px;
+            color: #0f172a;
+            font-size: 27px;
+        }
+
+        .contact-form-box > p {
+            margin: 0 0 25px;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 17px;
+        }
+
+        .contact-field {
+            display: grid;
+            gap: 7px;
+        }
+
+        .contact-field label {
+            color: #334155;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .contact-field input,
+        .contact-field select,
+        .contact-field textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 13px 14px;
+            background: #f8fafc;
+            color: #0f172a;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: .2s;
+        }
+
+        .contact-field textarea {
+            min-height: 145px;
+            resize: vertical;
+        }
+
+        .contact-field input:focus,
+        .contact-field select:focus,
+        .contact-field textarea:focus {
+            border-color: #6366f1;
+            background: white;
+            box-shadow:
+                0 0 0 4px rgba(99,102,241,.09);
+        }
+
+        .contact-submit {
+            border: none;
+            border-radius: 13px;
+            padding: 14px 20px;
+            background:
+                linear-gradient(
+                    135deg,
+                    #4f46e5,
+                    #7c3aed
+                );
+            color: white;
+            font-weight: 800;
+            cursor: pointer;
+            transition: .2s;
+            box-shadow:
+                0 12px 25px rgba(79,70,229,.20);
+        }
+
+        .contact-submit:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-submit:active {
+            transform: translateY(0);
+        }
+
+        .contact-form-note {
+            margin: 0;
+            color: #94a3b8;
+            font-size: 12px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        /* SUCCESS */
+
+        .contact-success {
+            display: none;
+            margin-top: 18px;
+            padding: 15px;
+            border-radius: 12px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #047857;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .contact-success.show {
+            display: block;
+        }
+
+        /* FAQ */
+
+        .contact-faq {
+            max-width: 850px;
+            margin: 70px auto 0;
+        }
+
+        .contact-faq-title {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-faq-title h2 {
+            margin: 0 0 8px;
+            color: #0f172a;
+            font-size: 32px;
+        }
+
+        .contact-faq-title p {
+            margin: 0;
+            color: #64748b;
+        }
+
+        .contact-faq-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .contact-faq-question {
+            width: 100%;
+            border: none;
+            background: transparent;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            text-align: left;
+            cursor: pointer;
+            color: #0f172a;
+            font-weight: 800;
+        }
+
+        .contact-faq-icon {
+            font-size: 20px;
+            transition: .2s;
+        }
+
+        .contact-faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: .25s ease;
+        }
+
+        .contact-faq-answer p {
+            margin: 0;
+            padding: 0 20px 18px;
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .contact-faq-item.open
+        .contact-faq-answer {
+            max-height: 180px;
+        }
+
+        .contact-faq-item.open
+        .contact-faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .contact-hero {
+                padding-top: 55px;
+            }
+
+            .contact-info,
+            .contact-form-box {
+                padding: 23px;
+                border-radius: 20px;
+            }
+
+            .contact-hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+        }
+    </style>
+
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Contact ToolifyHub - Get in Touch",
+  "url": "https://toolifyhub-online.netlify.app/contact.html",
+  "description": "Contact ToolifyHub for questions, feedback, tool suggestions, technical issues and general inquiries."
+}
+</script>
+<!-- TOOLIFYHUB SEO SCHEMA END -->
+</head>
+
+<body>
+
+<div class="contact-page">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="container nav">
+
+            <a href="index.html" class="logo">
+
+                <div class="logo-icon">T</div>
+
+                <span>
+                    Toolify<span class="logo-highlight">Hub</span>
+                </span>
+
+            </a>
+
+            <nav class="nav-links">
+
+                <a href="index.html#tools">
+                    Tools
+                </a>
+
+                <a href="index.html#how-it-works">
+                    How It Works
+                </a>
+
+                <a href="index.html#faq">
+                    FAQ
+                </a>
+
+                <a href="about.html">
+                    About
+                </a>
+
+            </nav>
+
+            <a
+                href="index.html#tools"
+                class="nav-button"
+            >
+                All Tools
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- HERO -->
+
+    <section class="contact-hero">
+
+        <div class="contact-badge">
+            <span></span>
+            We're Here to Help
+        </div>
+
+        <h1>
+            Get in
+            <span class="contact-gradient">
+                Touch
+            </span>
+        </h1>
+
+        <p>
+            Have a question, found an issue, or have an idea for
+            a new tool? We'd love to hear from you.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main class="contact-main">
+
+        <div class="contact-layout">
+
+            <!-- CONTACT INFORMATION -->
+
+            <section class="contact-info">
+
+                <h2>Let's Talk</h2>
+
+                <p>
+                    Use the contact form to send your question,
+                    feedback or suggestion.
+                </p>
+
+
+                <div class="contact-detail">
+
+                    <div class="contact-detail-icon">
+                        @
+                    </div>
+
+                    <div>
+
+                        <strong>Email</strong>
+
+                        <span>
+                            Add your real support email here
+                            after creating it.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-detail">
+
+                    <div class="contact-detail-icon">
+                        ?
+                    </div>
+
+                    <div>
+
+                        <strong>Tool Support</strong>
+
+                        <span>
+                            Report problems or unexpected behavior
+                            with any ToolifyHub tool.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-detail">
+
+                    <div class="contact-detail-icon">
+                        +
+                    </div>
+
+                    <div>
+
+                        <strong>Suggestions</strong>
+
+                        <span>
+                            Tell us which useful online tool you'd
+                            like to see added.
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="contact-note">
+
+                    We aim to keep ToolifyHub simple, useful and
+                    accessible. Please don't include passwords,
+                    financial information or other sensitive
+                    personal information in your message.
+
+                </div>
+
+            </section>
+
+
+            <!-- FORM -->
+
+            <section class="contact-form-box">
+
+                <h2>Send a Message</h2>
+
+                <p>
+                    Fill out the form below with your question or
+                    feedback.
+                </p>
+
+
+                <form
+                    class="contact-form"
+                    id="contactForm"
+                >
+
+                    <div class="contact-field">
+
+                        <label for="contactName">
+                            Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="contactName"
+                            name="name"
+                            placeholder="Your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="contact-field">
+
+                        <label for="contactEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="contactEmail"
+                            name="email"
+                            placeholder="you@example.com"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="contact-field">
+
+                        <label for="contactSubject">
+                            Subject
+                        </label>
+
+                        <select
+                            id="contactSubject"
+                            name="subject"
+                            required
+                        >
+
+                            <option value="">
+                                Select a subject
+                            </option>
+
+                            <option value="Tool Problem">
+                                Tool Problem
+                            </option>
+
+                            <option value="Suggestion">
+                                Tool Suggestion
+                            </option>
+
+                            <option value="Feedback">
+                                Feedback
+                            </option>
+
+                            <option value="Business Inquiry">
+                                Business Inquiry
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="contact-field">
+
+                        <label for="contactMessage">
+                            Message
+                        </label>
+
+                        <textarea
+                            id="contactMessage"
+                            name="message"
+                            placeholder="Write your message..."
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="contact-submit"
+                    >
+                        Send Message
+                    </button>
+
+                    <p class="contact-form-note">
+                        Your message form is ready for an email
+                        service or backend connection.
+                    </p>
+
+                </form>
+
+
+                <div
+                    class="contact-success"
+                    id="contactSuccess"
+                >
+                    Your message has been prepared successfully.
+                    Connect this form to your preferred email service
+                    or backend before using it as a live contact form.
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- FAQ -->
+
+        <section class="contact-faq">
+
+            <div class="contact-faq-title">
+
+                <h2>Contact FAQ</h2>
+
+                <p>
+                    Common questions about contacting ToolifyHub.
+                </p>
+
+            </div>
+
+
+            <div class="contact-faq-item">
+
+                <button
+                    type="button"
+                    class="contact-faq-question"
+                >
+
+                    How can I report a tool problem?
+
+                    <span class="contact-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="contact-faq-answer">
+
+                    <p>
+                        Select "Tool Problem" in the contact form
+                        and describe what happened, including the
+                        tool you were using.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-faq-item">
+
+                <button
+                    type="button"
+                    class="contact-faq-question"
+                >
+
+                    Can I suggest a new tool?
+
+                    <span class="contact-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="contact-faq-answer">
+
+                    <p>
+                        Yes. Select "Tool Suggestion" and tell us
+                        which online utility you would like to see
+                        on ToolifyHub.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-faq-item">
+
+                <button
+                    type="button"
+                    class="contact-faq-question"
+                >
+
+                    Do I need an account to contact ToolifyHub?
+
+                    <span class="contact-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="contact-faq-answer">
+
+                    <p>
+                        No account is required to fill out the
+                        contact form.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="contact-faq-item">
+
+                <button
+                    type="button"
+                    class="contact-faq-question"
+                >
+
+                    Can I request a business collaboration?
+
+                    <span class="contact-faq-icon">
+                        +
+                    </span>
+
+                </button>
+
+                <div class="contact-faq-answer">
+
+                    <p>
+                        Yes. Choose "Business Inquiry" and provide
+                        enough information for us to understand
+                        your proposal.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div>
+
+                    <a
+                        href="index.html"
+                        class="logo"
+                    >
+
+                        <div class="logo-icon">
+                            T
+                        </div>
+
+                        <span>
+                            Toolify<span class="logo-highlight">
+                                Hub
+                            </span>
+                        </span>
+
+                    </a>
+
+                    <p>
+                        Simple, powerful and free online tools
+                        for everyday productivity.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-links">
+
+                    <div>
+
+                        <h4>Tools</h4>
+
+                        <a href="index.html#tools">
+                            All Tools
+                        </a>
+
+                        <a href="tools/image-resizer.html">
+                            Image Resizer
+                        </a>
+
+                        <a href="tools/jpg-to-pdf.html">
+                            JPG to PDF
+                        </a>
+
+                        <a href="tools/word-counter.html">
+                            Word Counter
+                        </a>
+
+                    </div>
+
+
+                    <div>
+
+                        <h4>Company</h4>
+
+                        <a href="about.html">
+                            About
+                        </a>
+
+                        <a href="contact.html">
+                            Contact
+                        </a>
+
+                        <a href="privacy.html">
+                            Privacy
+                        </a>
+
+                        <a href="terms.html">
+                            Terms
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <span>
+                    ©
+                    <span id="contactYear"></span>
+                    ToolifyHub. All rights reserved.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</div>
+
+
+<script>
+
+    /* =====================================================
+       CONTACT FORM
+       No fake email sending
+    ===================================================== */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    const contactSuccess =
+        document.getElementById("contactSuccess");
+
+
+    contactForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            contactSuccess.classList.add("show");
+
+            contactSuccess.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
+    );
+
+
+    /* =====================================================
+       FAQ
+    ===================================================== */
+
+    document
+        .querySelectorAll(".contact-faq-question")
+        .forEach(function(button) {
+
+            button.addEventListener(
+                "click",
+                function() {
+
+                    const item =
+                        button.parentElement;
+
+                    item.classList.toggle("open");
+
+                }
+            );
+
+        });
+
+
+    /* =====================================================
+       FOOTER YEAR
+    ===================================================== */
+
+    document.getElementById("contactYear")
+        .textContent =
+        new Date().getFullYear();
+
+</script>
+
+</body>
+</html>

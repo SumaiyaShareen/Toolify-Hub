@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/about.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/contact.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/privacy.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/terms.html</loc>
+    </url>
+
+    <!-- Tools -->
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/image-resizer.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/image-compressor.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/image-cropper.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/image-converter.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/background-remover.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/pdf-compressor.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/jpg-to-pdf.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/pdf-to-jpg.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/word-counter.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/case-converter.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/qr-generator.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/color-picker.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/password-generator.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/image-dimensions.html</loc>
+    </url>
+
+    <url>
+        <loc>https://toolifyhub-online.netlify.app/tools/image-format-converter.html</loc>
+    </url>
+
+</urlset>

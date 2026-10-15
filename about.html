@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>About ToolifyHub - Free Online Tools</title>
+
+    <meta
+        name="description"
+        content="Learn about ToolifyHub, a collection of free online tools for images, PDFs, text, QR codes, colors, passwords and everyday productivity."
+    >
+
+    <meta
+        name="keywords"
+        content="ToolifyHub, free online tools, online utilities, image tools, PDF tools, productivity tools"
+    >
+
+    <meta name="robots" content="index, follow">
+
+    <link
+        rel="canonical"
+        href="https://toolifyhub-online.netlify.app/about.html"
+    >
+
+    <!-- Open Graph -->
+    <meta
+        property="og:title"
+        content="About ToolifyHub - Free Online Tools"
+    >
+
+    <meta
+        property="og:description"
+        content="Learn about ToolifyHub, a collection of free online tools for images, PDFs, text, QR codes, colors, passwords and everyday productivity."
+    >
+
+    <meta property="og:type" content="website">
+
+    <meta
+        property="og:url"
+        content="https://toolifyhub-online.netlify.app/about.html"
+    >
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+
+    <meta
+        name="twitter:title"
+        content="About ToolifyHub - Free Online Tools"
+    >
+
+    <meta
+        name="twitter:description"
+        content="Learn about ToolifyHub and its free online tools."
+    >
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="favicon.svg"
+    >
+
+</head>
+
+    <style>
+        .about-page {
+            background:
+                radial-gradient(circle at 15% 10%, rgba(99,102,241,.10), transparent 30%),
+                radial-gradient(circle at 85% 20%, rgba(14,165,233,.08), transparent 30%),
+                #f8fafc;
+        }
+
+        .about-hero {
+            text-align:center;
+            padding:90px 20px 55px;
+        }
+
+        .about-badge {
+            display:inline-block;
+            padding:8px 15px;
+            border-radius:50px;
+            background:#eef2ff;
+            color:#4f46e5;
+            font-size:13px;
+            font-weight:800;
+            margin-bottom:18px;
+        }
+
+        .about-hero h1 {
+            max-width:850px;
+            margin:auto;
+            font-size:clamp(40px,6vw,68px);
+            line-height:1.05;
+            letter-spacing:-2px;
+            color:#0f172a;
+        }
+
+        .about-gradient {
+            background:linear-gradient(90deg,#4f46e5,#7c3aed,#0284c7);
+            -webkit-background-clip:text;
+            background-clip:text;
+            color:transparent;
+        }
+
+        .about-hero p {
+            max-width:680px;
+            margin:22px auto 0;
+            color:#64748b;
+            font-size:17px;
+            line-height:1.75;
+        }
+
+        .about-main {
+            max-width:1100px;
+            margin:auto;
+            padding:20px 20px 90px;
+        }
+
+        .about-section {
+            background:white;
+            border:1px solid #e2e8f0;
+            border-radius:24px;
+            padding:35px;
+            margin-bottom:22px;
+            box-shadow:0 15px 45px rgba(15,23,42,.05);
+        }
+
+        .about-section h2 {
+            color:#0f172a;
+            font-size:28px;
+            margin:0 0 14px;
+        }
+
+        .about-section p {
+            color:#64748b;
+            line-height:1.8;
+            margin:0 0 14px;
+        }
+
+        .about-grid {
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:18px;
+            margin-top:25px;
+        }
+
+        .about-card {
+            padding:25px;
+            border:1px solid #e2e8f0;
+            border-radius:18px;
+            background:#f8fafc;
+        }
+
+        .about-icon {
+            width:45px;
+            height:45px;
+            display:grid;
+            place-items:center;
+            border-radius:13px;
+            background:#eef2ff;
+            color:#4f46e5;
+            font-weight:900;
+            margin-bottom:15px;
+        }
+
+        .about-card h3 {
+            color:#0f172a;
+            margin:0 0 8px;
+        }
+
+        .about-card p {
+            font-size:14px;
+            margin:0;
+        }
+
+        .about-tools {
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:10px;
+            margin-top:20px;
+        }
+
+        .about-tool {
+            padding:13px 15px;
+            border:1px solid #e2e8f0;
+            border-radius:12px;
+            color:#334155;
+            font-weight:700;
+            background:#f8fafc;
+        }
+
+        .about-cta {
+            text-align:center;
+            background:linear-gradient(135deg,#4f46e5,#7c3aed);
+            color:white;
+            border-radius:25px;
+            padding:50px 25px;
+            margin-top:25px;
+        }
+
+        .about-cta h2 {
+            color:white;
+            margin:0 0 10px;
+            font-size:32px;
+        }
+
+        .about-cta p {
+            color:rgba(255,255,255,.82);
+            margin-bottom:25px;
+        }
+
+        .about-cta a {
+            display:inline-block;
+            padding:13px 22px;
+            background:white;
+            color:#4f46e5;
+            border-radius:12px;
+            font-weight:800;
+            text-decoration:none;
+        }
+
+        @media(max-width:800px) {
+            .about-grid,
+            .about-tools {
+                grid-template-columns:1fr;
+            }
+
+            .about-section {
+                padding:25px;
+            }
+        }
+    </style>
+
+<!-- TOOLIFYHUB SEO SCHEMA START -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "About ToolifyHub - Free Online Tools",
+  "url": "https://toolifyhub-online.netlify.app/about.html",
+  "description": "Learn about ToolifyHub, a collection of free online tools for images, PDFs, text, QR codes, colors, passwords and everyday productivity."
+}
+</script>
+<!-- TOOLIFYHUB SEO SCHEMA END -->
+
+
+<body>
+
+<div class="about-page">
+
+<header class="header">
+    <div class="container nav">
+
+        <a href="index.html" class="logo">
+            <div class="logo-icon">T</div>
+            <span>Toolify<span class="logo-highlight">Hub</span></span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html#tools">Tools</a>
+            <a href="index.html#how-it-works">How It Works</a>
+            <a href="index.html#faq">FAQ</a>
+            <a href="about.html">About</a>
+        </nav>
+
+        <a href="index.html#tools" class="nav-button">
+            All Tools
+        </a>
+
+    </div>
+</header>
+
+
+<section class="about-hero">
+
+    <div class="about-badge">
+        About ToolifyHub
+    </div>
+
+    <h1>
+        Simple Tools for
+        <span class="about-gradient">Everyday Tasks</span>
+    </h1>
+
+    <p>
+        ToolifyHub brings useful online tools together in one simple,
+        fast and easy-to-use platform.
+    </p>
+
+</section>
+
+
+<main class="about-main">
+
+    <section class="about-section">
+
+        <h2>What is ToolifyHub?</h2>
+
+        <p>
+            ToolifyHub is an online tools platform designed to make
+            common digital tasks easier. Instead of searching for
+            different websites for every small task, users can find
+            useful image, PDF, text and productivity tools in one place.
+        </p>
+
+        <p>
+            Our tools are designed with a simple goal: make everyday
+            online tasks quick and straightforward without unnecessary
+            complexity.
+        </p>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <h2>Why Use ToolifyHub?</h2>
+
+        <div class="about-grid">
+
+            <div class="about-card">
+                <div class="about-icon">01</div>
+                <h3>Easy to Use</h3>
+                <p>
+                    Clean interfaces make each tool simple to understand
+                    and use.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">02</div>
+                <h3>Free Tools</h3>
+                <p>
+                    Many everyday utilities are available without
+                    requiring a paid subscription.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <div class="about-icon">03</div>
+                <h3>Fast Experience</h3>
+                <p>
+                    Browser-based tools can help users complete tasks
+                    without complicated software installation.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <h2>Our Tools</h2>
+
+        <p>
+            ToolifyHub currently provides tools for images, PDFs,
+            text, QR codes, colors and passwords.
+        </p>
+
+        <div class="about-tools">
+
+            <div class="about-tool">Image Resizer</div>
+            <div class="about-tool">Image Compressor</div>
+            <div class="about-tool">Image Cropper</div>
+            <div class="about-tool">Image Converter</div>
+            <div class="about-tool">Background Remover</div>
+            <div class="about-tool">PDF Compressor</div>
+            <div class="about-tool">JPG to PDF</div>
+            <div class="about-tool">PDF to JPG</div>
+            <div class="about-tool">Word Counter</div>
+            <div class="about-tool">Case Converter</div>
+            <div class="about-tool">QR Generator</div>
+            <div class="about-tool">Color Picker</div>
+            <div class="about-tool">Password Generator</div>
+            <div class="about-tool">Image Dimensions</div>
+            <div class="about-tool">Image Format Converter</div>
+
+        </div>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <h2>Our Mission</h2>
+
+        <p>
+            Our mission is to create a useful collection of accessible
+            online utilities that save users time and make common digital
+            tasks easier.
+        </p>
+
+        <p>
+            We aim to continuously improve the platform by adding useful
+            features, improving usability and maintaining a clean,
+            straightforward experience.
+        </p>
+
+    </section>
+
+
+    <section class="about-section">
+
+        <h2>Privacy and Browser-Based Tools</h2>
+
+        <p>
+            Where supported, ToolifyHub processes files directly in the
+            user's browser. This can reduce the need to upload files to
+            a remote server for certain tools.
+        </p>
+
+        <p>
+            Users should always review the specific behavior of each tool
+            before processing sensitive information.
+        </p>
+
+    </section>
+
+
+    <section class="about-cta">
+
+        <h2>Ready to Try the Tools?</h2>
+
+        <p>
+            Explore ToolifyHub and find the tool you need.
+        </p>
+
+        <a href="index.html#tools">
+            Explore All Tools
+        </a>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container">
+
+        <div class="footer-content">
+
+            <div>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon">T</div>
+                    <span>Toolify<span class="logo-highlight">Hub</span></span>
+                </a>
+
+                <p>
+                    Simple, powerful and free online tools
+                    for everyday productivity.
+                </p>
+            </div>
+
+            <div class="footer-links">
+
+                <div>
+                    <h4>Tools</h4>
+                    <a href="index.html#tools">All Tools</a>
+                    <a href="tools/image-resizer.html">Image Resizer</a>
+                    <a href="tools/jpg-to-pdf.html">JPG to PDF</a>
+                    <a href="tools/word-counter.html">Word Counter</a>
+                </div>
+
+                <div>
+                    <h4>Company</h4>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy</a>
+                    <a href="terms.html">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>
+                © <span id="aboutYear"></span> ToolifyHub.
+                All rights reserved.
+            </span>
+        </div>
+
+    </div>
+
+</footer>
+
+</div>
+
+<script>
+document.getElementById("aboutYear").textContent =
+    new Date().getFullYear();
+</script>
+
+</body>
+</html>
